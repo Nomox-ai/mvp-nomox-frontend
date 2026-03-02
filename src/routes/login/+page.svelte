@@ -28,21 +28,18 @@
 	}
 </script>
 
-<div class="bg-background flex min-h-screen items-center justify-center px-4">
+<div class="bg-background relative flex min-h-screen items-center justify-center px-4">
+	<!-- Top-left logo -->
+	<div class="absolute top-6 left-6 flex items-center gap-2.5">
+		<img src={logo} alt="nomox" class="size-10" />
+		<span class="text-foreground text-10 font-semibold">nomox</span>
+	</div>
+
 	<div class="w-full max-w-sm">
-
-		<div class="mb-8 flex flex-col items-center gap-3">
-			<img src={logo} alt="nomox" class="size-12" />
-			<div class="text-center">
-				<p class="text-foreground text-base font-semibold">nomox</p>
-				<p class="text-muted-foreground text-sm">Admin console</p>
-			</div>
-		</div>
-
 		<Card>
 			<CardHeader class="pb-4">
-				<CardTitle class="text-lg">Sign in</CardTitle>
-				<CardDescription>Access your workspace</CardDescription>
+				<CardTitle class="text-xl text-center">Sign in</CardTitle>
+				<CardDescription class="text-center">Access your workspace</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<form onsubmit={handleLogin} class="flex flex-col gap-4">
