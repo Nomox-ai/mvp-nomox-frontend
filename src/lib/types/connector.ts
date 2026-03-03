@@ -48,6 +48,8 @@ export interface MongoDBConnectorModel extends BaseConnectorModel {
   connector_type: ConnectorType.MONGODB;
   /** mongodb+srv://username:password@host */
   connection_url: string;
+  /** Restrict schema visibility to a single database */
+  database?: string;
   /** default: "_schema" */
   schema_collection?: string;
   /** default: false */
