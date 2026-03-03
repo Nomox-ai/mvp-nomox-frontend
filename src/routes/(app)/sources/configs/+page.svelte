@@ -10,6 +10,8 @@
 	import DatabaseIcon from "@lucide/svelte/icons/database";
 	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
 	import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
+	import MoreHorizontalIcon from "@lucide/svelte/icons/more-horizontal";
+	import SourceSettingsSheet from "$lib/components/source-settings-sheet.svelte";
 	import { ConnectorType } from "$lib/types/connector.js";
 	import type { AnyConnectorModel } from "$lib/types/connector.js";
 	import { SourceState } from "$lib/types/semantic.js";
@@ -32,6 +34,8 @@
 	// ─── State ────────────────────────────────────────────────────────────────
 
 	let dialogOpen = $state(false);
+	let sheetOpen = $state(false);
+	let selectedRow = $state<SourceRow | null>(null);
 	let rows = $state<SourceRow[]>([]);
 	let loading = $state(true);
 	let loadError = $state<string | null>(null);
@@ -101,6 +105,22 @@
 		refreshing = true;
 		await loadSources();
 		refreshing = false;
+	}
+
+	function openSettings(row: SourceRow) {
+		selectedRow = row;
+		sheetOpen = true;
+	}
+
+	function handleSheetUpdate(model: AnyConnectorModel) {
+		// Update description in the row if we ever surface it in the table
+		rows = rows.map((r) =>
+			r.connector_id === model.connector_id ? { ...r, connector_type: model.connector_type } : r
+		);
+	}
+
+	function handleSheetDelete(id: string) {
+		rows = rows.filter((r) => r.connector_id !== id);
 	}
 
 	async function handleCreate(model: AnyConnectorModel) {
@@ -226,7 +246,8 @@
 						<Table.TableHead>Availability</Table.TableHead>
 						<Table.TableHead>Indexing state</Table.TableHead>
 						<Table.TableHead>Last indexed</Table.TableHead>
-						<Table.TableHead class="pr-6">Owner</Table.TableHead>
+						<Table.TableHead>Owner</Table.TableHead>
+					<Table.TableHead class="w-10 pr-4"></Table.TableHead>
 					</Table.TableRow>
 				</Table.TableHeader>
 				<Table.TableBody>
@@ -330,6 +351,18 @@
 								{/if}
 							</Table.TableCell>
 
+							<!-- Settings button -->
+							<Table.TableCell class="pr-4">
+								<button
+									type="button"
+									onclick={() => openSettings(row)}
+									class="text-muted-foreground hover:text-foreground hover:bg-accent flex size-7 items-center justify-center rounded-md transition-colors"
+									title="Source settings"
+								>
+									<MoreHorizontalIcon class="size-4" />
+								</button>
+							</Table.TableCell>
+
 						</Table.TableRow>
 					{/each}
 				</Table.TableBody>
@@ -339,3 +372,13 @@
 </div>
 
 <AddSourceDialog bind:open={dialogOpen} oncreate={handleCreate} />
+
+{#if selectedRow}
+	<SourceSettingsSheet
+		bind:open={sheetOpen}
+		connectorId={selectedRow.connector_id}
+		connectorType={selectedRow.connector_type}
+		onupdate={handleSheetUpdate}
+		ondelete={handleSheetDelete}
+	/>
+{/if}

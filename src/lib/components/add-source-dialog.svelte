@@ -28,6 +28,9 @@
 	let selectedType = $state<ConnectorType | null>(null);
 	let owner = $state("");
 
+	// Step 2 — shared
+	let description = $state("");
+
 	// Step 2 — MongoDB
 	let mongoConnectionUrl = $state("");
 	let mongoDatabase = $state("");
@@ -57,6 +60,7 @@
 		connectorId = "";
 		selectedType = null;
 		owner = "";
+		description = "";
 		mongoConnectionUrl = "";
 		mongoDatabase = "";
 		mongoSchemaCollection = "_schema";
@@ -81,6 +85,7 @@
 			model = {
 				connector_id: connectorId.trim(),
 				connector_type: ConnectorType.MONGODB,
+				description: description.trim() || undefined,
 				connection_url: mongoConnectionUrl.trim(),
 				database: mongoDatabase.trim() || undefined,
 				schema_collection: mongoSchemaCollection.trim() || "_schema",
@@ -90,6 +95,7 @@
 			model = {
 				connector_id: connectorId.trim(),
 				connector_type: ConnectorType.POSTGRESQL,
+				description: description.trim() || undefined,
 				host: pgHost.trim(),
 				port: pgPort,
 				database: pgDatabase.trim(),
@@ -186,6 +192,7 @@
 							bind:value={connectorId}
 							placeholder="e.g. analytics-mongo"
 							class="font-mono text-sm"
+			
 						/>
 						<p class="text-muted-foreground text-xs">
 							Used as the Trino catalog name - must be unique, lowercase, no spaces.
@@ -246,6 +253,20 @@
 							<MongodbIcon class="size-4" />
 						</div>
 						<span class="text-sm font-medium">MongoDB connection</span>
+					</div>
+
+					<div class="space-y-1.5">
+						<Label for="add-desc-mongo" class="flex gap-1.5">
+							Description
+							<span class="text-muted-foreground font-normal">(optional)</span>
+						</Label>
+						<textarea
+							id="add-desc-mongo"
+							bind:value={description}
+							placeholder="What does this source contain? Who uses it?"
+							rows="2"
+							class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border px-3 py-2 text-sm outline-none focus-visible:ring-2 resize-none"
+						></textarea>
 					</div>
 
 					<div class="space-y-1.5">
@@ -310,6 +331,20 @@
 							<PostgresqlIcon class="size-4" />
 						</div>
 						<span class="text-sm font-medium">PostgreSQL connection</span>
+					</div>
+
+					<div class="space-y-1.5">
+						<Label for="add-desc-pg" class="flex gap-1.5">
+							Description
+							<span class="text-muted-foreground font-normal">(optional)</span>
+						</Label>
+						<textarea
+							id="add-desc-pg"
+							bind:value={description}
+							placeholder="What does this source contain? Who uses it?"
+							rows="2"
+							class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border px-3 py-2 text-sm outline-none focus-visible:ring-2 resize-none"
+						></textarea>
 					</div>
 
 					<div class="grid grid-cols-3 gap-3">
