@@ -29,7 +29,6 @@
 </script>
 
 <div class="bg-background relative flex min-h-screen items-center justify-center px-4">
-	<!-- Top-left logo -->
 	<div class="absolute top-6 left-6 flex items-center gap-2.5">
 		<img src={logo} alt="nomox" class="size-10" />
 		<span class="text-foreground text-10 font-semibold">nomox</span>
@@ -39,7 +38,7 @@
 		<Card>
 			<CardHeader class="pb-4">
 				<CardTitle class="text-xl text-center">Sign in</CardTitle>
-				<CardDescription class="text-center">Access your workspace</CardDescription>
+				<CardDescription class="text-center">Access your organization</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<form onsubmit={handleLogin} class="flex flex-col gap-4">
@@ -79,7 +78,7 @@
 		</Card>
 
 		<p class="text-muted-foreground mt-6 text-center text-xs">
-			nomox · admin-only access
+			admin-only access
 		</p>
 	</div>
 </div>

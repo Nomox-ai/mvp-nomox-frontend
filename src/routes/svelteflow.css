@@ -1,0 +1,100 @@
+/* ── Nodes ─────────────────────────────────────────────────── */
+.svelte-flow__node-default {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.05),
+    0 2px 10px rgba(0, 0, 0, 0.04);
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  min-width: 160px;
+  font-family: var(--font-sans);
+}
+
+.svelte-flow__node-default.selected,
+.svelte-flow__node-default:focus-visible {
+  border-color: #2d2df6;
+  box-shadow: 0 0 0 1.5px #2d2df6;
+  outline: none;
+}
+
+/* ── Handles ────────────────────────────────────────────────── */
+.svelte-flow__handle {
+  width: 10px;
+  height: 10px;
+  background: #c4c9d4;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #d1d5db;
+}
+
+.svelte-flow__handle:hover {
+  background: #2d2df6;
+  box-shadow: 0 0 0 1px #2d2df6;
+}
+
+/* ── Edges ──────────────────────────────────────────────────── */
+.svelte-flow__edge-path {
+  stroke: #c4c9d4;
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+}
+
+.svelte-flow__edge.animated .svelte-flow__edge-path {
+  stroke-dasharray: 6 4;
+}
+
+.svelte-flow__edge.selected .svelte-flow__edge-path,
+.svelte-flow__edge:hover .svelte-flow__edge-path {
+  stroke: #2d2df6;
+}
+
+/* ── MiniMap ────────────────────────────────────────────────── */
+.svelte-flow__minimap {
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.05),
+    0 2px 10px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* ── Controls ───────────────────────────────────────────────── */
+.svelte-flow__controls {
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.svelte-flow__controls-button {
+  background: #ffffff;
+  border-bottom: 1px solid #f3f4f6;
+  color: #6b7280;
+  width: 28px;
+  height: 28px;
+}
+
+.svelte-flow__controls-button:hover {
+  background: #f9fafb;
+  color: #111827;
+}
+
+.svelte-flow__controls-button:last-child {
+  border-bottom: none;
+}
+
+.svelte-flow__controls-button svg {
+  fill: currentColor;
+  max-width: 14px;
+  max-height: 14px;
+}
+
+/* ── Attribution ────────────────────────────────────────────── */
+.svelte-flow__attribution {
+  display: none;
+}

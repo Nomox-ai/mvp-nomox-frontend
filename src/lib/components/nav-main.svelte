@@ -44,7 +44,7 @@
 													<span>{subItem.title}</span>
 													{#if subItem.badge}
 														<span
-															class="bg-destructive text-destructive-foreground ms-auto flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-medium tabular-nums"
+															class="bg-destructive text-destructive-foreground ms-auto flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-medium tabular-nums text-white"
 														>
 															{subItem.badge}
 														</span>
