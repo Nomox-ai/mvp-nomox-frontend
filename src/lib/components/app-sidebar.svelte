@@ -14,10 +14,9 @@
 			url: "/sources",
 			icon: ServerIcon,
 			items: [
+				{ title: "Configs",    url: "/sources/configs" },
 				{ title: "Playground", url: "/sources/playground" },
 				{ title: "Schemas",    url: "/sources/schemas" },
-				{ title: "Configs",    url: "/sources/configs" },
-				{ title: "Settings",   url: "/sources/settings" },
 			],
 		},
 		{
