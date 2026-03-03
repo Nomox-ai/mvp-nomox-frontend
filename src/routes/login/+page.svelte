@@ -5,8 +5,9 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import logo from '$lib/assets/logo.svg';
+	import { login } from '$lib/api/auth.js';
 
-	let email = $state('');
+	let username = $state('');
 	let password = $state('');
 	let loading = $state(false);
 	let error = $state('');
@@ -15,14 +16,11 @@
 		e.preventDefault();
 		error = '';
 		loading = true;
-
-		// Dummy auth — replace with real API call
-		await new Promise((r) => setTimeout(r, 200));
-
-		if (email === 'admin@nomox.ai' && password === 'admin') {
-			goto('/sources/playground');
-		} else {
-			error = 'Invalid email or password.';
+		try {
+			await login(username, password);
+			goto('/sources/configs');
+		} catch {
+			error = 'Invalid username or password.';
 			loading = false;
 		}
 	}
@@ -43,13 +41,13 @@
 			<CardContent>
 				<form onsubmit={handleLogin} class="flex flex-col gap-4">
 					<div class="flex flex-col gap-1.5">
-						<Label for="email">Email</Label>
+						<Label for="username">Username</Label>
 						<Input
-							id="email"
-							type="email"
-							placeholder="admin@nomox.ai"
-							autocomplete="email"
-							bind:value={email}
+							id="username"
+							type="text"
+							placeholder="admin"
+							autocomplete="username"
+							bind:value={username}
 							required
 						/>
 					</div>

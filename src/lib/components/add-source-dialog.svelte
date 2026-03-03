@@ -197,6 +197,7 @@
 						<Label>Source type</Label>
 						<div class="grid grid-cols-2 gap-3">
 							{#each sourceTypes as src (src.type)}
+								{@const Icon = src.icon}
 								<button
 									type="button"
 									onclick={() => (selectedType = src.type)}
@@ -209,7 +210,7 @@
 									)}
 								>
 									<div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted">
-										<svelte:component this={src.icon} class="size-5" />
+										<Icon class="size-5" />
 									</div>
 									<div class="min-w-0">
 										<p class="text-sm font-medium leading-none">{src.label}</p>
