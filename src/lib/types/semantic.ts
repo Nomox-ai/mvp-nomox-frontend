@@ -19,32 +19,32 @@ export interface NamedModel {
 // ─── Enums: Columns ──────────────────────────────────────────────────────────
 
 export enum SemanticCategory {
-  IDENTIFIER = "IDENTIFIER",
-  TIMESTAMP = "TIMESTAMP",
-  CURRENCY = "CURRENCY",
-  QUANTITY = "QUANTITY",
-  PERCENTAGE = "PERCENTAGE",
-  CATEGORICAL = "CATEGORICAL",
-  TEXT = "TEXT",
-  BOOLEAN = "BOOLEAN",
-  GEOSPATIAL = "GEOSPATIAL",
-  JSON = "JSON",
-  BINARY = "BINARY",
-  UNKNOWN = "UNKNOWN",
+  IDENTIFIER = "identifier",
+  TIMESTAMP = "timestamp",
+  CURRENCY = "currency",
+  QUANTITY = "quantity",
+  PERCENTAGE = "percentage",
+  CATEGORICAL = "categorical",
+  TEXT = "text",
+  BOOLEAN = "boolean",
+  GEOSPATIAL = "geospatial",
+  JSON = "json",
+  BINARY = "binary",
+  UNKNOWN = "unknown",
 }
 
 export enum SemanticTypeInference {
-  COLUMN_NAME = "COLUMN_NAME",
-  DATA_PATTERN = "DATA_PATTERN",
-  VALUE_DISTRIBUTION = "VALUE_DISTRIBUTION",
-  FOREIGN_KEY = "FOREIGN_KEY",
-  EXPERT_OVERRIDE = "EXPERT_OVERRIDE",
+  COLUMN_NAME = "column_name",
+  DATA_PATTERN = "data_pattern",
+  VALUE_DISTRIBUTION = "value_distribution",
+  FOREIGN_KEY = "foreign_key",
+  EXPERT_OVERRIDE = "expert_override",
 }
 
 export enum ReferenceType {
-  FOREIGN_KEY = "FOREIGN_KEY",
-  INFERRED = "INFERRED",
-  SOFT_REFERENCE = "SOFT_REFERENCE",
+  FOREIGN_KEY = "foreign_key",
+  INFERRED = "inferred",
+  SOFT_REFERENCE = "soft_reference",
 }
 
 // ─── Column Models ────────────────────────────────────────────────────────────
@@ -127,12 +127,12 @@ export interface Column extends NamedModel {
 // ─── Enums: Confidence ───────────────────────────────────────────────────────
 
 export enum ConfidenceObjectType {
-  TABLE = "TABLE",
-  COLUMN = "COLUMN",
-  RELATIONSHIP = "RELATIONSHIP",
-  ENTITY = "ENTITY",
-  ATTRIBUTE = "ATTRIBUTE",
-  SOURCE = "SOURCE",
+  TABLE = "table",
+  COLUMN = "column",
+  RELATIONSHIP = "relationship",
+  ENTITY = "entity",
+  ATTRIBUTE = "attribute",
+  SOURCE = "source",
 }
 
 // ─── Confidence Models ────────────────────────────────────────────────────────
@@ -162,23 +162,23 @@ export interface ConfidenceScore {
 // ─── Enums: Entities ─────────────────────────────────────────────────────────
 
 export enum ManifestationRole {
-  PRIMARY = "PRIMARY",
-  SECONDARY = "SECONDARY",
-  DERIVED = "DERIVED",
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  DERIVED = "derived",
 }
 
 export enum ResolutionStrategy {
-  PREFER_PRIMARY = "PREFER_PRIMARY",
-  MOST_RECENT = "MOST_RECENT",
-  COALESCE = "COALESCE",
-  CUSTOM = "CUSTOM",
+  PREFER_PRIMARY = "prefer_primary",
+  MOST_RECENT = "most_recent",
+  COALESCE = "coalesce",
+  CUSTOM = "custom",
 }
 
 export enum EntityStatus {
-  DRAFT = "DRAFT",
-  STAGING = "STAGING",
-  CONFIRMED = "CONFIRMED",
-  DEPRECATED = "DEPRECATED",
+  DRAFT = "draft",
+  STAGING = "staging",
+  CONFIRMED = "confirmed",
+  DEPRECATED = "deprecated",
 }
 
 // ─── Entity Models ────────────────────────────────────────────────────────────
@@ -234,16 +234,16 @@ export interface SemanticEntity extends NamedModel {
 // ─── Enums: Entity Relationships ─────────────────────────────────────────────
 
 export enum Cardinality {
-  ONE_TO_ONE = "ONE_TO_ONE",
-  ONE_TO_MANY = "ONE_TO_MANY",
-  MANY_TO_MANY = "MANY_TO_MANY",
+  ONE_TO_ONE = "one_to_one",
+  ONE_TO_MANY = "one_to_many",
+  MANY_TO_MANY = "many_to_many",
 }
 
 export enum JoinType {
-  INNER = "INNER",
-  LEFT = "LEFT",
-  RIGHT = "RIGHT",
-  FULL = "FULL",
+  INNER = "inner",
+  LEFT = "left",
+  RIGHT = "right",
+  FULL = "full",
 }
 
 // ─── Entity Relationship Models ───────────────────────────────────────────────
@@ -278,15 +278,15 @@ export interface EntityRelationship extends NamedModel {
 // ─── Enums: Glossary ─────────────────────────────────────────────────────────
 
 export enum GlossaryScope {
-  GLOBAL = "GLOBAL",
-  DOMAIN = "DOMAIN",
-  SOURCE = "SOURCE",
+  GLOBAL = "global",
+  DOMAIN = "domain",
+  SOURCE = "source",
 }
 
 export enum GlossaryCreator {
-  LEVEL_1_AGENT = "LEVEL_1_AGENT",
-  LEVEL_2_AGENT = "LEVEL_2_AGENT",
-  EXPERT = "EXPERT",
+  LEVEL_1_AGENT = "level_1_agent",
+  LEVEL_2_AGENT = "level_2_agent",
+  EXPERT = "expert",
 }
 
 // ─── Glossary Models ──────────────────────────────────────────────────────────
@@ -310,35 +310,35 @@ export interface GlossaryTerm extends NamedModel {
 // ─── Enums: Indexing ─────────────────────────────────────────────────────────
 
 export enum IndexingStatus {
-  INDEXING = "INDEXING",
-  PARTIAL = "PARTIAL",
-  COMPLETE = "COMPLETE",
-  STALE = "STALE",
+  INDEXING = "indexing",
+  PARTIAL = "partial",
+  COMPLETE = "complete",
+  STALE = "stale",
 }
 
 export enum ReindexJobType {
-  FULL = "FULL",
-  INCREMENTAL = "INCREMENTAL",
-  SOURCE_UPDATE = "SOURCE_UPDATE",
-  EXPERT_FEEDBACK = "EXPERT_FEEDBACK",
-  CASCADE = "CASCADE",
+  FULL = "full",
+  INCREMENTAL = "incremental",
+  SOURCE_UPDATE = "source_update",
+  EXPERT_FEEDBACK = "expert_feedback",
+  CASCADE = "cascade",
 }
 
 export enum ReindexJobStatus {
-  PENDING = "PENDING",
-  RUNNING = "RUNNING",
-  COMPLETED = "COMPLETED",
-  FAILED = "FAILED",
+  PENDING = "pending",
+  RUNNING = "running",
+  COMPLETED = "completed",
+  FAILED = "failed",
 }
 
 export enum ReindexTriggerType {
-  INITIAL_INDEX = "INITIAL_INDEX",
-  SCHEMA_CHANGE = "SCHEMA_CHANGE",
-  NEW_TABLE = "NEW_TABLE",
-  EXPERT_OVERRIDE = "EXPERT_OVERRIDE",
-  DEPENDENCY_CASCADE = "DEPENDENCY_CASCADE",
-  MANUAL = "MANUAL",
-  SCHEDULED = "SCHEDULED",
+  INITIAL_INDEX = "initial_index",
+  SCHEMA_CHANGE = "schema_change",
+  NEW_TABLE = "new_table",
+  EXPERT_OVERRIDE = "expert_override",
+  DEPENDENCY_CASCADE = "dependency_cascade",
+  MANUAL = "manual",
+  SCHEDULED = "scheduled",
 }
 
 // ─── Indexing Models ──────────────────────────────────────────────────────────
@@ -390,36 +390,36 @@ export interface ModelMetadata {
 // ─── Enums: Overrides ────────────────────────────────────────────────────────
 
 export enum OverrideStatus {
-  ACTIVE = "ACTIVE",
-  SUPERSEDED = "SUPERSEDED",
-  REVERTED = "REVERTED",
+  ACTIVE = "active",
+  SUPERSEDED = "superseded",
+  REVERTED = "reverted",
 }
 
 export enum ReindexScope {
-  THIS_OBJECT = "THIS_OBJECT",
-  THIS_SOURCE = "THIS_SOURCE",
-  DEPENDENT_SOURCES = "DEPENDENT_SOURCES",
-  FULL = "FULL",
+  THIS_OBJECT = "this_object",
+  THIS_SOURCE = "this_source",
+  DEPENDENT_SOURCES = "dependent_sources",
+  FULL = "full",
 }
 
 export enum FeedbackType {
-  CORRECTION = "CORRECTION",
-  CLARIFICATION = "CLARIFICATION",
-  ENHANCEMENT = "ENHANCEMENT",
-  APPROVAL = "APPROVAL",
+  CORRECTION = "correction",
+  CLARIFICATION = "clarification",
+  ENHANCEMENT = "enhancement",
+  APPROVAL = "approval",
 }
 
 export enum FeedbackPriority {
-  CRITICAL = "CRITICAL",
-  HIGH = "HIGH",
-  MEDIUM = "MEDIUM",
-  LOW = "LOW",
+  CRITICAL = "critical",
+  HIGH = "high",
+  MEDIUM = "medium",
+  LOW = "low",
 }
 
 export enum FeedbackAssessment {
-  APPROVED = "APPROVED",
-  NEEDS_WORK = "NEEDS_WORK",
-  REJECTED = "REJECTED",
+  APPROVED = "approved",
+  NEEDS_WORK = "needs_work",
+  REJECTED = "rejected",
 }
 
 // ─── Override Models ──────────────────────────────────────────────────────────
@@ -468,23 +468,23 @@ export interface ExpertFeedback {
 // ─── Enums: Internal Relationships ───────────────────────────────────────────
 
 export enum RelationshipType {
-  ONE_TO_ONE = "ONE_TO_ONE",
-  ONE_TO_MANY = "ONE_TO_MANY",
-  MANY_TO_MANY = "MANY_TO_MANY",
+  ONE_TO_ONE = "one_to_one",
+  ONE_TO_MANY = "one_to_many",
+  MANY_TO_MANY = "many_to_many",
 }
 
 export enum DetectionMethod {
-  DECLARED_FK = "DECLARED_FK",
-  NAMING_CONVENTION = "NAMING_CONVENTION",
-  VALUE_OVERLAP = "VALUE_OVERLAP",
-  EXPERT_DEFINED = "EXPERT_DEFINED",
+  DECLARED_FK = "declared_fk",
+  NAMING_CONVENTION = "naming_convention",
+  VALUE_OVERLAP = "value_overlap",
+  EXPERT_DEFINED = "expert_defined",
 }
 
 export enum JoinHint {
-  INNER = "INNER",
-  LEFT = "LEFT",
-  RIGHT = "RIGHT",
-  FULL = "FULL",
+  INNER = "inner",
+  LEFT = "left",
+  RIGHT = "right",
+  FULL = "full",
 }
 
 // ─── Internal Relationship Models ─────────────────────────────────────────────
@@ -505,21 +505,21 @@ export interface InternalRelationship extends NamedModel {
 // ─── Enums: Sources ───────────────────────────────────────────────────────────
 
 export enum SourceType {
-  TRANSACTIONAL = "TRANSACTIONAL",
-  ANALYTICAL = "ANALYTICAL",
-  OPERATIONAL = "OPERATIONAL",
-  EXTERNAL = "EXTERNAL",
-  STAGING = "STAGING",
-  DERIVED = "DERIVED",
+  TRANSACTIONAL = "transactional",
+  ANALYTICAL = "analytical",
+  OPERATIONAL = "operational",
+  EXTERNAL = "external",
+  STAGING = "staging",
+  DERIVED = "derived",
 }
 
 export enum SourceState {
-  DISCOVERED = "DISCOVERED",
-  INDEXING = "INDEXING",
-  STAGING = "STAGING",
-  CONFIRMED = "CONFIRMED",
-  DEPRECATED = "DEPRECATED",
-  ERROR = "ERROR",
+  DISCOVERED = "discovered",
+  INDEXING = "indexing",
+  STAGING = "staging",
+  CONFIRMED = "confirmed",
+  DEPRECATED = "deprecated",
+  ERROR = "error",
 }
 
 // ─── Source Models ────────────────────────────────────────────────────────────
@@ -572,30 +572,30 @@ export interface DataSource extends NamedModel {
 // ─── Enums: Tables ────────────────────────────────────────────────────────────
 
 export enum TableType {
-  TABLE = "TABLE",
-  VIEW = "VIEW",
-  MATERIALIZED_VIEW = "MATERIALIZED_VIEW",
-  EXTERNAL_TABLE = "EXTERNAL_TABLE",
+  TABLE = "table",
+  VIEW = "view",
+  MATERIALIZED_VIEW = "materialized_view",
+  EXTERNAL_TABLE = "external_table",
 }
 
 export enum SemanticRole {
-  FACT = "FACT",
-  DIMENSION = "DIMENSION",
-  BRIDGE = "BRIDGE",
-  STAGING = "STAGING",
-  AGGREGATE = "AGGREGATE",
-  SNAPSHOT = "SNAPSHOT",
-  LOG = "LOG",
-  LOOKUP = "LOOKUP",
-  UNKNOWN = "UNKNOWN",
+  FACT = "fact",
+  DIMENSION = "dimension",
+  BRIDGE = "bridge",
+  STAGING = "staging",
+  AGGREGATE = "aggregate",
+  SNAPSHOT = "snapshot",
+  LOG = "log",
+  LOOKUP = "lookup",
+  UNKNOWN = "unknown",
 }
 
 export enum TemporalGrain {
-  EVENT = "EVENT",
-  SNAPSHOT = "SNAPSHOT",
-  SLOWLY_CHANGING = "SLOWLY_CHANGING",
-  ACCUMULATING = "ACCUMULATING",
-  STATIC = "STATIC",
+  EVENT = "event",
+  SNAPSHOT = "snapshot",
+  SLOWLY_CHANGING = "slowly_changing",
+  ACCUMULATING = "accumulating",
+  STATIC = "static",
 }
 
 // ─── Table Models ─────────────────────────────────────────────────────────────

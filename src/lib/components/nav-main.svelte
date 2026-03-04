@@ -13,12 +13,26 @@
 	function subItemIsActive(url: string) {
 		return $page.url.pathname === url;
 	}
+
+	// One open flag per section — auto-opens on navigation but never auto-closes.
+	let sectionOpen = $state(
+		Object.fromEntries(items.map((i) => [i.title, sectionIsActive(i.url)]))
+	);
+
+	$effect(() => {
+		const pathname = $page.url.pathname;
+		for (const item of items) {
+			if (pathname.startsWith(item.url) && !sectionOpen[item.title]) {
+				sectionOpen[item.title] = true;
+			}
+		}
+	});
 </script>
 
 <Sidebar.Group>
 	<Sidebar.Menu>
 		{#each items as item (item.title)}
-			<Collapsible.Root open={sectionIsActive(item.url)} class="group/collapsible">
+			<Collapsible.Root bind:open={sectionOpen[item.title]} class="group/collapsible">
 				{#snippet child({ props })}
 					<Sidebar.MenuItem {...props}>
 						<Collapsible.Trigger>

@@ -247,7 +247,7 @@
 						<Table.TableHead>Indexing state</Table.TableHead>
 						<Table.TableHead>Last indexed</Table.TableHead>
 						<Table.TableHead>Owner</Table.TableHead>
-					<Table.TableHead class="w-10 pr-4"></Table.TableHead>
+					<Table.TableHead class="w-10 pr-4">Actions</Table.TableHead>
 					</Table.TableRow>
 				</Table.TableHeader>
 				<Table.TableBody>

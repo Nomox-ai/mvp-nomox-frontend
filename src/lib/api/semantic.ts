@@ -1,9 +1,9 @@
-import { http } from "./client.js";
-import type { SourceView } from "$lib/types/semantic.js";
+import { http } from "./client.js"
+import type { SemanticModel, SourceView } from "$lib/types/semantic.js"
 
 // The backend mounts semantic routes at /semantic/{type}/…
 // For the configured (full) model we use type="full".
-const TYPE = "full";
+const TYPE = "full"
 
 // ─── Source state ─────────────────────────────────────────────────────────────
 
@@ -13,8 +13,20 @@ const TYPE = "full";
  */
 export async function getSourceView(connectorId: string): Promise<SourceView | null> {
   try {
-    return await http.get<SourceView>(`/semantic/${TYPE}/source/${connectorId}`);
+    return await http.get<SourceView>(`/semantic/${TYPE}/source/${connectorId}`)
   } catch {
-    return null;
+    return null
+  }
+}
+
+/**
+ * Fetch the full semantic model (all sources, entities, glossary, relationships).
+ * Returns null if not yet available or on any error.
+ */
+export async function getSemanticModel(): Promise<SemanticModel | null> {
+  try {
+    return await http.get<SemanticModel>(`/partial/${TYPE}/model/`)
+  } catch {
+    return null
   }
 }
