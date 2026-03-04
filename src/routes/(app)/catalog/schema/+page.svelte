@@ -14,6 +14,7 @@
 
 	// Icons — structural
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import PanelLeftIcon from "@lucide/svelte/icons/panel-left";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import DatabaseIcon from "@lucide/svelte/icons/database";
 	import SearchIcon from "@lucide/svelte/icons/search";
@@ -59,6 +60,7 @@
 	let selectedTableId = $state<string | null>(null);
 	let searchQuery = $state("");
 	let initialLoading = $state(true);
+	let sidebarOpen = $state(true);
 
 	// ─── Derived ──────────────────────────────────────────────────────────────
 
@@ -156,6 +158,7 @@
 		if (!expandedSources.has(id)) {
 			expandedSources = new Set([...expandedSources, id]);
 		}
+		sidebarOpen = true;
 	}
 
 	function selectTable(sourceId: string, tableId: string) {
@@ -165,6 +168,7 @@
 		if (!expandedSources.has(sourceId)) {
 			expandedSources = new Set([...expandedSources, sourceId]);
 		}
+		sidebarOpen = false;
 	}
 
 	function toggleSource(id: string) {
@@ -274,7 +278,7 @@
 	<div class="flex min-h-0 flex-1">
 
 		<!-- ── Sidebar ───────────────────────────────────────────────────────── -->
-		<aside class="border-border flex w-64 shrink-0 flex-col border-r">
+		<aside class={cn("border-border flex shrink-0 flex-col border-r transition-[width] duration-200 overflow-hidden", sidebarOpen ? "w-64" : "w-0 border-r-0")}>
 			<!-- Search -->
 			<div class="border-border border-b p-2">
 				<div class="relative">
@@ -430,6 +434,14 @@
 
 					<!-- Breadcrumb -->
 					<nav class="text-muted-foreground mb-5 flex items-center gap-1.5 text-xs">
+						<button
+							type="button"
+							class="text-muted-foreground/50 hover:text-foreground mr-1 transition-colors"
+							title={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
+							onclick={() => (sidebarOpen = !sidebarOpen)}
+						>
+							<PanelLeftIcon class="size-3.5" />
+						</button>
 						<button
 							type="button"
 							class="hover:text-foreground transition-colors"

@@ -7,14 +7,48 @@
 	export type SubItem = { title: string; url: string; badge?: number };
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	export type NavSection = { title: string; url: string; icon: any; items: SubItem[] };
+</script>
 
-	export const navItems: NavSection[] = [
+<script lang="ts">
+	import { onMount } from "svelte";
+	import NavMain from "./nav-main.svelte";
+	import NavUser from "./nav-user.svelte";
+	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+	import type { ComponentProps } from "svelte";
+	import logo from "$lib/assets/logo.svg";
+	import { listConnectorIds } from "$lib/api/connectors.js";
+	import { getSourceView } from "$lib/api/semantic.js";
+
+	const LOW_CONF_THRESHOLD = 0.75;
+
+	let reviewsBadge = $state<number | undefined>(undefined);
+
+	onMount(async () => {
+		try {
+			const ids = await listConnectorIds();
+			const views = await Promise.all(ids.map((id) => getSourceView(id)));
+			let count = 0;
+			for (const view of views) {
+				if (!view) continue;
+				const src = view.source;
+				const hasLowConf = src.tables.some((t) =>
+					t.columns.some((c) => c.semantic_type.confidence < LOW_CONF_THRESHOLD)
+				);
+				if (src.status.pending_expert_review || hasLowConf) count++;
+			}
+			reviewsBadge = count > 0 ? count : undefined;
+		} catch {
+			// silently ignore — badge simply won't show
+		}
+	});
+
+	const navItems: NavSection[] = $derived([
 		{
 			title: "Sources",
 			url: "/sources",
 			icon: ServerIcon,
 			items: [
-				{ title: "Configs",    url: "/sources/configs" },
+				{ title: "Configs", url: "/sources/configs" },
 			],
 		},
 		{
@@ -24,7 +58,7 @@
 			items: [
 				{ title: "Schema",    url: "/catalog/schema" },
 				{ title: "Semantics", url: "/catalog/semantics" },
-				{ title: "Reviews",   url: "/catalog/reviews", badge: 3 },
+				{ title: "Reviews",   url: "/catalog/reviews", badge: reviewsBadge },
 			],
 		},
 		{
@@ -32,7 +66,7 @@
 			url: "/integrations",
 			icon: BlocksIcon,
 			items: [
-				{ title: "MCP",       url: "/integrations/mcp" },
+				{ title: "MCP", url: "/integrations/mcp" },
 			],
 		},
 		{
@@ -44,21 +78,13 @@
 				{ title: "Users", url: "/team/users" },
 			],
 		},
-	];
+	]);
 
 	export const adminUser = {
 		name: "Admin",
 		email: "admin@nomox.ai",
 		avatar: "",
 	};
-</script>
-
-<script lang="ts">
-	import NavMain from "./nav-main.svelte";
-	import NavUser from "./nav-user.svelte";
-	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
-	import type { ComponentProps } from "svelte";
-	import logo from "$lib/assets/logo.svg";
 
 	let {
 		ref = $bindable(null),
