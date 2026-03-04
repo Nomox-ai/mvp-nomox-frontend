@@ -15,8 +15,6 @@
 			icon: ServerIcon,
 			items: [
 				{ title: "Configs",    url: "/sources/configs" },
-				{ title: "Playground", url: "/sources/playground" },
-				{ title: "Schemas",    url: "/sources/schemas" },
 			],
 		},
 		{
@@ -35,7 +33,6 @@
 			icon: BlocksIcon,
 			items: [
 				{ title: "MCP",       url: "/integrations/mcp" },
-				{ title: "Inference", url: "/integrations/inference" },
 			],
 		},
 		{

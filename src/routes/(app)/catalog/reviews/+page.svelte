@@ -4,7 +4,7 @@
 	import { getSourceView } from "$lib/api/semantic.js";
 	import Skeleton from "$lib/components/ui/skeleton/skeleton.svelte";
 	import { cn } from "$lib/utils.js";
-	import type { SourceView, LowConfidenceItem } from "$lib/types/semantic.js";
+	import type { LowConfidenceItem } from "$lib/types/semantic.js";
 	import { ConfidenceObjectType } from "$lib/types/semantic.js";
 
 	import AlertCircleIcon from "@lucide/svelte/icons/alert-circle";
@@ -13,6 +13,12 @@
 	import ColumnsIcon from "@lucide/svelte/icons/columns-3";
 	import LayersIcon from "@lucide/svelte/icons/layers";
 	import CheckCircle2Icon from "@lucide/svelte/icons/check-circle-2";
+
+	// ─── Constants ────────────────────────────────────────────────────────────
+
+	// Must match the threshold used in the schema catalog (column dot) so both
+	// views always show the same set of problematic columns.
+	const LOW_CONF_THRESHOLD = 0.75;
 
 	// ─── Types ────────────────────────────────────────────────────────────────
 
@@ -50,18 +56,48 @@
 		const views = await Promise.all(ids.map((id) => getSourceView(id)));
 
 		items = ids
-			.map((id, i) => {
-				const view = views[i];
+			.map((id, idx) => {
+				const view = views[idx];
 				if (!view) return null;
 				const src = view.source;
-				const hasLowConf =
-					src.confidence != null && src.confidence.low_confidence_items.length > 0;
-				if (!src.status.pending_expert_review && !hasLowConf) return null;
+
+				// Build a lookup of backend-flagged items so we can surface LLM-generated
+				// reasons/clarifications for columns that were flagged at the stricter
+				// backend threshold (< 0.5).
+				const backendMap = new Map(
+					(src.confidence?.low_confidence_items ?? []).map((ci) => [ci.object_id, ci])
+				);
+
+				// Derive low-confidence columns at the same threshold as the schema catalog
+				// so both views are always consistent.
+				const lowConfidenceItems: LowConfidenceItem[] = src.tables
+					.flatMap((tbl) =>
+						tbl.columns
+							.filter(
+								(col) =>
+									col.semantic_type?.confidence != null &&
+									col.semantic_type.confidence < LOW_CONF_THRESHOLD
+							)
+							.map((col) => {
+								const backend = backendMap.get(col.id);
+								return {
+									object_type: ConfidenceObjectType.COLUMN,
+									object_id: col.id,
+									object_name: col.name,
+									score: col.semantic_type.confidence,
+									reason: backend?.reason ?? "",
+									suggested_clarification: backend?.suggested_clarification ?? "",
+								} satisfies LowConfidenceItem;
+							})
+					)
+					.sort((a, b) => a.score - b.score);
+
+				if (!src.status.pending_expert_review && lowConfidenceItems.length === 0) return null;
 				return {
 					sourceId: id,
 					sourceName: src.name,
 					pendingExpertReview: src.status.pending_expert_review,
-					lowConfidenceItems: src.confidence?.low_confidence_items ?? [],
+					lowConfidenceItems,
 					overallConfidence: src.confidence?.overall ?? null,
 				} satisfies ReviewItem;
 			})
@@ -122,7 +158,7 @@
 					<CheckCircle2Icon class="size-6 text-emerald-500" />
 				</div>
 				<p class="text-sm font-medium">All clear</p>
-				<p class="text-muted-foreground text-xs max-w-xs">
+				<p class="text-muted-foreground max-w-xs text-xs">
 					No sources are waiting for expert review and all confidence scores are above the threshold.
 				</p>
 			</div>
@@ -224,6 +260,8 @@
 													{/if}
 													{#if ci.suggested_clarification}
 														<p class="text-muted-foreground/70 mt-0.5 text-[10px] italic">{ci.suggested_clarification}</p>
+													{:else if !ci.reason}
+														<p class="text-muted-foreground/60 mt-0.5 text-[10px]">Score below confidence threshold in schema catalog</p>
 													{/if}
 												</div>
 											</div>
