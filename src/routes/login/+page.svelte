@@ -1,82 +1,80 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { Button } from '$lib/components/ui/button';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '$lib/components/ui/card';
-	import logo from '$lib/assets/logo.svg';
-	import { login } from '$lib/api/auth.js';
+	import { goto } from "$app/navigation";
+	import logo from "$lib/assets/logo.svg";
+	import { login } from "$lib/api/auth.js";
 
-	let username = $state('');
-	let password = $state('');
+	let username = $state("");
+	let password = $state("");
 	let loading = $state(false);
-	let error = $state('');
+	let error = $state("");
 
 	async function handleLogin(e: Event) {
 		e.preventDefault();
-		error = '';
+		error = "";
 		loading = true;
 		try {
 			await login(username, password);
-			goto('/sources/configs');
+			goto("/sources/configs");
 		} catch {
-			error = 'Invalid username or password.';
+			error = "Invalid username or password.";
 			loading = false;
 		}
 	}
 </script>
 
-<div class="bg-background relative flex min-h-screen items-center justify-center px-4">
-	<div class="absolute top-6 left-6 flex items-center gap-2.5">
-		<img src={logo} alt="nomox" class="size-10" />
-		<span class="text-foreground text-10 font-semibold">nomox</span>
-	</div>
+<div class="bg-background text-foreground flex min-h-screen flex-col">
 
-	<div class="w-full max-w-sm">
-		<Card>
-			<CardHeader class="pb-4">
-				<CardTitle class="text-xl text-center">Sign in</CardTitle>
-				<CardDescription class="text-center">Access your organization</CardDescription>
-			</CardHeader>
-			<CardContent>
-				<form onsubmit={handleLogin} class="flex flex-col gap-4">
-					<div class="flex flex-col gap-1.5">
-						<Label for="username">Username</Label>
-						<Input
-							id="username"
-							type="text"
-							placeholder="admin"
-							autocomplete="username"
-							bind:value={username}
-							required
-						/>
-					</div>
+	<!-- Nav — mirrors landing page -->
+	<header class="flex items-center justify-between px-8 py-6">
+		<a href="/" class="flex items-center gap-2.5">
+			<img src={logo} alt="nomox" class="size-6" />
+			<span class="text-sm font-semibold tracking-tight">nomox</span>
+		</a>
+	</header>
 
-					<div class="flex flex-col gap-1.5">
-						<Label for="password">Password</Label>
-						<Input
-							id="password"
-							type="password"
-							placeholder="••••••••"
-							autocomplete="current-password"
-							bind:value={password}
-							required
-						/>
-					</div>
+	<!-- Form -->
+	<main class="flex flex-1 items-center justify-center px-6 pb-24">
+		<div class="w-full max-w-xs">
+			<div class="mb-8 text-center">
+				<h1 class="text-foreground text-xl font-semibold tracking-tight">Sign in</h1>
+				<p class="text-muted-foreground mt-1 text-sm">Admin console access</p>
+			</div>
 
-					{#if error}
-						<p class="text-destructive text-sm">{error}</p>
-					{/if}
+			<form onsubmit={handleLogin} class="flex flex-col gap-3">
+				<input
+					id="username"
+					type="text"
+					placeholder="Username"
+					autocomplete="username"
+					bind:value={username}
+					required
+					class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-1"
+				/>
+				<input
+					id="password"
+					type="password"
+					placeholder="Password"
+					autocomplete="current-password"
+					bind:value={password}
+					required
+					class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-1"
+				/>
 
-					<Button type="submit" class="w-full" disabled={loading}>
-						{loading ? 'Signing in…' : 'Sign in'}
-					</Button>
-				</form>
-			</CardContent>
-		</Card>
+				{#if error}
+					<p class="text-destructive text-xs">{error}</p>
+				{/if}
 
-		<p class="text-muted-foreground mt-6 text-center text-xs">
-			admin-only access
-		</p>
-	</div>
+				<button
+					type="submit"
+					disabled={loading}
+					class="bg-foreground text-background hover:bg-foreground/90 mt-1 w-full rounded-lg px-4 py-2 text-sm font-medium transition-colors disabled:opacity-50"
+				>
+					{loading ? "Signing in…" : "Sign in"}
+				</button>
+			</form>
+
+			<p class="text-muted-foreground mt-6 text-center text-xs">admin-only access</p>
+		</div>
+	</main>
+
 </div>
