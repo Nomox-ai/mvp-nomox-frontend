@@ -55,6 +55,7 @@
 
 	let sources = $state<SourceEntry[]>([]);
 	let expandedSources = $state(new Set<string>());
+	let manuallyCollapsed = $state(new Set<string>());
 	let expandedColumns = $state(new Set<string>());
 	let selectedSourceId = $state<string | null>(null);
 	let selectedTableId = $state<string | null>(null);
@@ -173,8 +174,13 @@
 
 	function toggleSource(id: string) {
 		const next = new Set(expandedSources);
-		if (next.has(id)) next.delete(id);
-		else next.add(id);
+		if (next.has(id)) {
+			next.delete(id);
+			manuallyCollapsed = new Set([...manuallyCollapsed, id]);
+		} else {
+			next.add(id);
+			manuallyCollapsed = new Set([...manuallyCollapsed].filter((x) => x !== id));
+		}
 		expandedSources = next;
 	}
 
@@ -308,7 +314,7 @@
 					</p>
 				{:else}
 					{#each filteredEntries as entry (entry.id)}
-						{@const isExpanded = expandedSources.has(entry.id) || isAutoExpanded(entry)}
+						{@const isExpanded = (expandedSources.has(entry.id) || isAutoExpanded(entry)) && !manuallyCollapsed.has(entry.id)}
 						{@const isSourceSelected = selectedSourceId === entry.id && !selectedTableId}
 						{@const visibleTables = getVisibleTables(entry)}
 
@@ -322,12 +328,13 @@
 										? "bg-accent text-accent-foreground"
 										: "hover:bg-accent/50"
 								)}
-								onclick={() => {
-									selectSource(entry.id);
-									toggleSource(entry.id);
-								}}
+								onclick={() => selectSource(entry.id)}
 							>
-								<span class="text-muted-foreground shrink-0">
+								<!-- svelte-ignore a11y_no_static_element_interactions -->
+								<span
+									class="text-muted-foreground shrink-0"
+									onclick={(e) => { e.stopPropagation(); toggleSource(entry.id); }}
+								>
 									{#if entry.loading || visibleTables.length > 0}
 										{#if isExpanded}
 											<ChevronDownIcon class="size-3" />

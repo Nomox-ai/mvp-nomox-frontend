@@ -49,6 +49,7 @@
 			icon: ServerIcon,
 			items: [
 				{ title: "Configs", url: "/sources/configs" },
+				{ title: "Query", url: "/sources/query" },
 			],
 		},
 		{
