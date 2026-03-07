@@ -1,42 +1,46 @@
-# sv
+# nomox-frontend
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+SvelteKit frontend for Nomox.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+## Local development
 
 ```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv@0.12.4 create --template minimal --types ts --add tailwindcss="plugins:typography,forms" --install npm my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+cp .env.example .env   # set VITE_API_URL to your backend address
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+Open `http://localhost:5173`.
 
-To create a production version of your app:
+## Docker (local)
+
+`VITE_API_URL` is baked into the bundle at build time, so pass it as a build argument.
+The value must be reachable from the **browser**, not just the container network.
 
 ```sh
-npm run build
+docker build \
+  --build-arg VITE_API_URL=http://localhost:8000 \
+  -t nomox-frontend .
+
+docker run -p 3000:3000 nomox-frontend
 ```
 
-You can preview the production build with `npm run preview`.
+Open `http://localhost:3000`.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Deploy to Vercel
+
+1. Push the repo to GitHub / GitLab / Bitbucket.
+2. Import the project in the [Vercel dashboard](https://vercel.com/new).
+3. Under **Settings → Environment Variables** add:
+
+| Variable | Example value |
+|---|---|
+| `VITE_API_URL` | `https://api.nomox.io` |
+
+4. Deploy. Vercel auto-detects SvelteKit and runs it as a Node.js server.
+
+> `VITE_` variables are embedded at build time. Changing them in Vercel requires a redeploy.
+
+## Environment variables
+
+See [`.env.example`](.env.example) for all available variables.
