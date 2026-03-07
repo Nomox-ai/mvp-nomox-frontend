@@ -7,8 +7,6 @@ class ChatState {
 	isOpen = $state(false);
 	isLoading = $state(false);
 	highlightTarget = $state<{ selector: string; message: string } | null>(null);
-	sortRequest = $state<{ field: string; direction: string } | null>(null);
-	filterRequest = $state<{ field: string; value: string } | null>(null);
 
 	toggle() {
 		this.isOpen = !this.isOpen;
@@ -67,18 +65,6 @@ class ChatState {
 					break;
 				case "refresh_site":
 					invalidateAll();
-					break;
-				case "sort_by":
-					this.sortRequest = {
-						field: tc.args.field as string,
-						direction: (tc.args.direction as string) || "asc",
-					};
-					break;
-				case "filter_by":
-					this.filterRequest = {
-						field: tc.args.field as string,
-						value: tc.args.value as string,
-					};
 					break;
 				case "highlight_element":
 					this.highlightTarget = {

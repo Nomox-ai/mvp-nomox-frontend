@@ -199,7 +199,7 @@
 			>
 				<RefreshCwIcon class={cn("size-4", refreshing && "animate-spin")} />
 			</Button>
-			<Button size="sm" onclick={() => (dialogOpen = true)}>
+			<Button size="sm" onclick={() => (dialogOpen = true)} data-guide="add-source">
 				<PlusIcon />
 				Add source
 			</Button>
@@ -237,7 +237,7 @@
 		</div>
 	{:else}
 		<div class="flex-1 overflow-auto">
-			<Table.Table>
+			<Table.Table data-guide="source-table">
 				<Table.TableHeader>
 					<Table.TableRow class="hover:bg-transparent">
 						<Table.TableHead class="w-12 pl-6"></Table.TableHead>
