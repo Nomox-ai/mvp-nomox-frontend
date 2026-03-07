@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import AppSidebar from "$lib/components/app-sidebar.svelte";
+	import ChatBubble from "$lib/components/chat-bubble.svelte";
+	import UiSpotlight from "$lib/components/ui-spotlight.svelte";
 	import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
 	import { Separator } from "$lib/components/ui/separator/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
@@ -46,3 +48,6 @@
 		{@render children()}
 	</Sidebar.Inset>
 </Sidebar.Provider>
+
+<ChatBubble />
+<UiSpotlight />

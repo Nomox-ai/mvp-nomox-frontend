@@ -273,7 +273,7 @@
 	}
 </script>
 
-<div class="flex h-full flex-col">
+<div class="flex h-full flex-col" data-guide="schema-browser">
 	<!-- Page header -->
 	<header class="border-border flex h-14 shrink-0 items-center border-b px-6">
 		<h1 class="text-base font-semibold">Schema</h1>

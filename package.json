@@ -34,6 +34,7 @@
 		"vite": "^7.3.1"
 	},
 	"dependencies": {
-		"@xyflow/svelte": "^1.5.1"
+		"@xyflow/svelte": "^1.5.1",
+		"marked": "^17.0.4"
 	}
 }
