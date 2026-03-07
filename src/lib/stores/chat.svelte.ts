@@ -7,6 +7,7 @@ class ChatState {
 	isOpen = $state(false);
 	isLoading = $state(false);
 	highlightTarget = $state<{ selector: string; message: string } | null>(null);
+	sqlInsertRequest = $state<string | null>(null);
 
 	toggle() {
 		this.isOpen = !this.isOpen;
@@ -72,12 +73,19 @@ class ChatState {
 						message: tc.args.message as string,
 					};
 					break;
+				case "generate_sql":
+					this.sqlInsertRequest = tc.args.query as string;
+					break;
 			}
 		}
 	}
 
 	clearHighlight() {
 		this.highlightTarget = null;
+	}
+
+	clearSqlInsert() {
+		this.sqlInsertRequest = null;
 	}
 }
 

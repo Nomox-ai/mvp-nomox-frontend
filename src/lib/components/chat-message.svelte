@@ -4,6 +4,7 @@
 	import NavigationIcon from "@lucide/svelte/icons/navigation";
 	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
 	import PointerIcon from "@lucide/svelte/icons/pointer";
+	import DatabaseIcon from "@lucide/svelte/icons/database";
 
 	let { message }: { message: ChatMessage } = $props();
 
@@ -15,12 +16,14 @@
 		go_to: NavigationIcon,
 		refresh_site: RefreshCwIcon,
 		highlight_element: PointerIcon,
+		generate_sql: DatabaseIcon,
 	};
 
 	const toolLabels: Record<string, (args: Record<string, unknown>) => string> = {
 		go_to: (args) => `Navigated to ${args.route}`,
 		refresh_site: () => "Refreshed page",
 		highlight_element: (args) => `Highlighted: ${args.message}`,
+		generate_sql: () => "Generated SQL query",
 	};
 </script>
 
