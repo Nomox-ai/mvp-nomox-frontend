@@ -20,7 +20,7 @@
 
 	<!-- Hero -->
 	<main class="flex flex-1 flex-col items-center justify-center px-6 pb-24 pt-16 text-center">
-		<p class="text-muted-foreground mb-6 text-xs font-medium uppercase tracking-widest">
+		<p class="text-primary mb-6 text-xs font-medium uppercase tracking-widest">
 			Semantic data catalog
 		</p>
 
@@ -36,7 +36,7 @@
 		<div class="mt-10 flex items-center gap-4">
 			<a
 				href="/login"
-				class="bg-foreground text-background hover:bg-foreground/90 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
+				class="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
 			>
 				Open admin console
 			</a>
