@@ -86,7 +86,8 @@
 				<p class="text-muted-foreground text-xs">
 					{result.rows.length} row{result.rows.length === 1 ? "" : "s"} · {result.columns.length} column{result.columns.length === 1 ? "" : "s"}
 				</p>
-				<div class="border-border max-h-[60vh] overflow-auto rounded-md border">
+
+				<div class="border-border overflow-auto rounded-md border" style="max-height: 60vh;">
 					<table class="w-full text-sm">
 						<thead class="bg-muted/50 sticky top-0">
 							<tr class="border-border border-b">
@@ -96,9 +97,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							{#each result.rows as row}
+							{#each Array.from(result.rows) as row}
 								<tr class="border-border hover:bg-muted/40 border-b">
-									{#each row as cell}
+									{#each Array.from(row) as cell}
 										<td class="px-3 py-2 font-mono text-xs whitespace-nowrap">
 											{#if cell === null}
 												<span class="text-muted-foreground/50 italic">NULL</span>
