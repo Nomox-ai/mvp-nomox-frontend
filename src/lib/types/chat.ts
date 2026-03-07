@@ -9,6 +9,7 @@ export interface ChatMessage {
 export interface ToolCall {
 	name: string;
 	args: Record<string, unknown>;
+	fromRoute?: string;
 }
 
 export interface ChatResponse {

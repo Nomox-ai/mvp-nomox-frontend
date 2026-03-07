@@ -7,6 +7,8 @@ class ChatState {
 	isOpen = $state(false);
 	isLoading = $state(false);
 	highlightTarget = $state<{ selector: string; message: string } | null>(null);
+	sortRequest = $state<{ field: string; direction: string } | null>(null);
+	filterRequest = $state<{ field: string; value: string } | null>(null);
 
 	toggle() {
 		this.isOpen = !this.isOpen;
@@ -24,6 +26,13 @@ class ChatState {
 
 		try {
 			const response = await sendChatMessage(this.messages, currentRoute);
+
+			// Annotate go_to tool calls with the current route before navigation
+			for (const tc of response.tool_calls) {
+				if (tc.name === "go_to") {
+					tc.fromRoute = currentRoute;
+				}
+			}
 
 			const assistantMessage: ChatMessage = {
 				id: crypto.randomUUID(),
@@ -60,14 +69,16 @@ class ChatState {
 					invalidateAll();
 					break;
 				case "sort_by":
-					document.dispatchEvent(
-						new CustomEvent("chat:sort", { detail: tc.args }),
-					);
+					this.sortRequest = {
+						field: tc.args.field as string,
+						direction: (tc.args.direction as string) || "asc",
+					};
 					break;
 				case "filter_by":
-					document.dispatchEvent(
-						new CustomEvent("chat:filter", { detail: tc.args }),
-					);
+					this.filterRequest = {
+						field: tc.args.field as string,
+						value: tc.args.value as string,
+					};
 					break;
 				case "highlight_element":
 					this.highlightTarget = {

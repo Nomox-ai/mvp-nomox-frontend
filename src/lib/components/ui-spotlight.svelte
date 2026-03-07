@@ -2,31 +2,34 @@
 	import { chatState } from "$lib/stores/chat.svelte.js";
 	import { tick } from "svelte";
 
-	let rect = $state<DOMRect | null>(null);
+	let highlightedEl: Element | null = $state(null);
 
 	$effect(() => {
 		const target = chatState.highlightTarget;
-		if (!target) {
-			rect = null;
-			return;
+
+		// Clean up previous highlight
+		if (highlightedEl) {
+			highlightedEl.removeAttribute("data-highlighted");
+			highlightedEl = null;
 		}
 
-		// Wait for DOM update then find the element
+		if (!target) return;
+
 		tick().then(() => {
 			const el = document.querySelector(target.selector);
 			if (el) {
 				el.scrollIntoView({ behavior: "smooth", block: "center" });
-				// Small delay after scroll to get accurate position
-				setTimeout(() => {
-					rect = el.getBoundingClientRect();
-				}, 300);
-			} else {
-				rect = null;
+				el.setAttribute("data-highlighted", "true");
+				highlightedEl = el;
 			}
 		});
 	});
 
 	function dismiss() {
+		if (highlightedEl) {
+			highlightedEl.removeAttribute("data-highlighted");
+			highlightedEl = null;
+		}
 		chatState.clearHighlight();
 	}
 
@@ -39,31 +42,37 @@
 
 <svelte:window onkeydown={handleKeydown} />
 
-{#if chatState.highlightTarget && rect}
-	<!-- Overlay backdrop with cutout -->
+{#if chatState.highlightTarget}
+	<!-- Backdrop overlay -->
 	<!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
-	<div
-		class="fixed inset-0 z-[60] cursor-pointer"
-		onclick={dismiss}
-		style="
-			background: rgba(0, 0, 0, 0.5);
-			clip-path: polygon(
-				0% 0%, 0% 100%, {rect.left}px 100%, {rect.left}px {rect.top}px,
-				{rect.right}px {rect.top}px, {rect.right}px {rect.bottom}px,
-				{rect.left}px {rect.bottom}px, {rect.left}px 100%, 100% 100%, 100% 0%
-			);
-		"
-	></div>
+	<div class="fixed inset-0 z-[60] cursor-pointer bg-black/50" onclick={dismiss}></div>
 
-	<!-- Tooltip near the highlighted element -->
+	<!-- Guide message banner -->
 	<div
-		class="bg-card border-border fixed z-[61] max-w-xs rounded-lg border px-4 py-3 shadow-lg"
-		style="
-			top: {rect.bottom + 12}px;
-			left: {Math.max(12, rect.left + rect.width / 2 - 140)}px;
-		"
+		class="bg-card border-border fixed bottom-20 left-1/2 z-[62] -translate-x-1/2 rounded-lg border px-5 py-3 shadow-lg"
 	>
 		<p class="text-foreground text-sm">{chatState.highlightTarget.message}</p>
 		<p class="text-muted-foreground mt-1 text-xs">Click anywhere to dismiss</p>
 	</div>
 {/if}
+
+<style>
+	:global([data-highlighted="true"]) {
+		position: relative;
+		z-index: 61;
+		outline: 3px solid hsl(var(--primary));
+		outline-offset: 4px;
+		border-radius: 8px;
+		animation: pulse-highlight 1.5s ease-in-out infinite;
+	}
+
+	@keyframes pulse-highlight {
+		0%,
+		100% {
+			outline-color: hsl(var(--primary));
+		}
+		50% {
+			outline-color: hsl(var(--primary) / 0.4);
+		}
+	}
+</style>
