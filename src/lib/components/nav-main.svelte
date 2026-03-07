@@ -37,7 +37,7 @@
 					<Sidebar.MenuItem {...props}>
 						<Collapsible.Trigger>
 							{#snippet child({ props })}
-								<Sidebar.MenuButton {...props} tooltipContent={item.title}>
+								<Sidebar.MenuButton {...props} tooltipContent={item.title} data-guide="nav-{item.title.toLowerCase()}">
 									{#if item.icon}
 										<item.icon />
 									{/if}
@@ -54,7 +54,7 @@
 									<Sidebar.MenuSubItem>
 										<Sidebar.MenuSubButton isActive={subItemIsActive(subItem.url)}>
 											{#snippet child({ props })}
-												<a href={subItem.url} {...props}>
+												<a href={subItem.url} {...props} data-guide="nav-{subItem.title.toLowerCase()}">
 													<span>{subItem.title}</span>
 													{#if subItem.badge}
 														<span

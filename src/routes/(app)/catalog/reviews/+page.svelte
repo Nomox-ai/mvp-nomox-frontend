@@ -132,7 +132,7 @@
 	}
 </script>
 
-<div class="flex h-full flex-col">
+<div class="flex h-full flex-col" data-guide="reviews-list">
 	<!-- Header -->
 	<header class="border-border flex h-14 shrink-0 items-center border-b px-6">
 		<h1 class="text-base font-semibold">Reviews</h1>
