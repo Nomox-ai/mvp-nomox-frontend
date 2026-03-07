@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { executeQuery, type QueryResult } from "$lib/api/data.js";
+	import { chatState } from "$lib/stores/chat.svelte.js";
 	import Button from "$lib/components/ui/button/button.svelte";
 	import * as Table from "$lib/components/ui/table/index.js";
 	import PlayIcon from "@lucide/svelte/icons/play";
@@ -25,6 +26,14 @@
 		}
 	}
 
+	$effect(() => {
+		const pending = chatState.sqlInsertRequest;
+		if (pending) {
+			sql = pending;
+			chatState.clearSqlInsert();
+		}
+	});
+
 	function onKeyDown(e: KeyboardEvent) {
 		if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
 			e.preventDefault();
@@ -43,6 +52,7 @@
 		<!-- Editor -->
 		<div class="flex flex-col gap-2">
 			<textarea
+				data-guide="sql-editor"
 				class="border-border bg-background focus:ring-ring h-40 w-full resize-y rounded-md border px-3 py-2 font-mono text-sm focus:outline-none focus:ring-2"
 				placeholder="SELECT * FROM catalog.schema.table LIMIT 100"
 				bind:value={sql}
