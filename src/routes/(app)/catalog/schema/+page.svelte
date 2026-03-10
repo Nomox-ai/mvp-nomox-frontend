@@ -271,6 +271,70 @@
 		if (confidence >= 0.6) return "bg-amber-500";
 		return "bg-red-500";
 	}
+
+	// ─── Row-type (document) helpers ──────────────────────────────────────────
+
+	interface FlatField {
+		name: string;
+		type: string;   // simplified display type (no params)
+		rawType: string;
+		depth: number;
+	}
+
+	function isRowType(dataType: string): boolean {
+		return dataType.trim().toLowerCase().startsWith("row(");
+	}
+
+	function splitAtDepth0(inner: string): string[] {
+		const parts: string[] = [];
+		let depth = 0;
+		let current = "";
+		for (const ch of inner) {
+			if (ch === "(") depth++;
+			else if (ch === ")") depth--;
+			if (ch === "," && depth === 0) {
+				parts.push(current.trim());
+				current = "";
+			} else {
+				current += ch;
+			}
+		}
+		if (current.trim()) parts.push(current.trim());
+		return parts;
+	}
+
+	function flattenRowFields(typeStr: string, depth = 0): FlatField[] {
+		const trimmed = typeStr.trim();
+		if (!trimmed.toLowerCase().startsWith("row(") || !trimmed.endsWith(")")) return [];
+
+		const inner = trimmed.slice(4, -1);
+		const parts = splitAtDepth0(inner);
+		const result: FlatField[] = [];
+
+		for (const part of parts) {
+			// Find first space at depth 0 to split name from type
+			let spaceIdx = -1;
+			let d = 0;
+			for (let i = 0; i < part.length; i++) {
+				if (part[i] === "(") d++;
+				else if (part[i] === ")") d--;
+				else if (part[i] === " " && d === 0) { spaceIdx = i; break; }
+			}
+
+			const name = spaceIdx !== -1 ? part.slice(0, spaceIdx) : "";
+			const rawType = (spaceIdx !== -1 ? part.slice(spaceIdx + 1) : part).trim();
+			const childIsRow = rawType.toLowerCase().startsWith("row(");
+			// Strip type parameters for display (e.g. varchar(255) → varchar)
+			const displayType = childIsRow ? "row" : rawType.replace(/\(.*$/, "");
+
+			result.push({ name, type: displayType, rawType, depth });
+			if (childIsRow) {
+				result.push(...flattenRowFields(rawType, depth + 1));
+			}
+		}
+
+		return result;
+	}
 </script>
 
 <div class="flex h-full flex-col" data-guide="schema-browser">
@@ -576,7 +640,7 @@
 
 										<!-- Data type -->
 										<span class="text-muted-foreground w-28 shrink-0 truncate font-mono text-xs">
-											{col.data_type}
+											{isRowType(col.data_type) ? "row(…)" : col.data_type}
 										</span>
 
 										<!-- Semantic category badge -->
@@ -626,7 +690,28 @@
 													</div>
 												{/if}
 
-												{#if col.unit}
+												{#if isRowType(col.data_type)}
+												{@const fields = flattenRowFields(col.data_type)}
+												<div>
+													<p class="text-muted-foreground mb-1.5 text-[10px] font-semibold uppercase tracking-wide">Document structure</p>
+													<div class="border-border divide-border divide-y rounded-md border font-mono text-[10px]">
+														{#each fields as field}
+															<div
+																class="flex items-baseline gap-2 py-1 pr-3"
+																style="padding-left: {8 + field.depth * 14}px"
+															>
+																{#if field.depth > 0}
+																	<span class="text-muted-foreground/30 shrink-0">└</span>
+																{/if}
+																<span class="text-foreground shrink-0">{field.name || "—"}</span>
+																<span class="text-muted-foreground ml-auto shrink-0">{field.type}</span>
+															</div>
+														{/each}
+													</div>
+												</div>
+											{/if}
+
+											{#if col.unit}
 													<div>
 														<p class="text-muted-foreground mb-1 text-[10px] font-semibold uppercase tracking-wide">Unit</p>
 														<p>{col.unit}</p>
