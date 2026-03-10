@@ -4,7 +4,7 @@
 	import Skeleton from "$lib/components/ui/skeleton/skeleton.svelte";
 	import { cn } from "$lib/utils.js";
 	import type { SemanticEntity, GlossaryTerm } from "$lib/types/semantic.js";
-	import { EntityStatus, GlossaryScope, GlossaryCreator } from "$lib/types/semantic.js";
+	import { EntityStatus, GlossaryScope, GlossaryCreator, ManifestationRole } from "$lib/types/semantic.js";
 
 	import SearchIcon from "@lucide/svelte/icons/search";
 	import LayersIcon from "@lucide/svelte/icons/layers";
@@ -49,7 +49,7 @@
 	function entityMatchesSearch(e: SemanticEntity, q: string): boolean {
 		return (
 			e.name.toLowerCase().includes(q) ||
-			e.business_context.toLowerCase().includes(q) ||
+			e.description.toLowerCase().includes(q) ||
 			e.domain.toLowerCase().includes(q) ||
 			e.canonical_id_name.toLowerCase().includes(q)
 		);
@@ -213,9 +213,9 @@
 										{/if}
 									</div>
 
-									{#if entity.business_context}
+									{#if entity.description}
 										<p class="text-muted-foreground mt-1 line-clamp-2 text-sm">
-											{entity.business_context}
+											{entity.description}
 										</p>
 									{/if}
 
@@ -264,7 +264,7 @@
 														<div class="flex items-center gap-2">
 															<span class={cn(
 																"inline-flex items-center rounded px-1 py-0 text-[9px] font-semibold uppercase",
-																m.role === "PRIMARY"
+																m.role === ManifestationRole.PRIMARY
 																	? "bg-blue-100 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400"
 																	: "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
 															)}>
