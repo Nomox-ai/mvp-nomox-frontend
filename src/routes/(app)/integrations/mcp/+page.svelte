@@ -1,31 +1,22 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { cn } from "$lib/utils.js";
-	import {
-		getMcpStatus,
-		getMcpToken,
-		getMcpTools,
-		rotateMcpToken,
-	} from "$lib/api/mcp.js";
-	import type { McpStatus, McpTool, McpToken } from "$lib/api/mcp.js";
+	import { getMcpConfig, rotateMcpToken } from "$lib/api/mcp.js";
+	import type { McpConfig, McpTool } from "$lib/api/mcp.js";
 	import Skeleton from "$lib/components/ui/skeleton/skeleton.svelte";
 
 	import CheckCircle2Icon from "@lucide/svelte/icons/check-circle-2";
 	import AlertCircleIcon from "@lucide/svelte/icons/alert-circle";
 	import CopyIcon from "@lucide/svelte/icons/copy";
 	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
-	import KeyRoundIcon from "@lucide/svelte/icons/key-round";
-	import ZapIcon from "@lucide/svelte/icons/zap";
-	import WrenchIcon from "@lucide/svelte/icons/wrench";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 
 	// ─── State ────────────────────────────────────────────────────────────────
 
-	let status = $state<McpStatus | null>(null);
-	let tokenInfo = $state<McpToken | null>(null);
-	let tools = $state<McpTool[]>([]);
+	let config = $state<McpConfig | null>(null);
 	let loading = $state(true);
+	let online = $state(true);
 
 	let expandedTool = $state<string | null>(null);
 	let copiedKey = $state<string | null>(null);
@@ -35,11 +26,11 @@
 	// ─── Data loading ─────────────────────────────────────────────────────────
 
 	onMount(async () => {
-		[status, tokenInfo, tools] = await Promise.all([
-			getMcpStatus(),
-			getMcpToken(),
-			getMcpTools(),
-		]);
+		try {
+			config = await getMcpConfig();
+		} catch {
+			online = false;
+		}
 		loading = false;
 	});
 
@@ -57,10 +48,6 @@
 		try {
 			const result = await rotateMcpToken();
 			newToken = result.token;
-			tokenInfo = {
-				masked: newToken.slice(0, 6) + "••••••••••••••••••••••••",
-				created_at: new Date().toISOString(),
-			};
 		} finally {
 			rotatingToken = false;
 		}
@@ -68,14 +55,16 @@
 
 	// ─── Config snippets ──────────────────────────────────────────────────────
 
+	const activeToken = $derived(newToken ?? config?.token ?? "");
+
 	const claudeConfig = $derived(
-		status
+		config
 			? JSON.stringify(
 					{
 						mcpServers: {
 							nomox: {
-								url: status.server_url + "/sse",
-								headers: { "X-API-Token": "<YOUR_MCP_TOKEN>" },
+								url: config.server_url + "/sse",
+								headers: { "X-API-Token": activeToken },
 							},
 						},
 					},
@@ -86,13 +75,13 @@
 	);
 
 	const cursorConfig = $derived(
-		status
+		config
 			? JSON.stringify(
 					{
 						mcpServers: {
 							nomox: {
-								url: status.server_url + "/sse",
-								headers: { "X-API-Token": "<YOUR_MCP_TOKEN>" },
+								url: config.server_url + "/sse",
+								headers: { "X-API-Token": activeToken },
 							},
 						},
 					},
@@ -108,16 +97,16 @@
 	<header class="border-border flex h-14 shrink-0 items-center border-b px-6">
 		<h1 class="text-base font-semibold">MCP</h1>
 		<p class="text-muted-foreground ml-3 text-sm">Model Context Protocol server configuration</p>
-		{#if !loading && status}
+		{#if !loading}
 			<span
 				class={cn(
 					"ml-3 inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium",
-					status.online
+					online && config
 						? "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400"
 						: "bg-red-100 text-red-700 dark:bg-red-950/40 dark:text-red-400"
 				)}
 			>
-				{#if status.online}
+				{#if online && config}
 					<CheckCircle2Icon class="size-3" />
 					Online
 				{:else}
@@ -156,20 +145,20 @@
 							<div class="flex items-center gap-3 py-2.5">
 								<span class="text-muted-foreground w-24 shrink-0 text-xs">URL</span>
 								<code class="bg-muted min-w-0 flex-1 truncate rounded px-2 py-1 font-mono text-xs">
-									{status?.server_url}/sse
+									{config?.server_url}/sse
 								</code>
 								<button
 									type="button"
 									class="text-muted-foreground hover:text-foreground shrink-0 transition-colors"
 									title="Copy URL"
-									onclick={() => copy((status?.server_url ?? "") + "/sse", "url")}
+									onclick={() => copy((config?.server_url ?? "") + "/sse", "url")}
 								>
 									<CopyIcon class={cn("size-3.5", copiedKey === "url" && "text-emerald-500")} />
 								</button>
 							</div>
 							<div class="flex items-center gap-3 py-2.5">
 								<span class="text-muted-foreground w-24 shrink-0 text-xs">Transport</span>
-								<span class="font-mono text-xs uppercase">{status?.transport}</span>
+								<span class="font-mono text-xs uppercase">SSE</span>
 							</div>
 							<div class="flex items-center gap-3 py-2.5">
 								<span class="text-muted-foreground w-24 shrink-0 text-xs">Auth header</span>
@@ -177,7 +166,7 @@
 							</div>
 							<div class="flex items-center gap-3 py-2.5">
 								<span class="text-muted-foreground w-24 shrink-0 text-xs">Tools</span>
-								<span class="text-xs">{status?.tool_count} exposed</span>
+								<span class="text-xs">{config?.tools.length ?? 0} exposed</span>
 							</div>
 						</div>
 					</section>
@@ -190,18 +179,16 @@
 						<div class="space-y-3 p-4">
 							<div class="flex items-center gap-2">
 								<code class="bg-muted min-w-0 flex-1 truncate rounded px-3 py-2 font-mono text-xs">
-									{newToken ?? tokenInfo?.masked}
+									{newToken ?? config?.masked_token}
 								</code>
-								{#if newToken}
-									<button
-										type="button"
-										class="text-muted-foreground hover:text-foreground shrink-0 transition-colors"
-										title="Copy token"
-										onclick={() => copy(newToken!, "token")}
-									>
-										<CopyIcon class={cn("size-3.5", copiedKey === "token" && "text-emerald-500")} />
-									</button>
-								{/if}
+								<button
+									type="button"
+									class="text-muted-foreground hover:text-foreground shrink-0 transition-colors"
+									title="Copy token"
+									onclick={() => copy(activeToken, "token")}
+								>
+									<CopyIcon class={cn("size-3.5", copiedKey === "token" && "text-emerald-500")} />
+								</button>
 							</div>
 							{#if newToken}
 								<p class="text-xs text-amber-600 dark:text-amber-400">
@@ -225,14 +212,34 @@
 					</section>
 				</div>
 
+				<!-- ── Row 2: Config snippets ──────────────────────────────────── -->
+				<div class="grid grid-cols-2 gap-4">
+
+					<!-- Claude Desktop -->
+					<section class="border-border rounded-xl border">
+						<div class="border-border flex items-center gap-2 border-b px-4 py-3">
+							<h2 class="text-sm font-semibold">Claude Desktop</h2>
+							<span class="text-muted-foreground ml-auto text-xs">claude_desktop_config.json</span>
+							<button
+								type="button"
+								class="text-muted-foreground hover:text-foreground transition-colors"
+								title="Copy config"
+								onclick={() => copy(claudeConfig, "claude")}
+							>
+								<CopyIcon class={cn("size-3.5", copiedKey === "claude" && "text-emerald-500")} />
+							</button>
+						</div>
+						<pre class="text-muted-foreground overflow-x-auto px-4 py-3 font-mono text-xs leading-relaxed">{claudeConfig}</pre>
+					</section>
+
 				<!-- ── Row 3: Tools (full width) ───────────────────────────────── -->
 				<section class="border-border rounded-xl border">
 					<div class="border-border flex items-center gap-2 border-b px-4 py-3">
 						<h2 class="text-sm font-semibold">Exposed tools</h2>
-						<span class="text-muted-foreground ml-auto text-xs">{tools.length} tools</span>
+						<span class="text-muted-foreground ml-auto text-xs">{config?.tools.length ?? 0} tools</span>
 					</div>
 					<div class="divide-border divide-y">
-						{#each tools as tool (tool.name)}
+						{#each (config?.tools ?? []) as tool (tool.name)}
 							<div>
 								<button
 									type="button"

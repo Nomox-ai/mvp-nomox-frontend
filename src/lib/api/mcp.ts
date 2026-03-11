@@ -42,6 +42,15 @@ interface McpConfigResponse {
   tools: { name: string; description: string }[]
 }
 
+export interface McpConfig {
+  server_url: string
+  /** Raw token — use only for config snippets, never display in full */
+  token: string
+  masked_token: string
+  status: McpStatus
+  tools: McpTool[]
+}
+
 // Known tool parameter metadata (backend doesn't expose params via API)
 const TOOL_PARAMS: Record<string, McpTool["params"]> = {
   get_semantic: [],
@@ -62,6 +71,28 @@ function maskToken(token: string): string {
 
 async function fetchMcpConfig(): Promise<McpConfigResponse> {
   return http.get<McpConfigResponse>("/admin/config/mcp")
+}
+
+// ─── Combined (single call) ───────────────────────────────────────────────────
+
+export async function getMcpConfig(): Promise<McpConfig> {
+  const raw = await fetchMcpConfig()
+  return {
+    server_url: raw.server_url,
+    token: raw.token,
+    masked_token: maskToken(raw.token),
+    status: {
+      online: true,
+      server_url: raw.server_url,
+      transport: "sse",
+      tool_count: raw.tools.length,
+    },
+    tools: raw.tools.map((t) => ({
+      name: t.name,
+      description: t.description,
+      params: TOOL_PARAMS[t.name] ?? [],
+    })),
+  }
 }
 
 // ─── Status ───────────────────────────────────────────────────────────────────
