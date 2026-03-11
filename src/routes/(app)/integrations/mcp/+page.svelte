@@ -63,8 +63,15 @@
 					{
 						mcpServers: {
 							nomox: {
-								url: config.server_url + "/sse",
-								headers: { "X-API-Token": activeToken },
+								command: "C:\\Windows\\System32\\cmd.exe",
+								args: [
+									"/c",
+									"npx",
+									"mcp-remote",
+									config.server_url + "/sse",
+									"--header",
+									`X-API-Token: ${activeToken}`,
+								],
 							},
 						},
 					},
@@ -219,7 +226,7 @@
 					<section class="border-border rounded-xl border">
 						<div class="border-border flex items-center gap-2 border-b px-4 py-3">
 							<h2 class="text-sm font-semibold">Claude Desktop</h2>
-							<span class="text-muted-foreground ml-auto text-xs">claude_desktop_config.json</span>
+							<span class="text-muted-foreground ml-auto text-xs">claude_desktop_config.json · mcp-remote</span>
 							<button
 								type="button"
 								class="text-muted-foreground hover:text-foreground transition-colors"
