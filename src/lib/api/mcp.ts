@@ -75,15 +75,18 @@ async function fetchMcpConfig(): Promise<McpConfigResponse> {
 
 // ─── Combined (single call) ───────────────────────────────────────────────────
 
+const MCP_SERVER_URL_OVERRIDE = (import.meta.env.VITE_MCP_SERVER_URL as string | undefined) ?? ""
+
 export async function getMcpConfig(): Promise<McpConfig> {
   const raw = await fetchMcpConfig()
+  const server_url = MCP_SERVER_URL_OVERRIDE || raw.server_url
   return {
-    server_url: raw.server_url,
+    server_url,
     token: raw.token,
     masked_token: maskToken(raw.token),
     status: {
       online: true,
-      server_url: raw.server_url,
+      server_url,
       transport: "sse",
       tool_count: raw.tools.length,
     },
