@@ -232,6 +232,24 @@
 						<pre class="text-muted-foreground overflow-x-auto px-4 py-3 font-mono text-xs leading-relaxed">{claudeConfig}</pre>
 					</section>
 
+					<!-- Cursor -->
+					<section class="border-border rounded-xl border">
+						<div class="border-border flex items-center gap-2 border-b px-4 py-3">
+							<h2 class="text-sm font-semibold">Cursor</h2>
+							<span class="text-muted-foreground ml-auto text-xs">.cursor/mcp.json</span>
+							<button
+								type="button"
+								class="text-muted-foreground hover:text-foreground transition-colors"
+								title="Copy config"
+								onclick={() => copy(cursorConfig, "cursor")}
+							>
+								<CopyIcon class={cn("size-3.5", copiedKey === "cursor" && "text-emerald-500")} />
+							</button>
+						</div>
+						<pre class="text-muted-foreground overflow-x-auto px-4 py-3 font-mono text-xs leading-relaxed">{cursorConfig}</pre>
+					</section>
+				</div>
+
 				<!-- ── Row 3: Tools (full width) ───────────────────────────────── -->
 				<section class="border-border rounded-xl border">
 					<div class="border-border flex items-center gap-2 border-b px-4 py-3">
