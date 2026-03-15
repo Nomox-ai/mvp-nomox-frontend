@@ -77,11 +77,10 @@
 		<div class="border-border bg-background flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4">
 			<div class="text-primary [&>svg]:size-7 shrink-0"><McpIcon /></div>
 			<div class="min-w-0">
-				<p class="text-foreground truncate text-xs font-semibold">MCP Protocol</p>
+				<p class="text-foreground truncate text-xs font-semibold">MCP Server</p>
 				<p class="text-muted-foreground text-[10px]">Claude, Cursor &amp; more</p>
 			</div>
 		</div>
-
 	</div>
 
 </div>
