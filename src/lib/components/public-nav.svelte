@@ -53,7 +53,7 @@
 	};
 </script>
 
-<header class="border-border border-b">
+<header class="border-border border-b z-10">
 	<div class="mx-auto flex max-w-5xl items-center px-8 py-3">
 
 		<!-- Logo -->

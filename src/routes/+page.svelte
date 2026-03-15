@@ -2,6 +2,7 @@
 	import IntegrationDiagram from '$lib/components/integration-diagram.svelte';
 	import PublicNav from '$lib/components/public-nav.svelte';
 	import logo from '$lib/assets/logo.svg';
+	import screenshot from '$lib/assets/screen_nomox.png';
 </script>
 
 <div class="bg-background text-foreground flex min-h-screen flex-col">
@@ -9,32 +10,48 @@
 	<PublicNav />
 
 	<!-- Hero -->
-	<section class="border-border border-b">
+	<section class="border-border border-b relative overflow-hidden">
+		<!-- Copy in normal flow — determines section height -->
 		<div class="mx-auto max-w-5xl px-8 py-20 md:py-28">
-			<p class="text-primary mb-5 font-mono text-xs tracking-widest uppercase">
-				Semantic data catalog · Early access
-			</p>
-			<h1 class="text-foreground max-w-2xl text-5xl font-semibold tracking-tight leading-[1.1] md:text-6xl">
-				Understand your data.<br />Automatically.
-			</h1>
-			<p class="text-muted-foreground mt-6 max-w-md text-sm leading-relaxed">
-				Nomox indexes your data sources, infers business semantics with AI, and exposes a structured
-				catalog to your team and AI tools.
-			</p>
-			<div class="mt-10 flex items-center gap-4">
-				<a
-					href="/waitlist"
-					class="waitlist-btn bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
-				>
-					Request Demo
-				</a>
-				<a
-					href="#how-it-works"
-					class="text-muted-foreground hover:text-foreground text-sm transition-colors"
-				>
-					How it works ↓
-				</a>
+			<div class="w-fit">
+				<p class="text-primary mb-5 font-mono text-xs tracking-widest uppercase">
+					Semantic data catalog · Early access
+				</p>
+				<h1 class="text-foreground text-5xl font-semibold tracking-tight leading-[1.1] md:text-6xl">
+					Understand your data.<br />Automatically.
+				</h1>
+				<p class="text-muted-foreground max-w-md mt-6 text-sm leading-relaxed">
+					Nomox indexes your data sources, infers business semantics with AI, and exposes a
+					structured catalog to your team and AI tools.
+				</p>
+				<div class="mt-10 flex items-center gap-4">
+					<a
+						href="/waitlist"
+						class="waitlist-btn bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
+					>
+						Request Demo
+					</a>
+					<a
+						href="#how-it-works"
+						class="text-muted-foreground hover:text-foreground text-sm transition-colors"
+					>
+						How it works ↓
+					</a>
+				</div>
 			</div>
+		</div>
+
+		<!-- Screenshot: absolutely positioned, bleeds right and below section border -->
+		<div
+			class="border-border absolute overflow-hidden rounded-tl-xl border-l border-t shadow-2xl shadow-black/10"
+			style="top: 6.5rem; left: 65%; right: 0; bottom: -3.5rem;"
+		>
+			<img
+				src={screenshot}
+				alt="Nomox admin console"
+				class="block h-full w-full object-cover object-left-top"
+				draggable="false"
+			/>
 		</div>
 	</section>
 
