@@ -1,7 +1,7 @@
 <script lang="ts">
 	import IntegrationDiagram from '$lib/components/integration-diagram.svelte';
 	import PublicNav from '$lib/components/public-nav.svelte';
-	import logo from '$lib/assets/logo.svg';
+	import PublicFooter from '$lib/components/public-footer.svelte';
 	import screenshot from '$lib/assets/screenshot_graphic.png';
 </script>
 
@@ -145,15 +145,6 @@
 		</div>
 	</section>
 
-	<!-- Footer -->
-	<footer class="mt-auto px-8 py-5">
-		<div class="mx-auto flex max-w-5xl items-center justify-between">
-			<div class="flex items-center gap-2">
-				<img src={logo} alt="nomox" class="size-4 opacity-40" />
-				<span class="text-muted-foreground text-xs">nomox</span>
-			</div>
-			<p class="text-muted-foreground text-xs">Semantic data intelligence</p>
-		</div>
-	</footer>
+	<PublicFooter />
 
 </div>
