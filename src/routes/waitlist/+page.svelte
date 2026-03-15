@@ -1,22 +1,12 @@
 <script lang="ts">
 	import logo from '$lib/assets/logo.svg';
 	import WaitlistForm from '$lib/components/waitlist-form.svelte';
+	import PublicNav from '$lib/components/public-nav.svelte';
 </script>
 
 <div class="bg-background text-foreground flex min-h-screen flex-col">
 
-	<!-- Nav -->
-	<header class="border-border border-b">
-		<div class="mx-auto flex max-w-5xl items-center justify-between px-8 py-5">
-			<a href="/" class="flex items-center gap-2.5">
-				<img src={logo} alt="nomox" class="size-5" />
-				<span class="text-sm font-semibold tracking-tight">nomox</span>
-			</a>
-			<a href="/login" class="text-muted-foreground hover:text-foreground text-sm transition-colors">
-				Sign in →
-			</a>
-		</div>
-	</header>
+	<PublicNav />
 
 	<!-- Content -->
 	<main class="border-border flex-1 border-b">

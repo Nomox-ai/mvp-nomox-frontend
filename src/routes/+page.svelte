@@ -1,27 +1,12 @@
 <script lang="ts">
-	import logo from '$lib/assets/logo.svg';
 	import IntegrationDiagram from '$lib/components/integration-diagram.svelte';
+	import PublicNav from '$lib/components/public-nav.svelte';
+	import logo from '$lib/assets/logo.svg';
 </script>
 
 <div class="bg-background text-foreground flex min-h-screen flex-col">
 
-	<!-- Nav -->
-	<header class="border-border border-b">
-		<div class="mx-auto flex max-w-5xl items-center justify-between px-8 py-5">
-			<div class="flex items-center gap-2.5">
-				<img src={logo} alt="nomox" class="size-5" />
-				<span class="text-sm font-semibold tracking-tight">nomox</span>
-			</div>
-			<div class="flex items-center gap-6">
-				<a href="/waitlist" class="text-muted-foreground hover:text-foreground text-sm transition-colors">
-					Join waitlist
-				</a>
-				<a href="/login" class="text-muted-foreground hover:text-foreground text-sm transition-colors">
-					Sign in →
-				</a>
-			</div>
-		</div>
-	</header>
+	<PublicNav />
 
 	<!-- Hero -->
 	<section class="border-border border-b">
