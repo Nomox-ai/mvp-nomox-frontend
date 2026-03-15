@@ -1,102 +1,108 @@
 <script lang="ts">
 	import logo from '$lib/assets/logo.svg';
 	import * as NavigationMenu from '$lib/components/ui/navigation-menu/index.js';
+	import { cn } from '$lib/utils.js';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	const product = [
+	let isMobile = false;
+
+	const productItems: { title: string; href: string; description: string }[] = [
 		{
-			href: '/product#schema-catalog',
 			title: 'Schema catalog',
-			desc: 'Every source, table and column enriched with inferred business meanings and types.'
+			href: '/product#schema-catalog',
+			description: 'Every source, table and column enriched with inferred business meanings and types.'
 		},
 		{
-			href: '/product#semantic-model',
 			title: 'Semantic model',
-			desc: 'Entities, glossary terms and domain relationships extracted automatically from your data.'
+			href: '/product#semantic-model',
+			description:
+				'Entities, glossary terms and domain relationships extracted automatically from your data.'
 		},
 		{
-			href: '/product#mcp',
 			title: 'MCP integration',
-			desc: 'Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.'
+			href: '/product#mcp',
+			description:
+				'Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.'
 		}
 	];
 
-	const solutions = [
+	const solutionItems: { title: string; href: string; description: string }[] = [
 		{
-			href: '/solutions#data-teams',
 			title: 'Data teams',
-			desc: 'Give analysts a shared vocabulary without manual tagging or lengthy governance projects.'
+			href: '/solutions#data-teams',
+			description:
+				'Give analysts a shared vocabulary without manual tagging or lengthy governance projects.'
 		},
 		{
-			href: '/solutions#ai-engineering',
 			title: 'AI engineering',
-			desc: 'Supply your AI tools with the structured context they need to answer data questions accurately.'
+			href: '/solutions#ai-engineering',
+			description:
+				'Supply your AI tools with the structured context they need to answer data questions accurately.'
 		},
 		{
-			href: '/solutions#onboarding',
 			title: 'Engineering onboarding',
-			desc: 'Let new engineers understand your data stack in hours instead of weeks.'
+			href: '/solutions#onboarding',
+			description: 'Let new engineers understand your data stack in hours instead of weeks.'
 		}
 	];
+
+	type ListItemProps = HTMLAttributes<HTMLAnchorElement> & {
+		title: string;
+		href: string;
+		content: string;
+	};
 </script>
 
 <header class="border-border border-b">
-	<div class="mx-auto flex max-w-5xl items-center justify-between px-8 py-4">
+	<div class="mx-auto flex max-w-5xl items-center px-8 py-3">
 
-		<!-- Logo + nav (left-aligned together) -->
-		<div class="flex items-center gap-1">
-		<a href="/" class="flex items-center gap-2.5 mr-2">
+		<!-- Logo -->
+		<a href="/" class="mr-2 flex items-center gap-2">
 			<img src={logo} alt="nomox" class="size-5" />
 			<span class="text-sm font-semibold tracking-tight">nomox</span>
 		</a>
 
-		<!-- Nav menu -->
-		<NavigationMenu.Root>
-			<NavigationMenu.List>
-
-				<!-- Product -->
-				<NavigationMenu.Item>
-					<NavigationMenu.Trigger class="text-muted-foreground hover:text-foreground! bg-transparent! text-sm">
-						Product
-					</NavigationMenu.Trigger>
-					<NavigationMenu.Content>
-						<ul class="grid w-[480px] grid-cols-1 gap-0.5 p-3">
-							{#each product as item}
-								<li>
-									<NavigationMenu.Link href={item.href}>
-										<span class="text-foreground text-sm font-medium">{item.title}</span>
-										<span class="text-muted-foreground text-xs leading-snug">{item.desc}</span>
-									</NavigationMenu.Link>
-								</li>
-							{/each}
-						</ul>
-					</NavigationMenu.Content>
+		<NavigationMenu.Root viewport={isMobile}>
+			<NavigationMenu.List class="flex-wrap">
+			<NavigationMenu.Item class="hidden md:block">
+				<NavigationMenu.Trigger>Solution</NavigationMenu.Trigger>
+				<NavigationMenu.Content>
+					<ul class="grid w-[300px] gap-4 p-2">
+						{#each solutionItems as item}
+						<li>
+							<NavigationMenu.Link href={item.href}>
+							<div class="font-medium">{item.title}</div>
+							<div class="text-muted-foreground">
+								{item.description}
+							</div>
+							</NavigationMenu.Link>
+						</li>
+						{/each}
+					</ul>
+				</NavigationMenu.Content>
 				</NavigationMenu.Item>
-
-				<!-- Solutions -->
-				<NavigationMenu.Item>
-					<NavigationMenu.Trigger class="text-muted-foreground hover:text-foreground! bg-transparent! text-sm">
-						Solutions
-					</NavigationMenu.Trigger>
-					<NavigationMenu.Content>
-						<ul class="grid w-[480px] grid-cols-1 gap-0.5 p-3">
-							{#each solutions as item}
-								<li>
-									<NavigationMenu.Link href={item.href}>
-										<span class="text-foreground text-sm font-medium">{item.title}</span>
-										<span class="text-muted-foreground text-xs leading-snug">{item.desc}</span>
-									</NavigationMenu.Link>
-								</li>
-							{/each}
-						</ul>
-					</NavigationMenu.Content>
+				<NavigationMenu.Item class="hidden md:block">
+				<NavigationMenu.Trigger>Products</NavigationMenu.Trigger>
+				<NavigationMenu.Content>
+					<ul class="grid w-[300px] gap-4 p-2">
+						{#each productItems as item}
+						<li>
+							<NavigationMenu.Link href={item.href}>
+							<div class="font-medium">{item.title}</div>
+							<div class="text-muted-foreground">
+								{item.description}
+							</div>
+							</NavigationMenu.Link>
+						</li>
+						{/each}
+					</ul>
+				</NavigationMenu.Content>
 				</NavigationMenu.Item>
-
 			</NavigationMenu.List>
-		</NavigationMenu.Root>
-		</div>
+			</NavigationMenu.Root>
 
 		<!-- Right actions -->
-		<div class="flex items-center gap-5">
+		<div class="ml-auto flex items-center gap-4">
 			<a href="/waitlist" class="text-muted-foreground hover:text-foreground text-sm transition-colors">
 				Join waitlist
 			</a>
