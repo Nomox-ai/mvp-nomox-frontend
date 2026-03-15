@@ -63,9 +63,9 @@
 		<div class="mx-auto max-w-5xl">
 			<div class="grid grid-cols-1 divide-y md:grid-cols-3 md:divide-x md:divide-y-0">
 				{#each [
-					{ num: '01', label: 'Schema catalog',  desc: 'Every source, table and column — enriched with inferred business meanings, types, and relationships.' },
-					{ num: '02', label: 'Semantic model',  desc: 'Entities, glossary terms and domain relationships extracted automatically from your data.' },
-					{ num: '03', label: 'MCP integration', desc: 'Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.' },
+					{ num: '01', label: 'Semantic catalog', desc: 'Every source, table and column enriched with inferred business meanings, entities, glossary terms, and domain relationships.' },
+					{ num: '02', label: 'MCP integration',  desc: 'Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.' },
+					{ num: '03', label: 'BI platform',      desc: 'Explore and visualise your data with a built-in analytics layer powered by your semantic model.' },
 				] as f}
 					<div class="border-border px-8 py-10">
 						<p class="text-muted-foreground mb-3 font-mono text-xs">{f.num}</p>
