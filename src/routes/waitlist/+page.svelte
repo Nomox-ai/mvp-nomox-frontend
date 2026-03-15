@@ -1,7 +1,7 @@
 <script lang="ts">
-	import logo from '$lib/assets/logo.svg';
 	import WaitlistForm from '$lib/components/waitlist-form.svelte';
 	import PublicNav from '$lib/components/public-nav.svelte';
+	import PublicFooter from '$lib/components/public-footer.svelte';
 </script>
 
 <div class="bg-background text-foreground flex min-h-screen flex-col">
@@ -16,7 +16,7 @@
 			<div class="border-border flex flex-col justify-center border-b px-8 py-14 md:border-b-0">
 				<p class="text-muted-foreground mb-4 font-mono text-xs">Early access</p>
 				<h1 class="text-foreground text-3xl font-semibold tracking-tight leading-tight">
-					Join the waitlist.
+					Request Demo
 				</h1>
 				<p class="text-muted-foreground mt-4 max-w-xs text-sm leading-relaxed">
 					We're onboarding teams selectively. Drop your email and we'll reach out when a spot opens up.
@@ -48,15 +48,6 @@
 		</div>
 	</main>
 
-	<!-- Footer -->
-	<footer class="px-8 py-5">
-		<div class="mx-auto flex max-w-5xl items-center justify-between">
-			<div class="flex items-center gap-2">
-				<img src={logo} alt="nomox" class="size-4 opacity-40" />
-				<span class="text-muted-foreground text-xs">nomox</span>
-			</div>
-			<p class="text-muted-foreground text-xs">Semantic data intelligence</p>
-		</div>
-	</footer>
+	<PublicFooter />
 
 </div>

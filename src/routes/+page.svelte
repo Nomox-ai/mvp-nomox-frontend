@@ -1,7 +1,8 @@
 <script lang="ts">
 	import IntegrationDiagram from '$lib/components/integration-diagram.svelte';
 	import PublicNav from '$lib/components/public-nav.svelte';
-	import logo from '$lib/assets/logo.svg';
+	import PublicFooter from '$lib/components/public-footer.svelte';
+	import screenshot from '$lib/assets/screenshot_graphic.png';
 </script>
 
 <div class="bg-background text-foreground flex min-h-screen flex-col">
@@ -9,32 +10,48 @@
 	<PublicNav />
 
 	<!-- Hero -->
-	<section class="border-border border-b">
+	<section class="border-border border-b relative overflow-hidden">
+		<!-- Copy in normal flow — determines section height -->
 		<div class="mx-auto max-w-5xl px-8 py-20 md:py-28">
-			<p class="text-primary mb-5 font-mono text-xs tracking-widest uppercase">
-				Semantic data catalog · Early access
-			</p>
-			<h1 class="text-foreground max-w-2xl text-5xl font-semibold tracking-tight leading-[1.1] md:text-6xl">
-				Understand your data.<br />Automatically.
-			</h1>
-			<p class="text-muted-foreground mt-6 max-w-md text-sm leading-relaxed">
-				Nomox indexes your data sources, infers business semantics with AI, and exposes a structured
-				catalog to your team and AI tools.
-			</p>
-			<div class="mt-10 flex items-center gap-4">
-				<a
-					href="/waitlist"
-					class="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
-				>
-					Join the waitlist
-				</a>
-				<a
-					href="#how-it-works"
-					class="text-muted-foreground hover:text-foreground text-sm transition-colors"
-				>
-					How it works ↓
-				</a>
+			<div class="w-fit">
+				<p class="text-primary mb-5 font-mono text-xs tracking-widest uppercase">
+					Semantic data catalog · Early access
+				</p>
+				<h1 class="text-foreground text-5xl font-semibold tracking-tight leading-[1.1] md:text-6xl">
+					Understand your data.<br />Automatically.
+				</h1>
+				<p class="text-muted-foreground max-w-md mt-6 text-sm leading-relaxed">
+					Nomox indexes your data sources, infers business semantics with AI, and exposes a
+					structured catalog to your team and AI tools.
+				</p>
+				<div class="mt-10 flex items-center gap-4">
+					<a
+						href="/waitlist"
+						class="waitlist-btn bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
+					>
+						Request Demo
+					</a>
+					<a
+						href="#how-it-works"
+						class="text-muted-foreground hover:text-foreground text-sm transition-colors"
+					>
+						How it works ↓
+					</a>
+				</div>
 			</div>
+		</div>
+
+		<!-- Screenshot: absolutely positioned, bleeds right and below section border -->
+		<div
+			class="border-border absolute overflow-hidden rounded-tl-xl border-l border-t shadow-2xl shadow-black/10"
+			style="top: 6.5rem; left: 65%; right: 0; bottom: -3.5rem;"
+		>
+			<img
+				src={screenshot}
+				alt="Nomox admin console"
+				class="block h-full w-full object-cover object-left-top"
+				draggable="false"
+			/>
 		</div>
 	</section>
 
@@ -46,9 +63,9 @@
 		<div class="mx-auto max-w-5xl">
 			<div class="grid grid-cols-1 divide-y md:grid-cols-3 md:divide-x md:divide-y-0">
 				{#each [
-					{ num: '01', label: 'Schema catalog',  desc: 'Every source, table and column — enriched with inferred business meanings, types, and relationships.' },
-					{ num: '02', label: 'Semantic model',  desc: 'Entities, glossary terms and domain relationships extracted automatically from your data.' },
-					{ num: '03', label: 'MCP integration', desc: 'Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.' },
+					{ num: '01', label: 'Semantic catalog', desc: 'Every source, table and column enriched with inferred business meanings, entities, glossary terms, and domain relationships.' },
+					{ num: '02', label: 'MCP integration',  desc: 'Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.' },
+					{ num: '03', label: 'BI platform',      desc: 'Explore and visualise your data with a built-in analytics layer powered by your semantic model.' },
 				] as f}
 					<div class="border-border px-8 py-10">
 						<p class="text-muted-foreground mb-3 font-mono text-xs">{f.num}</p>
@@ -106,9 +123,9 @@
 				</p>
 				<a
 					href="/waitlist"
-					class="bg-foreground text-primary-foreground hover:bg-primary/90 mt-8 inline-block rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
+					class="waitlist-btn bg-foreground text-primary-foreground hover:bg-primary/90 mt-8 inline-block rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
 				>
-					Join the waitlist
+					Request Demo
 				</a>
 			</div>
 			<div class="border-border flex flex-col justify-between px-8 py-14">
@@ -128,15 +145,6 @@
 		</div>
 	</section>
 
-	<!-- Footer -->
-	<footer class="mt-auto px-8 py-5">
-		<div class="mx-auto flex max-w-5xl items-center justify-between">
-			<div class="flex items-center gap-2">
-				<img src={logo} alt="nomox" class="size-4 opacity-40" />
-				<span class="text-muted-foreground text-xs">nomox</span>
-			</div>
-			<p class="text-muted-foreground text-xs">Semantic data intelligence</p>
-		</div>
-	</footer>
+	<PublicFooter />
 
 </div>

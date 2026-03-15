@@ -8,21 +8,21 @@
 
 	const productItems: { title: string; href: string; description: string }[] = [
 		{
-			title: 'Schema catalog',
-			href: '/product#schema-catalog',
-			description: 'Every source, table and column enriched with inferred business meanings and types.'
-		},
-		{
-			title: 'Semantic model',
-			href: '/product#semantic-model',
-			description:
-				'Entities, glossary terms and domain relationships extracted automatically from your data.'
+			title: 'Semantic catalog',
+			href: '/product#semantic-catalog',
+			description: 'Every source, table and column enriched with inferred business meanings, entities, and domain relationships.'
 		},
 		{
 			title: 'MCP integration',
 			href: '/product#mcp',
 			description:
 				'Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.'
+		},
+		{
+			title: 'BI platform',
+			href: '/product#bi',
+			description:
+				'Explore and visualise your data with a built-in analytics layer powered by your semantic model.'
 		}
 	];
 
@@ -34,10 +34,10 @@
 				'Give analysts a shared vocabulary without manual tagging or lengthy governance projects.'
 		},
 		{
-			title: 'AI engineering',
-			href: '/solutions#ai-engineering',
+			title: 'Decision Makers',
+			href: '/solutions#decision-makers',
 			description:
-				'Supply your AI tools with the structured context they need to answer data questions accurately.'
+				'Let executives explore and understand their data landscape without needing to know SQL or the schema.'
 		},
 		{
 			title: 'Engineering onboarding',
@@ -53,7 +53,7 @@
 	};
 </script>
 
-<header class="border-border border-b">
+<header class="border-border border-b z-10">
 	<div class="mx-auto flex max-w-5xl items-center px-8 py-3">
 
 		<!-- Logo -->
@@ -104,7 +104,7 @@
 		<!-- Right actions -->
 		<div class="ml-auto flex items-center gap-4">
 			<a href="/waitlist" class="text-muted-foreground hover:text-foreground text-sm transition-colors">
-				Join waitlist
+				Request Demo
 			</a>
 			<a
 				href="/login"
