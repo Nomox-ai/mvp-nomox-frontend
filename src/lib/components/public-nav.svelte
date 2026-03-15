@@ -104,7 +104,7 @@
 		<!-- Right actions -->
 		<div class="ml-auto flex items-center gap-4">
 			<a href="/waitlist" class="text-muted-foreground hover:text-foreground text-sm transition-colors">
-				Join waitlist
+				Request Demo
 			</a>
 			<a
 				href="/login"

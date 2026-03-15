@@ -24,9 +24,9 @@
 			<div class="mt-10 flex items-center gap-4">
 				<a
 					href="/waitlist"
-					class="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
+					class="waitlist-btn bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
 				>
-					Join the waitlist
+					Request Demo
 				</a>
 				<a
 					href="#how-it-works"
@@ -106,9 +106,9 @@
 				</p>
 				<a
 					href="/waitlist"
-					class="bg-foreground text-primary-foreground hover:bg-primary/90 mt-8 inline-block rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
+					class="waitlist-btn bg-foreground text-primary-foreground hover:bg-primary/90 mt-8 inline-block rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
 				>
-					Join the waitlist
+					Request Demo
 				</a>
 			</div>
 			<div class="border-border flex flex-col justify-between px-8 py-14">

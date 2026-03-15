@@ -16,7 +16,7 @@
 			<div class="border-border flex flex-col justify-center border-b px-8 py-14 md:border-b-0">
 				<p class="text-muted-foreground mb-4 font-mono text-xs">Early access</p>
 				<h1 class="text-foreground text-3xl font-semibold tracking-tight leading-tight">
-					Join the waitlist.
+					Request Demo
 				</h1>
 				<p class="text-muted-foreground mt-4 max-w-xs text-sm leading-relaxed">
 					We're onboarding teams selectively. Drop your email and we'll reach out when a spot opens up.
