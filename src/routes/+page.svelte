@@ -2,7 +2,7 @@
 	import IntegrationDiagram from '$lib/components/integration-diagram.svelte';
 	import PublicNav from '$lib/components/public-nav.svelte';
 	import logo from '$lib/assets/logo.svg';
-	import screenshot from '$lib/assets/screen_nomox.png';
+	import screenshot from '$lib/assets/screenshot_graphic.png';
 </script>
 
 <div class="bg-background text-foreground flex min-h-screen flex-col">
