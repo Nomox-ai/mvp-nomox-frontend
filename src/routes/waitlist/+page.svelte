@@ -9,11 +9,11 @@
 	<PublicNav />
 
 	<!-- Content -->
-	<main class="border-border flex-1 border-b">
-		<div class="mx-auto grid max-w-5xl grid-cols-1 md:grid-cols-2 md:divide-x">
+	<main class="border-border flex flex-1 items-center border-b">
+		<div class="mx-auto grid w-full max-w-5xl grid-cols-1 md:grid-cols-2 md:divide-x self-stretch">
 
 			<!-- Left: context -->
-			<div class="border-border border-b px-8 py-14 md:border-b-0">
+			<div class="border-border flex flex-col justify-center border-b px-8 py-14 md:border-b-0">
 				<p class="text-muted-foreground mb-4 font-mono text-xs">Early access</p>
 				<h1 class="text-foreground text-3xl font-semibold tracking-tight leading-tight">
 					Join the waitlist.
@@ -37,7 +37,7 @@
 			</div>
 
 			<!-- Right: form -->
-			<div class="px-8 py-14">
+			<div class="flex flex-col justify-center px-8 py-14">
 				<p class="text-muted-foreground mb-6 font-mono text-xs">Request access</p>
 				<WaitlistForm />
 				<p class="text-muted-foreground mt-4 text-xs">
