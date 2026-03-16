@@ -101,7 +101,7 @@
 				href="/waitlist"
 				class="bg-foreground text-background hover:bg-foreground/85 rounded-md px-3.5 py-1.5 text-sm font-medium transition-colors"
 			>
-				Request demo
+				Request Demo
 			</a>
 		</div>
 
@@ -153,18 +153,18 @@
 
 				<div class="border-border mt-5 flex flex-col gap-3 border-t pt-5">
 					<a
-						href="/waitlist"
+						href="/login"
 						class="text-muted-foreground hover:text-foreground text-sm transition-colors"
 						on:click={() => (menuOpen = false)}
 					>
-						Request Demo
+						Sign in
 					</a>
 					<a
-						href="/login"
+						href="/waitlist"
 						class="bg-foreground text-background hover:bg-foreground/85 rounded-md px-3.5 py-2 text-center text-sm font-medium transition-colors"
 						on:click={() => (menuOpen = false)}
 					>
-						Sign in
+						Request Demo
 					</a>
 				</div>
 
