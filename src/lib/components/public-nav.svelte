@@ -29,7 +29,7 @@
 	const solutionItems: { title: string; href: string; description: string }[] = [
 		{
 			title: 'Data teams',
-			href: '/solutions#data-teams',
+			href: '/solutions/data-teams',
 			description:
 				'Give analysts a shared vocabulary without manual tagging or lengthy governance projects.'
 		},
