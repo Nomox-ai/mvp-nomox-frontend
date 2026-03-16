@@ -1,6 +1,7 @@
 <script lang="ts">
 	import PublicNav from "$lib/components/public-nav.svelte";
 	import PublicFooter from "$lib/components/public-footer.svelte";
+	import ProductCta from "$lib/components/product-cta.svelte";
 	import { fadeUp } from "$lib/actions/fade-up";
 
 	const capabilities = [
@@ -142,24 +143,7 @@
 		</div>
 	</section>
 
-	<!-- CTA -->
-	<section class="border-border border-b">
-		<div class="mx-auto max-w-5xl px-8 py-14">
-			<h2 class="text-foreground text-2xl font-semibold tracking-tight">
-				Ready to unify your data?
-			</h2>
-			<p class="text-muted-foreground mt-3 max-w-sm text-sm leading-relaxed">
-				We are onboarding companies in batches. Join the waitlist and we will reach out when a
-				spot opens.
-			</p>
-			<a
-				href="/waitlist"
-				class="bg-foreground text-background hover:bg-foreground/85 mt-8 inline-block rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
-			>
-				Request Demo
-			</a>
-		</div>
-	</section>
+	<ProductCta />
 
 	<PublicFooter />
 </div>

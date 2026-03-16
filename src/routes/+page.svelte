@@ -68,7 +68,7 @@
 					Be the first to know.
 				</h2>
 				<p class="text-muted-foreground mt-3 max-w-xs text-sm leading-relaxed">
-					We're onboarding teams selectively. Join the waitlist and we'll reach out when a spot opens.
+					We're not onboarding yet — but we're looking for our first partners. Get in touch and we'll reach out when we launch.
 				</p>
 				<a
 					href="/waitlist"
