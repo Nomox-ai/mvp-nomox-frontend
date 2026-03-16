@@ -29,25 +29,25 @@
 		{
 			label: "Shared documentation",
 			desc: "All data sources accessible from place together with all semantic information. Descriptions, owners and sample rows included.",
-			href: "/product#semantic-catalog",
+			href: "/product/semantic-catalog",
 			productName: "Catalog",
 		},
 		{
 			label: "Entity search",
 			desc: "Entities streatched over multiple datasources synoptically shown on place. No more quessing and blind tries.",
-			href: "/product#semantic-catalog",
+			href: "/product/semantic-catalog",
 			productName: "Catalog",
 		},
 		{
 			label: "MCP integration",
 			desc: "Feed your data with accurate semantic context to Claude, Cursor, and every MCP-compatible AI tool from single place.",
-			href: "/product#mcp",
+			href: "/product/mcp",
 			productName: "MCP",
 		},
 		{
 			label: "Auto-updated catalog",
 			desc: "Thanks to periodial re-indexing your catalog stays current without any manual maintenance.",
-			href: "/product#semantic-catalog",
+			href: "/product/semantic-catalog",
 			productName: "Catalog",
 		},
 	];

@@ -68,7 +68,7 @@
 					Be the first to know.
 				</h2>
 				<p class="text-muted-foreground mt-3 max-w-xs text-sm leading-relaxed">
-					We're onboarding teams selectively. Join the waitlist and we'll reach out when a spot opens.
+					We're not onboarding yet — but we're looking for our first partners. Get in touch and we'll reach out when we launch.
 				</p>
 				<a
 					href="/waitlist"
@@ -82,7 +82,7 @@
 					{#each [
 						{ label: 'Free during early access', desc: 'No credit card. No commitment.' },
 						{ label: 'Works with your stack',    desc: 'PostgreSQL, MongoDB, Trino and more.' },
-						{ label: 'AI-native from day one',   desc: 'MCP, Claude, Cursor — all supported.' },
+						{ label: 'AI-native from day one',   desc: 'MCP, Claude, Cursor - all supported.' },
 					] as item, i}
 						<div data-fade-up="pending" use:fadeUp={{ delay: i * 80 }}>
 							<p class="text-foreground text-sm font-medium">{item.label}</p>

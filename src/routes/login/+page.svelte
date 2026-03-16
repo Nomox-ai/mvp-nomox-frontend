@@ -103,7 +103,7 @@
 				<img src={logo} alt="nomox" class="size-4 opacity-40" />
 				<span class="text-muted-foreground text-xs">nomox</span>
 			</div>
-			<p class="text-muted-foreground text-xs">Semantic data intelligence</p>
+			<a href="mailto:team@get-nomox.com" class="text-muted-foreground hover:text-foreground text-xs transition-colors">team@get-nomox.com</a>
 		</div>
 	</footer>
 

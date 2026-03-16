@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { fadeUp } from '$lib/actions/fade-up';
+
 	export type Problem = {
 		label: string;
 		desc: string;
@@ -26,8 +28,8 @@
 				Current challenges
 			</p>
 			<div class="grid grid-cols-1 gap-6">
-				{#each problems as problem}
-					<div>
+				{#each problems as problem, i}
+					<div data-fade-up="pending" use:fadeUp={{ delay: i * 80 }}>
 						<p class="text-foreground text-sm font-medium">{problem.label}</p>
 						<p class="text-muted-foreground mt-0.5 text-xs leading-relaxed">{problem.desc}</p>
 					</div>
@@ -37,16 +39,30 @@
 
 		<!-- Right: how Nomox solves it -->
 		<div class="px-8 py-14">
-			<p class="text-muted-foreground mb-3 font-mono text-xs uppercase tracking-widest">
+			<p
+				data-fade-up="pending"
+				use:fadeUp
+				class="text-muted-foreground mb-3 font-mono text-xs uppercase tracking-widest"
+			>
 				{solutionEyebrow}
 			</p>
-			<h2 class="text-foreground text-2xl font-semibold tracking-tight">
+			<h2
+				data-fade-up="pending"
+				use:fadeUp={{ delay: 80 }}
+				class="text-foreground text-2xl font-semibold tracking-tight"
+			>
 				{solutionTitle}
 			</h2>
-			<p class="text-muted-foreground mt-3 max-w-xs text-sm leading-relaxed">
+			<p
+				data-fade-up="pending"
+				use:fadeUp={{ delay: 160 }}
+				class="text-muted-foreground mt-3 max-w-xs text-sm leading-relaxed"
+			>
 				{solutionBody}
 			</p>
 			<a
+				data-fade-up="pending"
+				use:fadeUp={{ delay: 240 }}
 				href={ctaHref}
 				class="bg-foreground text-background hover:bg-foreground/85 mt-8 inline-block rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
 			>

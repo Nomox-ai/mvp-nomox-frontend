@@ -45,7 +45,7 @@
 		<Input
 			id="wl-email"
 			type="email"
-			placeholder="your@email.com"
+			placeholder="gavin@hooli.com"
 			bind:value={email}
 			required
 			autocomplete="email"
@@ -65,7 +65,7 @@
 			<Input
 				id="wl-company-name"
 				type="text"
-				placeholder="Acme Corp"
+				placeholder="Hooli"
 				bind:value={companyName}
 				required={isCompany}
 				autocomplete="organization"

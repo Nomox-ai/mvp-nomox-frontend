@@ -29,25 +29,25 @@
 		{
 			label: "Ask you data",
 			desc: "AI powered BI platform connected to all your data sources with visualisation tools. Ask any question. Get full picture.",
-			href: "/product#bi",
+			href: "/product/bi",
 			productName: "BI Platform",
 		},
 		{
 			label: "Always up to date",
-			desc: "Reports and answers on demand — no queue, no expert bottleneck, no waiting until next sprint.",
-			href: "/product#bi",
+			desc: "Reports and answers on demand. No queue, no expert bottleneck, no waiting until next sprint.",
+			href: "/product/bi",
 			productName: "BI Platform",
 		},
 		{
 			label: "MCP server",
 			desc: "Connect Nomox to your favourite AI agent and integrate with your current routine.",
-			href: "/product#mcp",
+			href: "/product/mcp",
 			productName: "MCP",
 		},
 		{
 			label: "Comprehensive catalog",
 			desc: "Understand your data through catalog. No technical jargon. Just all the neccessary information.",
-			href: "/product#semantic-catalog",
+			href: "/product/semantic-catalog",
 			productName: "Catalog",
 		},
 	];

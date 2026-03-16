@@ -19,6 +19,17 @@
 		animation-timing-function: linear;
 		animation-iteration-count: infinite;
 	}
+
+	@keyframes dash-flow {
+		from { stroke-dashoffset: 20; }
+		to   { stroke-dashoffset: 0; }
+	}
+	.dash-flow {
+		animation-name: dash-flow;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		will-change: stroke-dashoffset;
+	}
 </style>
 
 <script lang="ts">
@@ -137,13 +148,13 @@
 		class="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
 		xmlns="http://www.w3.org/2000/svg"
 	>
-		<path d={sp0} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={sp1} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={sp2} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={sp3} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={op0} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={op1} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={op2} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
+		<path d={sp0} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.4s;animation-delay:0s"/>
+		<path d={sp1} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.8s;animation-delay:-0.6s"/>
+		<path d={sp2} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.2s;animation-delay:-1.1s"/>
+		<path d={sp3} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.6s;animation-delay:-0.4s"/>
+		<path d={op0} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.5s;animation-delay:-0.9s"/>
+		<path d={op1} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.3s;animation-delay:-0.3s"/>
+		<path d={op2} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.7s;animation-delay:-0.7s"/>
 		<circle cx={dotCx} cy={dotCy} r="3" fill="#d1d5db"/>
 	</svg>
 
@@ -253,7 +264,7 @@
 
 		<div class="flex flex-col justify-center gap-4">
 			<div class="float-card" style="animation-duration:3.4s; animation-delay:0.4s;">
-				<a bind:this={outCard0} href="/product#semantic-catalog" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
+				<a bind:this={outCard0} href="/product/semantic-catalog" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
 					<BookOpenIcon class="text-foreground size-5 shrink-0" />
 					<div class="min-w-0">
 						<p class="text-foreground truncate text-xs font-semibold">Semantic catalog</p>
@@ -262,7 +273,7 @@
 				</a>
 			</div>
 			<div class="float-card translate-x-5" style="animation-duration:3.6s; animation-delay:0.9s;">
-				<a bind:this={outCard1} href="/product#mcp" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
+				<a bind:this={outCard1} href="/product/mcp" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
 					<div class="text-primary [&>svg]:size-7 shrink-0"><McpIcon /></div>
 					<div class="min-w-0">
 						<p class="text-foreground truncate text-xs font-semibold">MCP Server</p>
@@ -271,7 +282,7 @@
 				</a>
 			</div>
 			<div class="float-card" style="animation-duration:3.9s; animation-delay:1.4s;">
-				<a bind:this={outCard2} href="/product#bi" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
+				<a bind:this={outCard2} href="/product/bi" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
 					<Layers2Icon class="text-foreground size-5 shrink-0" />
 					<div class="min-w-0">
 						<p class="text-foreground truncate text-xs font-semibold">BI Platform</p>
