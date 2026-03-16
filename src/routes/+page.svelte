@@ -82,7 +82,7 @@
 					{#each [
 						{ label: 'Free during early access', desc: 'No credit card. No commitment.' },
 						{ label: 'Works with your stack',    desc: 'PostgreSQL, MongoDB, Trino and more.' },
-						{ label: 'AI-native from day one',   desc: 'MCP, Claude, Cursor — all supported.' },
+						{ label: 'AI-native from day one',   desc: 'MCP, Claude, Cursor - all supported.' },
 					] as item, i}
 						<div data-fade-up="pending" use:fadeUp={{ delay: i * 80 }}>
 							<p class="text-foreground text-sm font-medium">{item.label}</p>

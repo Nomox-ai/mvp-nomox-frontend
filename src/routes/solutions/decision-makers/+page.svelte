@@ -34,7 +34,7 @@
 		},
 		{
 			label: "Always up to date",
-			desc: "Reports and answers on demand — no queue, no expert bottleneck, no waiting until next sprint.",
+			desc: "Reports and answers on demand. No queue, no expert bottleneck, no waiting until next sprint.",
 			href: "/product/bi",
 			productName: "BI Platform",
 		},
