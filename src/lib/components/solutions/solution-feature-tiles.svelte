@@ -3,9 +3,10 @@
 		label: string;
 		desc: string;
 		href: string; // product page anchor
+		productName: string;
 	};
 
-	export let eyebrow: string = "In the catalog";
+	export let eyebrow: string = "In Nomox";
 	export let tiles: FeatureTile[];
 </script>
 
@@ -44,7 +45,7 @@
 					<span
 						class="text-primary font-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity"
 					>
-						See in product →
+						See in {tile.productName} →
 					</span>
 				</a>
 			{/each}

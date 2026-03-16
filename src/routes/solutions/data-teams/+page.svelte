@@ -7,43 +7,48 @@
 
 	const problems = [
 		{
-			label: "No shared vocabulary",
-			desc: 'Every analyst has their own definition of "revenue" or "active user". Meetings stall on semantics instead of insights.',
+			label: "Mismatched semantics",
+			desc: "Every data source has its own columns and formats. Work is slowed by doing individual transformations instead of focuing on the full potential.",
 		},
 		{
-			label: "Schema archaeology",
-			desc: "Finding the right table means digging through Slack threads, outdated wikis, and hoping someone remembers why that column exists.",
+			label: "Shared knowledge is missing",
+			desc: "Only a few people can orient in the whole dataset. Manual documentation quickly lags behind. Schema changes go undocumented.",
 		},
+		{
+			label: "Multiple sources",
+			desc: "Finding the right source is looking through piles of documentation. Getting necesssary access is complicated and slow.",
+		},
+
 		{
 			label: "AI tools lack context",
 			desc: "LLMs and BI copilots hallucinate or give wrong answers because they see raw column names with no business meaning attached.",
-		},
-		{
-			label: "Documentation decays",
-			desc: "Data dictionaries go stale the moment they're written. Schema changes go undocumented and trust erodes.",
 		},
 	];
 
 	const tiles = [
 		{
-			label: "Shared glossary",
-			desc: "One canonical definition of every business term — revenue, active user, churn — that your whole team and every AI tool agrees on.",
+			label: "Shared documentation",
+			desc: "All data sources accessible from place together with all semantic information. Descriptions, owners and sample rows included.",
 			href: "/product#semantic-catalog",
+			productName: "Catalog",
 		},
 		{
-			label: "Catalog search",
-			desc: "Find any table or column by business name, not by guessing raw identifiers. Descriptions, owners and sample rows included.",
+			label: "Entity search",
+			desc: "Entities streatched over multiple datasources synoptically shown on place. No more quessing and blind tries.",
 			href: "/product#semantic-catalog",
+			productName: "Catalog",
 		},
 		{
 			label: "MCP integration",
-			desc: "Feed accurate semantic context to Claude, Cursor, and every MCP-compatible AI tool with one toggle.",
+			desc: "Feed your data with accurate semantic context to Claude, Cursor, and every MCP-compatible AI tool from single place.",
 			href: "/product#mcp",
+			productName: "MCP",
 		},
 		{
 			label: "Auto-updated catalog",
-			desc: "Schema changes trigger automatic re-indexing. Your catalog stays current without any manual maintenance.",
+			desc: "Thanks to periodial re-indexing your catalog stays current without any manual maintenance.",
 			href: "/product#semantic-catalog",
+			productName: "Catalog",
 		},
 	];
 </script>
@@ -53,14 +58,14 @@
 
 	<SolutionHero
 		eyebrow="Solutions · Data teams"
-		title="Your data, finally understood."
-		subtitle="Nomox automatically infers business meaning from your schemas so your team stops arguing about definitions and starts shipping insights."
+		title="Your data, finally unified."
+		subtitle="Nomox automatically infers connections across tables and datasets so your team can stop looking for individual mappings and work with all the data from the same place."
 	/>
 
 	<SolutionProblems
 		{problems}
-		solutionTitle="One catalog. Zero manual tagging."
-		solutionBody="Nomox reads your schemas and samples, then assigns business meanings, entities and glossary terms automatically. Your whole team works from the same ground truth — and it stays up to date as your data evolves."
+		solutionTitle="One catalog. One gateway."
+		solutionBody="Nomox reads your schemas and samples and identifies bussiness meanings of individual data objects and entities across the whole system. The result is a unified gateway to your data with all the neccessary semantic information."
 	/>
 
 	<SolutionFeatureTiles {tiles} />

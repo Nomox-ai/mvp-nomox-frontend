@@ -1,53 +1,54 @@
 <script lang="ts">
-	import PublicNav from '$lib/components/public-nav.svelte';
-	import PublicFooter from '$lib/components/public-footer.svelte';
-	import SolutionHero from '$lib/components/solutions/solution-hero.svelte';
-	import SolutionProblems from '$lib/components/solutions/solution-problems.svelte';
-	import SolutionFeatureTiles from '$lib/components/solutions/solution-feature-tiles.svelte';
+	import PublicNav from "$lib/components/public-nav.svelte";
+	import PublicFooter from "$lib/components/public-footer.svelte";
+	import SolutionHero from "$lib/components/solutions/solution-hero.svelte";
+	import SolutionProblems from "$lib/components/solutions/solution-problems.svelte";
+	import SolutionFeatureTiles from "$lib/components/solutions/solution-feature-tiles.svelte";
 
 	const problems = [
 		{
-			label: 'Data without context',
-			desc: 'Dashboards show numbers, but nobody can explain what the numbers actually mean or how they were calculated.',
+			label: "Slow process flow",
+			desc: "Every data question has to be routed through an engineer or analyst. Decisions are slowed down by waiting for answers.",
 		},
 		{
-			label: 'Conflicting reports',
-			desc: 'Finance, Product, and Sales each present different figures in the same meeting. Trust in data erodes.',
+			label: "AI tools lack context",
+			desc: "AI agents give unreliable results or require non-trivial knowledge, because they lack broad context.",
 		},
 		{
-			label: 'Dependency on technical staff',
-			desc: 'Every data question has to be routed through an engineer or analyst. Decisions slow down waiting for answers.',
+			label: "Unverifiable outputs",
+			desc: "Reports arive without lineage or context. It is almost imposible to verify them quickly against the raw data.",
 		},
+
 		{
-			label: 'AI tools give unreliable answers',
-			desc: 'Asking an AI assistant about business metrics returns guesses dressed up as facts — no grounding in your actual data model.',
+			label: "Poor data accessibility",
+			desc: "Individual data sources are managed by different people. The access is usually complicated or highly technical.",
 		},
 	];
 
 	const tiles = [
 		{
-			icon: '📊',
-			label: 'Business-ready catalog',
-			desc: 'Every metric defined in plain language — what it measures, how it is calculated, and who owns it.',
-			href: '/product#semantic-catalog',
+			label: "Ask you data",
+			desc: "AI powered BI platform connected to all your data sources with visualisation tools. Ask any question. Get full picture.",
+			href: "/product#bi",
+			productName: "BI Platform",
 		},
 		{
-			icon: '🤝',
-			label: 'Single source of truth',
-			desc: 'One agreed definition of revenue, churn, and retention that every team and every report uses consistently.',
-			href: '/product#semantic-catalog',
+			label: "Always up to date",
+			desc: "Reports and answers on demand — no queue, no expert bottleneck, no waiting until next sprint.",
+			href: "/product#bi",
+			productName: "BI Platform",
 		},
 		{
-			icon: '🤖',
-			label: 'AI you can trust',
-			desc: 'Ask business questions in natural language and get answers grounded in your verified semantic model.',
-			href: '/product#mcp',
+			label: "MCP server",
+			desc: "Connect Nomox to your favourite AI agent and integrate with your current routine.",
+			href: "/product#mcp",
+			productName: "MCP",
 		},
 		{
-			icon: '🔄',
-			label: 'Always up to date',
-			desc: 'Definitions update automatically when your data evolves. No stale reports, no outdated dashboards.',
-			href: '/product#semantic-catalog',
+			label: "Comprehensive catalog",
+			desc: "Understand your data through catalog. No technical jargon. Just all the neccessary information.",
+			href: "/product#semantic-catalog",
+			productName: "Catalog",
 		},
 	];
 </script>
@@ -58,13 +59,13 @@
 	<SolutionHero
 		eyebrow="Solutions · Decision makers"
 		title="Data you can act on."
-		subtitle="Nomox gives decision makers a clear, trusted view of what the numbers mean — without needing to know SQL or ask an engineer every time."
+		subtitle="Nomox gives decision makers access to a clear, trusted view of what is going on — without needing to know SQL or ask an engineer every time."
 	/>
 
 	<SolutionProblems
 		{problems}
-		solutionTitle="Clarity without the bottleneck."
-		solutionBody="Nomox turns raw schemas into a business-readable catalog. Metrics have owners, definitions, and lineage — so you always know what you're looking at and can trust the answer."
+		solutionTitle="Access data with AI"
+		solutionBody="You can ask the data quickly and without technical knowledge. Eveything is in one place and Nomox gives tools to verify the output."
 	/>
 
 	<SolutionFeatureTiles {tiles} />
