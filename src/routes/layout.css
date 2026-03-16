@@ -8,6 +8,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Elements waiting to animate in are hidden from first paint (SSR + hydration) */
+[data-fade-up="pending"] {
+  opacity: 0;
+}
+
 :root {
   --radius: 0.65rem;
   --background: oklch(1 0 0);
