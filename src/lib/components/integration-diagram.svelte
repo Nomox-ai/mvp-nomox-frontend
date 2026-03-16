@@ -19,6 +19,17 @@
 		animation-timing-function: linear;
 		animation-iteration-count: infinite;
 	}
+
+	@keyframes dash-flow {
+		from { stroke-dashoffset: 20; }
+		to   { stroke-dashoffset: 0; }
+	}
+	.dash-flow {
+		animation-name: dash-flow;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		will-change: stroke-dashoffset;
+	}
 </style>
 
 <script lang="ts">
@@ -137,13 +148,13 @@
 		class="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
 		xmlns="http://www.w3.org/2000/svg"
 	>
-		<path d={sp0} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={sp1} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={sp2} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={sp3} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={op0} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={op1} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
-		<path d={op2} stroke="#e5e7eb" stroke-width="1.5" fill="none"/>
+		<path d={sp0} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.4s;animation-delay:0s"/>
+		<path d={sp1} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.8s;animation-delay:-0.6s"/>
+		<path d={sp2} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.2s;animation-delay:-1.1s"/>
+		<path d={sp3} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.6s;animation-delay:-0.4s"/>
+		<path d={op0} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.5s;animation-delay:-0.9s"/>
+		<path d={op1} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.3s;animation-delay:-0.3s"/>
+		<path d={op2} stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="10 10" fill="none" class="dash-flow" style="animation-duration:2.7s;animation-delay:-0.7s"/>
 		<circle cx={dotCx} cy={dotCy} r="3" fill="#d1d5db"/>
 	</svg>
 
