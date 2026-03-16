@@ -18,14 +18,6 @@
 				<div
 					class="absolute top-[5px] left-3 right-0 h-[2px] bg-primary"
 				>
-					{#if i === steps.length - 1}
-						<!-- Shift left by half icon width so the chevron strokes start flush with the line end -->
-						<ChevronRight
-							class="text-primary absolute top-1/2 -translate-y-1/2 -right-3"
-							size={32}
-							strokeWidth={1.5}
-						/>
-					{/if}
 				</div>
 				<!-- Label below dot -->
 				<div class="mt-6 pr-8">
@@ -51,13 +43,7 @@
 						? ' relative'
 						: ''}"
 				>
-					{#if i === steps.length - 1}
-						<ChevronDown
-							class="text-primary absolute left-1/2 -translate-x-1/2 -bottom-3"
-							size={32}
-							strokeWidth={1.5}
-						/>
-					{/if}
+					
 				</div>
 			</div>
 			<!-- Right column: label -->
