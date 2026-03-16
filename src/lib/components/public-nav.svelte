@@ -74,13 +74,9 @@
 						<ul class="grid w-[300px] gap-4 p-2">
 							{#each solutionItems as item}
 								<li>
-									<NavigationMenu.Link href={item.href}>
-										<div class="font-medium">
-											{item.title}
-										</div>
-										<div class="text-muted-foreground">
-											{item.description}
-										</div>
+									<NavigationMenu.Link href={item.href} class="cursor-pointer">
+										<div class="font-medium">{item.title}</div>
+										<div class="text-muted-foreground">{item.description}</div>
 									</NavigationMenu.Link>
 								</li>
 							{/each}
@@ -93,13 +89,9 @@
 						<ul class="grid w-[300px] gap-4 p-2">
 							{#each productItems as item}
 								<li>
-									<NavigationMenu.Link href={item.href}>
-										<div class="font-medium">
-											{item.title}
-										</div>
-										<div class="text-muted-foreground">
-											{item.description}
-										</div>
+									<NavigationMenu.Link href={item.href} class="cursor-pointer">
+										<div class="font-medium">{item.title}</div>
+										<div class="text-muted-foreground">{item.description}</div>
 									</NavigationMenu.Link>
 								</li>
 							{/each}
@@ -127,7 +119,7 @@
 
 		<!-- Mobile hamburger -->
 		<button
-			class="text-foreground ml-auto flex items-center justify-center md:hidden"
+			class="cursor-pointer text-foreground ml-auto flex items-center justify-center md:hidden"
 			on:click={() => (menuOpen = !menuOpen)}
 			aria-label={menuOpen ? "Close menu" : "Open menu"}
 		>
