@@ -3,6 +3,13 @@
 	import PublicNav from '$lib/components/public-nav.svelte';
 	import PublicFooter from '$lib/components/public-footer.svelte';
 	import screenshot from '$lib/assets/screenshot_graphic.png';
+	import HowItWorksTimeline from '$lib/components/how-it-works-timeline.svelte';
+
+	const howItWorksSteps = [
+		{ label: 'Connect a source',    desc: 'Point Nomox at your database, data warehouse or schema registry. We handle discovery automatically.' },
+		{ label: 'AI infers semantics', desc: 'Our indexer reads schemas and samples, then assigns business meanings, entities and glossary terms.' },
+		{ label: 'Access the catalog',  desc: 'Browse via the admin console, query via API, or plug directly into your AI tools via MCP.' },
+	];
 </script>
 
 <div class="bg-background text-foreground flex min-h-screen flex-col">
@@ -91,21 +98,8 @@
 				so your team shares a common vocabulary, your AI tools get accurate context, and new
 				engineers onboard in hours instead of weeks.
 			</p>
-		</div>
-		<div class="border-border border-t"></div>
-		<div class="mx-auto max-w-5xl">
-			<div class="grid grid-cols-1 divide-y md:grid-cols-3 md:divide-x md:divide-y-0">
-				{#each [
-					{ num: '01', label: 'Connect a source',    desc: 'Point Nomox at your database, data warehouse or schema registry. We handle discovery automatically.' },
-					{ num: '02', label: 'AI infers semantics', desc: 'Our indexer reads schemas and samples, then assigns business meanings, entities and glossary terms.' },
-					{ num: '03', label: 'Access the catalog',  desc: 'Browse via the admin console, query via API, or plug directly into your AI tools via MCP.' },
-				] as s}
-					<div class="px-8 py-10">
-						<p class="text-muted-foreground mb-3 font-mono text-xs">{s.num}</p>
-						<p class="text-foreground mb-2 text-sm font-semibold">{s.label}</p>
-						<p class="text-muted-foreground text-xs leading-relaxed">{s.desc}</p>
-					</div>
-				{/each}
+			<div class="mt-10">
+				<HowItWorksTimeline steps={howItWorksSteps} />
 			</div>
 		</div>
 	</section>
