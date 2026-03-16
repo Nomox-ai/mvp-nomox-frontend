@@ -29,25 +29,25 @@
 		{
 			label: "Full data landscape",
 			desc: "Every source, table, column, and relationship mapped and described — explorable from day one.",
-			href: "/product#semantic-catalog",
+			href: "/product/semantic-catalog",
 			productName: "Catalog",
 		},
 		{
 			label: "Gradual adoption",
 			desc: "Engineers can focus on immediate actions. Building their knowledge gradually, wihtout the preasure to know everything.",
-			href: "/product#semantic-catalog",
+			href: "/product/semantic-catalog",
 			productName: "Catalog",
 		},
 		{
 			label: "Gateway to all data",
 			desc: "Access all necessary data sources from one place. Without complicated configs. With full semantic information.",
-			href: "/product#bi",
+			href: "/product/bi",
 			productName: "BI Platform",
 		},
 		{
 			label: "Living documentation",
 			desc: "The catalog updates periodically. No more docs that are wrong the day after they are written.",
-			href: "/product#semantic-catalog",
+			href: "/product/semantic-catalog",
 			productName: "Catalog",
 		},
 	];

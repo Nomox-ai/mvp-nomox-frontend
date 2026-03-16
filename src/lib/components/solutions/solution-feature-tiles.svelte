@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { fadeUp } from '$lib/actions/fade-up';
+
 	export type FeatureTile = {
 		label: string;
 		desc: string;
@@ -25,8 +27,10 @@
 		<div
 			class="grid grid-cols-1 gap-px sm:grid-cols-2 border-border overflow-hidden rounded-lg border"
 		>
-			{#each tiles as tile}
+			{#each tiles as tile, i}
 				<a
+				data-fade-up="pending"
+				use:fadeUp={{ delay: i * 80 }}
 					href={tile.href}
 					class="group bg-background hover:bg-muted/40 flex flex-col gap-4 p-8 transition-colors"
 				>

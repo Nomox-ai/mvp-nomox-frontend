@@ -253,7 +253,7 @@
 
 		<div class="flex flex-col justify-center gap-4">
 			<div class="float-card" style="animation-duration:3.4s; animation-delay:0.4s;">
-				<a bind:this={outCard0} href="/product#semantic-catalog" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
+				<a bind:this={outCard0} href="/product/semantic-catalog" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
 					<BookOpenIcon class="text-foreground size-5 shrink-0" />
 					<div class="min-w-0">
 						<p class="text-foreground truncate text-xs font-semibold">Semantic catalog</p>
@@ -262,7 +262,7 @@
 				</a>
 			</div>
 			<div class="float-card translate-x-5" style="animation-duration:3.6s; animation-delay:0.9s;">
-				<a bind:this={outCard1} href="/product#mcp" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
+				<a bind:this={outCard1} href="/product/mcp" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
 					<div class="text-primary [&>svg]:size-7 shrink-0"><McpIcon /></div>
 					<div class="min-w-0">
 						<p class="text-foreground truncate text-xs font-semibold">MCP Server</p>
@@ -271,7 +271,7 @@
 				</a>
 			</div>
 			<div class="float-card" style="animation-duration:3.9s; animation-delay:1.4s;">
-				<a bind:this={outCard2} href="/product#bi" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
+				<a bind:this={outCard2} href="/product/bi" class="border-border bg-background hover:border-primary/40 hover:shadow-sm flex h-14 w-48 shrink-0 items-center gap-3 rounded-lg border px-4 transition-all">
 					<Layers2Icon class="text-foreground size-5 shrink-0" />
 					<div class="min-w-0">
 						<p class="text-foreground truncate text-xs font-semibold">BI Platform</p>

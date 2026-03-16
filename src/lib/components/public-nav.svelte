@@ -12,19 +12,19 @@
 		[
 			{
 				title: "Semantic catalog",
-				href: "/product#semantic-catalog",
+				href: "/product/semantic-catalog",
 				description:
 					"Every source, table and column enriched with inferred business meanings, entities, and domain relationships.",
 			},
 			{
 				title: "MCP integration",
-				href: "/product#mcp",
+				href: "/product/mcp",
 				description:
 					"Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.",
 			},
 			{
 				title: "BI platform",
-				href: "/product#bi",
+				href: "/product/bi",
 				description:
 					"Explore and visualise your data with a built-in analytics layer powered by your semantic model.",
 			},
