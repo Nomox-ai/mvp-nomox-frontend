@@ -70,7 +70,7 @@
 				</p>
 				<a
 					href="/waitlist"
-					class="waitlist-btn bg-foreground text-primary-foreground hover:bg-primary/90 mt-8 inline-block rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
+					class="bg-foreground text-background hover:bg-foreground/85 mt-8 inline-block rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
 				>
 					Request Demo
 				</a>
