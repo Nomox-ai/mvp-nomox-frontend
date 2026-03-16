@@ -94,14 +94,14 @@
 
 		<!-- Desktop right actions -->
 		<div class="ml-auto hidden items-center gap-4 md:flex">
-			<a href="/waitlist" class="text-muted-foreground hover:text-foreground text-sm transition-colors">
-				Request Demo
+			<a href="/login" class="text-muted-foreground hover:text-foreground text-sm transition-colors">
+				Sign in
 			</a>
 			<a
-				href="/login"
+				href="/waitlist"
 				class="bg-foreground text-background hover:bg-foreground/85 rounded-md px-3.5 py-1.5 text-sm font-medium transition-colors"
 			>
-				Sign in
+				Request demo
 			</a>
 		</div>
 
