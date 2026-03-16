@@ -37,19 +37,19 @@
 	}[] = [
 		{
 			title: "Data teams",
-			href: "/solutions#data-teams",
+			href: "/solutions/data-teams",
 			description:
 				"Give analysts a shared vocabulary without manual tagging or lengthy governance projects.",
 		},
 		{
 			title: "Decision Makers",
-			href: "/solutions#decision-makers",
+			href: "/solutions/decision-makers",
 			description:
 				"Let executives explore and understand their data landscape without needing to know SQL or the schema.",
 		},
 		{
 			title: "Engineering onboarding",
-			href: "/solutions#onboarding",
+			href: "/solutions/onboarding",
 			description:
 				"Let new engineers understand your data stack in hours instead of weeks.",
 		},
