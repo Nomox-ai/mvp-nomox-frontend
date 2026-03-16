@@ -12,17 +12,17 @@
 
 		<!-- Copy — natural width on desktop (screenshot is absolutely positioned), full width on mobile -->
 		<div class="w-fit">
-			<p use:fadeUp={{ delay: 0 }} class="opacity-0 text-primary mb-5 font-mono text-xs uppercase tracking-widest">
+			<p data-fade-up="pending" use:fadeUp={{ delay: 0 }} class="text-primary mb-5 font-mono text-xs uppercase tracking-widest">
 				Semantic data catalog · Early access
 			</p>
-			<h1 use:fadeUp={{ delay: 80 }} class="opacity-0 text-foreground text-5xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
+			<h1 data-fade-up="pending" use:fadeUp={{ delay: 80 }} class="text-foreground text-5xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
 				Understand your data.<br />Automatically.
 			</h1>
-			<p use:fadeUp={{ delay: 160 }} class="opacity-0 text-muted-foreground mt-6 max-w-md text-sm leading-relaxed">
+			<p data-fade-up="pending" use:fadeUp={{ delay: 160 }} class="text-muted-foreground mt-6 max-w-md text-sm leading-relaxed">
 				Nomox indexes your data sources, infers business semantics with AI, and exposes a
 				structured catalog to your team and AI tools.
 			</p>
-			<div use:fadeUp={{ delay: 240 }} class="opacity-0 mt-10 flex items-center gap-4">
+			<div data-fade-up="pending" use:fadeUp={{ delay: 240 }} class="mt-10 flex items-center gap-4">
 				<a
 					href="/waitlist"
 					class="waitlist-btn bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"

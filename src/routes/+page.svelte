@@ -28,7 +28,7 @@
 					{ num: '02', label: 'MCP integration',  desc: 'Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.' },
 					{ num: '03', label: 'BI platform',      desc: 'Explore and visualise your data with a built-in analytics layer powered by your semantic model.' },
 				] as f, i}
-					<div use:fadeUp={{ delay: i * 100 }} class="border-border px-8 py-10">
+					<div data-fade-up="pending" use:fadeUp={{ delay: i * 100 }} class="border-border px-8 py-10">
 						<p class="text-muted-foreground mb-3 font-mono text-xs">{f.num}</p>
 						<p class="text-foreground mb-2 text-sm font-semibold">{f.label}</p>
 						<p class="text-muted-foreground text-xs leading-relaxed">{f.desc}</p>
@@ -39,7 +39,7 @@
 	</section>
 
 	<section class="border-border border-b">
-		<div use:fadeUp class="mx-auto max-w-3xl px-8 py-12">
+		<div data-fade-up="pending" use:fadeUp class="mx-auto max-w-3xl px-8 py-12">
 			<IntegrationDiagram />
 		</div>
 	</section>
@@ -47,8 +47,8 @@
 	<!-- How it works -->
 	<section id="how-it-works" class="border-border border-b">
 		<div class="mx-auto max-w-5xl px-8 py-10">
-			<h2 use:fadeUp class="text-foreground text-lg font-semibold tracking-tight">How it works</h2>
-			<p use:fadeUp={{ delay: 80 }} class="text-muted-foreground mt-2 max-w-lg text-sm leading-relaxed">
+			<h2 data-fade-up="pending" use:fadeUp class="text-foreground text-lg font-semibold tracking-tight">How it works</h2>
+			<p data-fade-up="pending" use:fadeUp={{ delay: 80 }} class="text-muted-foreground mt-2 max-w-lg text-sm leading-relaxed">
 				Connect a source and Nomox does the rest. Nomox infers business meaning from your schemas,
 				so your team shares a common vocabulary, your AI tools get accurate context, and new
 				engineers onboard in hours instead of weeks.
@@ -62,7 +62,7 @@
 	<!-- Waitlist CTA -->
 	<section class="border-border border-b">
 		<div class="mx-auto grid max-w-5xl grid-cols-1 divide-y md:grid-cols-2 md:divide-x md:divide-y-0">
-			<div use:fadeUp class="px-8 py-14">
+			<div data-fade-up="pending" use:fadeUp class="px-8 py-14">
 				<p class="text-muted-foreground mb-3 font-mono text-xs">Early access</p>
 				<h2 class="text-foreground text-2xl font-semibold tracking-tight">
 					Be the first to know.
@@ -84,7 +84,7 @@
 						{ label: 'Works with your stack',    desc: 'PostgreSQL, MongoDB, Trino and more.' },
 						{ label: 'AI-native from day one',   desc: 'MCP, Claude, Cursor — all supported.' },
 					] as item, i}
-						<div use:fadeUp={{ delay: i * 80 }}>
+						<div data-fade-up="pending" use:fadeUp={{ delay: i * 80 }}>
 							<p class="text-foreground text-sm font-medium">{item.label}</p>
 							<p class="text-muted-foreground mt-0.5 text-xs">{item.desc}</p>
 						</div>

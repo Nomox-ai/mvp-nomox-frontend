@@ -8,7 +8,8 @@ export interface FadeUpOptions {
 export function fadeUp(node: HTMLElement, options: FadeUpOptions = {}) {
 	const { delay = 0, duration = 600, y = 22, threshold = 0.12 } = options;
 
-	node.style.opacity = '0';
+	// data-fade-up="pending" is expected to already be in the markup so the
+	// CSS rule hides the element from SSR. We just set up the transition here.
 	node.style.transform = `translateY(${y}px)`;
 	node.style.transition = `opacity ${duration}ms cubic-bezier(0.16,1,0.3,1), transform ${duration}ms cubic-bezier(0.16,1,0.3,1)`;
 	if (delay) node.style.transitionDelay = `${delay}ms`;
@@ -17,7 +18,7 @@ export function fadeUp(node: HTMLElement, options: FadeUpOptions = {}) {
 		(entries) => {
 			for (const entry of entries) {
 				if (entry.isIntersecting) {
-					node.style.opacity = '1';
+					node.dataset.fadeUp = 'done';
 					node.style.transform = 'translateY(0)';
 					observer.unobserve(node);
 				}
@@ -26,10 +27,9 @@ export function fadeUp(node: HTMLElement, options: FadeUpOptions = {}) {
 		{ threshold }
 	);
 
-	// Use setTimeout so the browser has a full macro-task boundary to paint
-	// the initial hidden state before the observer fires for already-visible
-	// elements (double-rAF can still batch before first paint on refresh).
-	const tid = setTimeout(() => observer.observe(node), 300);
+	// Small delay so the transition property is applied before the observer
+	// fires for already-visible (above-the-fold) elements.
+	const tid = setTimeout(() => observer.observe(node), 50);
 
 	return {
 		destroy() {
