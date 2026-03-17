@@ -2,6 +2,7 @@
 	import PublicNav from "$lib/components/public-nav.svelte";
 	import PublicFooter from "$lib/components/public-footer.svelte";
 	import ProductCta from "$lib/components/product-cta.svelte";
+	import ComingSoonBadge from "$lib/components/coming-soon-badge.svelte";
 	import { fadeUp } from "$lib/actions/fade-up";
 
 	const capabilities = [
@@ -39,13 +40,12 @@
 	<!-- Hero -->
 	<section class="border-border border-b">
 		<div class="mx-auto max-w-5xl px-8 py-20 md:py-24">
-			<p
-				data-fade-up="pending"
-				use:fadeUp
-				class="text-primary mb-5 font-mono text-xs uppercase tracking-widest"
-			>
-				Products · BI Platform
-			</p>
+			<div data-fade-up="pending" use:fadeUp class="mb-5 flex items-center gap-3">
+				<p class="text-primary font-mono text-xs uppercase tracking-widest">
+					Products · BI Platform
+				</p>
+				<ComingSoonBadge />
+			</div>
 			<h1
 				data-fade-up="pending"
 				use:fadeUp={{ delay: 60 }}

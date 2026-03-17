@@ -4,6 +4,7 @@
 	import PublicNav from '$lib/components/public-nav.svelte';
 	import PublicFooter from '$lib/components/public-footer.svelte';
 	import HowItWorksTimeline from '$lib/components/how-it-works-timeline.svelte';
+	import ComingSoonBadge from '$lib/components/coming-soon-badge.svelte';
 	import { fadeUp } from '$lib/actions/fade-up';
 
 	const howItWorksSteps = [
@@ -26,11 +27,16 @@
 				{#each [
 					{ num: '01', label: 'Semantic catalog', desc: 'Every source, table and column enriched with inferred business meanings, entities, glossary terms, and domain relationships.' },
 					{ num: '02', label: 'MCP integration',  desc: 'Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.' },
-					{ num: '03', label: 'BI platform',      desc: 'Explore and visualise your data with a built-in analytics layer powered by your semantic model.' },
+					{ num: '03', label: 'BI platform',      desc: 'Explore and visualise your data with a built-in analytics layer powered by your semantic model.', comingSoon: true },
 				] as f, i}
-					<div data-fade-up="pending" use:fadeUp={{ delay: i * 100 }} class="border-border px-8 py-10">
+					<div data-fade-up="pending" use:fadeUp={{ delay: i * 100 }} class="border-border relative px-8 py-10">
 						<p class="text-muted-foreground mb-3 font-mono text-xs">{f.num}</p>
-						<p class="text-foreground mb-2 text-sm font-semibold">{f.label}</p>
+						<div class="mb-2 flex items-center gap-2.5">
+							<p class="text-foreground text-sm font-semibold">{f.label}</p>
+							{#if f.comingSoon}
+								<ComingSoonBadge />
+							{/if}
+						</div>
 						<p class="text-muted-foreground text-xs leading-relaxed">{f.desc}</p>
 					</div>
 				{/each}
