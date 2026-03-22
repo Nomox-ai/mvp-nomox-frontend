@@ -29,7 +29,7 @@
 
 	<!-- Page hero -->
 	<section class="border-border border-b">
-		<div class="mx-auto max-w-5xl px-8 py-20 md:py-24">
+		<div class="mx-auto max-w-7xl px-8 py-20 md:py-24">
 			<p class="text-primary mb-5 font-mono text-xs uppercase tracking-widest">Products</p>
 			<h1 class="text-foreground text-5xl font-semibold leading-[1.1] tracking-tight">
 				One semantic layer.<br />Three ways to use it.
@@ -44,7 +44,7 @@
 
 	<!-- Product cards -->
 	<section class="border-border border-b">
-		<div class="mx-auto max-w-5xl px-8 py-14">
+		<div class="mx-auto max-w-7xl px-8 py-14">
 			<div class="grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-border sm:grid-cols-3">
 				{#each products as product}
 					<a

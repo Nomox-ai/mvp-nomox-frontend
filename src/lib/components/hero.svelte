@@ -8,7 +8,7 @@
 		pb-0 on mobile: no bottom padding so the section's border-b lands flush
 		with the cut edge of the screenshot. md:py-28 restores symmetry on desktop.
 	-->
-	<div class="mx-auto max-w-5xl px-8 pt-20 pb-0 md:py-28">
+	<div class="mx-auto max-w-7xl px-8 pt-20 pb-0 md:py-28">
 
 		<!-- Copy — natural width on desktop (screenshot is absolutely positioned), full width on mobile -->
 		<div class="w-fit">
@@ -64,7 +64,7 @@
 	<!-- Desktop: screenshot absolutely positioned, bleeds right and below section border -->
 	<div
 		class="border-border absolute hidden overflow-hidden rounded-tl-xl border-l border-t shadow-2xl shadow-black/10 md:block"
-		style="top: 6.5rem; left: 65%; right: 0; bottom: -3.5rem;"
+		style="top: 6.5rem; left: 60%; right: 0; bottom: -3.5rem;"
 	>
 		<img
 			src={screenshot}

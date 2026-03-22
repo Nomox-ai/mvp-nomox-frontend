@@ -22,7 +22,7 @@
 
 	<!-- Features grid -->
 	<section class="border-border border-b">
-		<div class="mx-auto max-w-5xl">
+		<div class="mx-auto max-w-7xl">
 			<div class="grid grid-cols-1 divide-y md:grid-cols-3 md:divide-x md:divide-y-0">
 				{#each [
 					{ num: '01', label: 'Semantic catalog', desc: 'Every source, table and column enriched with inferred business meanings, entities, glossary terms, and domain relationships.' },
@@ -52,7 +52,7 @@
 
 	<!-- How it works -->
 	<section id="how-it-works" class="border-border border-b">
-		<div class="mx-auto max-w-5xl px-8 py-10">
+		<div class="mx-auto max-w-7xl px-8 py-10">
 			<h2 data-fade-up="pending" use:fadeUp class="text-foreground text-lg font-semibold tracking-tight">How it works</h2>
 			<p data-fade-up="pending" use:fadeUp={{ delay: 80 }} class="text-muted-foreground mt-2 max-w-lg text-sm leading-relaxed">
 				Connect a source and Nomox does the rest. Nomox infers business meaning from your schemas,
@@ -67,7 +67,7 @@
 
 	<!-- Waitlist CTA -->
 	<section class="border-border border-b">
-		<div class="mx-auto grid max-w-5xl grid-cols-1 divide-y md:grid-cols-2 md:divide-x md:divide-y-0">
+		<div class="mx-auto grid max-w-7xl grid-cols-1 divide-y md:grid-cols-2 md:divide-x md:divide-y-0">
 			<div data-fade-up="pending" use:fadeUp class="px-8 py-14">
 				<p class="text-muted-foreground mb-3 font-mono text-xs">Early access</p>
 				<h2 class="text-foreground text-2xl font-semibold tracking-tight">

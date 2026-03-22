@@ -39,7 +39,7 @@
 
 	<!-- Hero -->
 	<section class="border-border border-b">
-		<div class="mx-auto max-w-5xl px-8 py-20 md:py-24">
+		<div class="mx-auto max-w-7xl px-8 py-20 md:py-24">
 			<div data-fade-up="pending" use:fadeUp class="mb-5 flex items-center gap-3">
 				<p class="text-primary font-mono text-xs uppercase tracking-widest">
 					Products · BI Platform
@@ -70,7 +70,7 @@
 
 	<!-- Description -->
 	<section class="border-border border-b">
-		<div class="mx-auto max-w-5xl px-8 py-14">
+		<div class="mx-auto max-w-7xl px-8 py-14">
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
 				<p
 					data-fade-up="pending"
@@ -98,7 +98,7 @@
 
 	<!-- Capabilities -->
 	<section class="border-border border-b">
-		<div class="mx-auto max-w-5xl px-8 py-14">
+		<div class="mx-auto max-w-7xl px-8 py-14">
 			<p class="text-muted-foreground mb-8 font-mono text-xs uppercase tracking-widest">
 				Capabilities
 			</p>
@@ -124,7 +124,7 @@
 
 	<!-- Who it's for -->
 	<section class="border-border border-b">
-		<div class="mx-auto max-w-5xl px-8 py-10">
+		<div class="mx-auto max-w-7xl px-8 py-10">
 			<div class="flex flex-col gap-4 md:flex-row md:items-center md:gap-10">
 				<p class="text-muted-foreground font-mono text-xs uppercase tracking-widest">
 					Explore by role
