@@ -5,6 +5,6 @@
 	</header>
 
 	<div class="text-muted-foreground flex flex-1 items-center justify-center text-sm">
-		User management — coming soon
+		User management-coming soon
 	</div>
 </div>

@@ -28,16 +28,16 @@
 	let selectedType = $state<ConnectorType | null>(null);
 	let owner = $state("");
 
-	// Step 2 — shared
+	// Step 2-shared
 	let description = $state("");
 
-	// Step 2 — MongoDB
+	// Step 2-MongoDB
 	let mongoConnectionUrl = $state("");
 	let mongoDatabase = $state("");
 	let mongoSchemaCollection = $state("_schema");
 	let mongoCaseInsensitive = $state(false);
 
-	// Step 2 — PostgreSQL
+	// Step 2-PostgreSQL
 	let pgHost = $state("");
 	let pgPort = $state(5432);
 	let pgDatabase = $state("");
@@ -245,7 +245,7 @@
 				</div>
 			{/if}
 
-			<!-- Step 2 — MongoDB -->
+			<!-- Step 2-MongoDB -->
 			{#if step === 2 && selectedType === ConnectorType.MONGODB}
 				<div class="px-6 pt-5 pb-6 space-y-4">
 					<div class="flex items-center gap-2.5 pb-1">
@@ -279,7 +279,7 @@
 							type="password"
 						/>
 						<p class="text-muted-foreground text-xs">
-							Include credentials in the URL — they will be stored securely.
+							Include credentials in the URL-they will be stored securely.
 						</p>
 					</div>
 
@@ -323,7 +323,7 @@
 				</div>
 			{/if}
 
-			<!-- Step 2 — PostgreSQL -->
+			<!-- Step 2-PostgreSQL -->
 			{#if step === 2 && selectedType === ConnectorType.POSTGRESQL}
 				<div class="px-6 pt-5 pb-6 space-y-4">
 					<div class="flex items-center gap-2.5 pb-1">

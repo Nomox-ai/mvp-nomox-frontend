@@ -62,7 +62,7 @@
 		<!-- Logo -->
 		<a href="/" class="mr-2 flex items-center gap-2">
 			<img src={logo} alt="nomox" class="size-5" />
-			<span class="text-sm font-semibold tracking-tight">nomox</span>
+			<span class="text-base font-medium tracking-tight" style="font-family: 'DM Mono', monospace;">nomox</span>
 		</a>
 
 		<!-- Desktop navigation menu -->

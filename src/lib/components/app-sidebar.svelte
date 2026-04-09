@@ -38,7 +38,7 @@
 			}
 			reviewsBadge = count > 0 ? count : undefined;
 		} catch {
-			// silently ignore — badge simply won't show
+			// silently ignore-badge simply won't show
 		}
 	});
 

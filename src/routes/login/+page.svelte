@@ -46,7 +46,7 @@
 
 		<!-- Form cell -->
 		<div class="w-120 px-12 py-14">
-			<p class="text-muted-foreground mb-4 font-mono text-xs">Admin access</p>
+			<p class="text-muted-foreground mb-4 font-mono text-xs">Limited access</p>
 			<h1 class="text-foreground mb-8 text-2xl font-semibold tracking-tight leading-tight">
 				Sign in.
 			</h1>
@@ -59,7 +59,7 @@
 					autocomplete="username"
 					bind:value={username}
 					required
-					class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-1"
+					class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-1"
 				/>
 				<input
 					id="password"
@@ -68,7 +68,7 @@
 					autocomplete="current-password"
 					bind:value={password}
 					required
-					class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-1"
+					class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-1"
 				/>
 
 				{#if error}
@@ -84,7 +84,7 @@
 				</button>
 			</form>
 
-			<p class="text-muted-foreground mt-6 text-xs">admin-only access</p>
+			
 		</div>
 
 		<div class="border-border border-l"></div>

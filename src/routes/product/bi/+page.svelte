@@ -9,7 +9,7 @@
 		{
 			num: "01",
 			label: "Plain-English queries",
-			desc: "Ask any question about company data in natural language. No SQL, no schema knowledge, no data engineer in the loop — and no limitation to the questions someone anticipated when building a dashboard.",
+			desc: "Ask any question about company data in natural language. No SQL, no schema knowledge, no data engineer in the loop-and no limitation to the questions someone anticipated when building a dashboard.",
 		},
 		{
 			num: "02",
@@ -24,7 +24,7 @@
 		{
 			num: "04",
 			label: "Persistent dashboards",
-			desc: "Save recurring questions as dashboards that stay current and draw from your unified data layer. Ad-hoc queries and structured dashboards live in the same place — you are never limited to one or the other.",
+			desc: "Save recurring questions as dashboards that stay current and draw from your unified data layer. Ad-hoc queries and structured dashboards live in the same place-you are never limited to one or the other.",
 		},
 	];
 
@@ -59,7 +59,7 @@
 				class="text-muted-foreground mt-6 max-w-lg text-sm leading-relaxed"
 			>
 				Built on top of the Semantic Catalog, the BI Platform lets non-technical users ask
-				questions about company data in plain English and get immediate, traceable answers — or
+				questions about company data in plain English and get immediate, traceable answers-or
 				build persistent dashboards that draw from all connected sources at once.
 			</p>
 			<p class="text-muted-foreground mt-5 font-mono text-xs uppercase tracking-widest">
@@ -89,7 +89,7 @@
 				>
 					The BI Platform works directly on top of the unified semantic layer, so it can answer
 					any ad-hoc question across all your connected sources at once. Every answer includes a
-					reasoning trace so users can see exactly how the result was reached — and analysts can
+					reasoning trace so users can see exactly how the result was reached-and analysts can
 					take the query and build on it.
 				</p>
 			</div>

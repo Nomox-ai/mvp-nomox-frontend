@@ -5,6 +5,6 @@
 	</header>
 
 	<div class="text-muted-foreground flex flex-1 items-center justify-center text-sm">
-		Schema browser — coming soon
+		Schema browser-coming soon
 	</div>
 </div>

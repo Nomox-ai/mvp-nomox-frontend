@@ -7,7 +7,7 @@
 			name: "Semantic Catalog",
 			href: "/product/semantic-catalog",
 			for: "Data engineers & analysts",
-			desc: "Automatically reads every connected source, maps cross-source relationships, and enriches each field with business-level meaning — without anyone writing documentation by hand.",
+			desc: "Automatically reads every connected source, maps cross-source relationships, and enriches each field with business-level meaning-without anyone writing documentation by hand.",
 		},
 		{
 			name: "BI Platform",
@@ -35,7 +35,7 @@
 				One semantic layer.<br />Three ways to use it.
 			</h1>
 			<p class="text-muted-foreground mt-6 max-w-lg text-sm leading-relaxed">
-				Nomox connects to your existing data sources and builds a shared semantic layer — a unified
+				Nomox connects to your existing data sources and builds a shared semantic layer-a unified
 				map of what every field and table means in business terms. The Semantic Catalog, BI
 				Platform, and MCP Server are each built on top of it.
 			</p>

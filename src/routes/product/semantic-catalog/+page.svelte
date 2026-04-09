@@ -8,12 +8,12 @@
 		{
 			num: "01",
 			label: "Automatic discovery",
-			desc: "Reads schema metadata, column names, data types, and sample values from every connected source. No manual configuration, no documentation projects — just connect and Nomox handles the rest.",
+			desc: "Reads schema metadata, column names, data types, and sample values from every connected source. No manual configuration, no documentation projects-just connect and Nomox handles the rest.",
 		},
 		{
 			num: "02",
 			label: "Cross-source relationships",
-			desc: "Discovers implicit relationships across sources that are never declared as foreign keys — like a customer_id column in a spreadsheet that corresponds to an id in your Postgres users table.",
+			desc: "Discovers implicit relationships across sources that are never declared as foreign keys-like a customer_id column in a spreadsheet that corresponds to an id in your Postgres users table.",
 		},
 		{
 			num: "03",
@@ -23,7 +23,7 @@
 		{
 			num: "04",
 			label: "Always up to date",
-			desc: "The catalog re-indexes periodically as sources change. It stays accurate without maintenance overhead — no more documentation that is wrong the day after it is written.",
+			desc: "The catalog re-indexes periodically as sources change. It stays accurate without maintenance overhead-no more documentation that is wrong the day after it is written.",
 		},
 	];
 
@@ -59,7 +59,7 @@
 				class="text-muted-foreground mt-6 max-w-lg text-sm leading-relaxed"
 			>
 				Nomox reads every connected source, maps relationships across all of them, and enriches
-				each field with business-level meaning — without anyone writing documentation by hand.
+				each field with business-level meaning-without anyone writing documentation by hand.
 			</p>
 			<p class="text-muted-foreground mt-5 font-mono text-xs uppercase tracking-widest">
 				For data engineers &amp; analysts
@@ -76,7 +76,7 @@
 					use:fadeUp
 					class="text-foreground text-sm leading-relaxed"
 				>
-					The Semantic Catalog is the foundation of Nomox — and the foundation of every answer
+					The Semantic Catalog is the foundation of Nomox-and the foundation of every answer
 					Nomox gives. Its quality is the ceiling on everything else. It is the shared source of
 					truth that data engineers, analysts, and every AI tool you connect to it all reason
 					against.

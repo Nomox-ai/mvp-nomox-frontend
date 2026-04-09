@@ -199,7 +199,7 @@
 							</div>
 							{#if newToken}
 								<p class="text-xs text-amber-600 dark:text-amber-400">
-									Copy this token now — it will not be shown again.
+									Copy this token now-it will not be shown again.
 								</p>
 							{:else}
 								<p class="text-muted-foreground/60 text-xs">

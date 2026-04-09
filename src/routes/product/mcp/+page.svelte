@@ -13,17 +13,17 @@
 		{
 			num: "02",
 			label: "Company data in AI conversations",
-			desc: "Query your internal numbers directly inside an AI conversation and combine them with external research in the same thread — market data, news, analysis, and your own metrics together.",
+			desc: "Query your internal numbers directly inside an AI conversation and combine them with external research in the same thread-market data, news, analysis, and your own metrics together.",
 		},
 		{
 			num: "03",
 			label: "Grounded in your semantic layer",
-			desc: "All answers are constrained to fields and relationships that actually exist in your data. The same trusted catalog that powers the rest of Nomox — no hallucinated column names or invented metrics.",
+			desc: "All answers are constrained to fields and relationships that actually exist in your data. The same trusted catalog that powers the rest of Nomox-no hallucinated column names or invented metrics.",
 		},
 		{
 			num: "04",
 			label: "Persistent context across sessions",
-			desc: "The semantic layer is always available. You do not need to re-explain the data model at the start of every session — Nomox keeps the context grounded so your AI tools can reason accurately from the start.",
+			desc: "The semantic layer is always available. You do not need to re-explain the data model at the start of every session-Nomox keeps the context grounded so your AI tools can reason accurately from the start.",
 		},
 	];
 
@@ -59,7 +59,7 @@
 				class="text-muted-foreground mt-6 max-w-lg text-sm leading-relaxed"
 			>
 				Nomox ships as a Model Context Protocol server, letting analysts plug the unified data
-				layer directly into AI tools — Claude, or any other LLM that supports MCP. It turns
+				layer directly into AI tools-Claude, or any other LLM that supports MCP. It turns
 				Nomox from a product you visit into a layer that is available wherever you work.
 			</p>
 			<p class="text-muted-foreground mt-5 font-mono text-xs uppercase tracking-widest">
@@ -88,7 +88,7 @@
 					class="text-muted-foreground text-sm leading-relaxed"
 				>
 					Combine internal numbers with external research, ask follow-up questions, and run
-					deeper analyses — all grounded in the same trusted semantic layer. The MCP Server is
+					deeper analyses-all grounded in the same trusted semantic layer. The MCP Server is
 					designed for analysts and technically comfortable users who already work inside AI tools
 					and want their company's data available there too.
 				</p>
