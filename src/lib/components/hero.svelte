@@ -8,7 +8,7 @@
 		pb-0 on mobile: no bottom padding so the section's border-b lands flush
 		with the cut edge of the screenshot. md:py-28 restores symmetry on desktop.
 	-->
-	<div class="mx-auto max-w-5xl px-8 pt-20 pb-0 md:py-28">
+	<div class="mx-auto max-w-section px-8 pt-20 pb-0 md:py-28">
 
 		<!-- Copy — natural width on desktop (screenshot is absolutely positioned), full width on mobile -->
 		<div class="w-fit">

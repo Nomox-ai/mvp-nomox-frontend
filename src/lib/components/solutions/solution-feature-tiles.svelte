@@ -18,7 +18,7 @@
   Designed to sit below solution-problems as a "what you get" bridge.
 -->
 <section class="border-border border-b">
-	<div class="mx-auto max-w-5xl px-8 py-14">
+	<div class="mx-auto max-w-section px-8 py-14">
 		<p
 			class="text-muted-foreground mb-8 font-mono text-xs uppercase tracking-widest"
 		>

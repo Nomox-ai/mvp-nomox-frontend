@@ -7,7 +7,7 @@
 </script>
 
 <section class="border-border border-b">
-	<div class="mx-auto max-w-5xl px-8 py-20 md:py-24">
+	<div class="mx-auto max-w-section px-8 py-20 md:py-24">
 		<p
 			data-fade-up="pending"
 			use:fadeUp

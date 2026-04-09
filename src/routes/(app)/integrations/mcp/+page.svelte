@@ -126,7 +126,7 @@
 
 	<div class="flex-1 overflow-y-auto">
 		{#if loading}
-			<div class="mx-auto max-w-5xl space-y-4 p-6">
+			<div class="mx-auto max-w-section space-y-4 p-6">
 				<div class="grid grid-cols-2 gap-4">
 					<Skeleton class="h-36 rounded-xl" />
 					<Skeleton class="h-36 rounded-xl" />
@@ -138,7 +138,7 @@
 				<Skeleton class="h-48 rounded-xl" />
 			</div>
 		{:else}
-			<div class="mx-auto max-w-5xl space-y-4 p-6">
+			<div class="mx-auto max-w-section space-y-4 p-6">
 
 				<!-- ── Row 1: Server + Token ───────────────────────────────────── -->
 				<div class="grid grid-cols-2 gap-4">

@@ -1,5 +1,5 @@
 <section class="border-border border-b">
-	<div class="mx-auto max-w-5xl px-8 py-14">
+	<div class="mx-auto max-w-section px-8 py-14">
 		<h2 class="text-foreground text-2xl font-semibold tracking-tight">
 			Ready to unify your data?
 		</h2>

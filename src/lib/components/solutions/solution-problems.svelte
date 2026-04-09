@@ -20,7 +20,7 @@
   Here:  [ list left | CTA right  ]
 -->
 <section class="border-border border-b">
-	<div class="mx-auto grid max-w-5xl grid-cols-1 divide-y md:grid-cols-2 md:divide-x md:divide-y-0">
+	<div class="mx-auto grid max-w-section grid-cols-1 divide-y md:grid-cols-2 md:divide-x md:divide-y-0">
 
 		<!-- Left: problem list -->
 		<div class="px-8 py-14">

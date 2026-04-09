@@ -58,7 +58,7 @@
 
 <header class="border-border bg-background relative z-10 border-b">
 	<!-- ── Main bar ──────────────────────────────────────────────────── -->
-	<div class="mx-auto flex max-w-5xl items-center px-8 py-3">
+	<div class="mx-auto flex max-w-section items-center px-8 py-3">
 		<!-- Logo -->
 		<a href="/" class="mr-2 flex items-center gap-2">
 			<img src={logo} alt="nomox" class="size-5" />
@@ -137,7 +137,7 @@
 			transition:slide={{ duration: 220 }}
 			class="border-border bg-background absolute inset-x-0 top-full border-t shadow-lg md:hidden"
 		>
-			<div class="mx-auto max-w-5xl px-8 py-5 flex flex-col gap-1">
+			<div class="mx-auto max-w-section px-8 py-5 flex flex-col gap-1">
 				<p
 					class="text-muted-foreground mb-2 text-[10px] font-semibold uppercase tracking-widest"
 				>
