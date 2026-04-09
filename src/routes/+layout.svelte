@@ -10,7 +10,6 @@
 		if (import.meta.env.VITE_HOTJAR_ENABLED === 'true') {
 			const script = document.createElement('script');
 			script.src = 'https://t.contentsquare.net/uxa/1ad894ba06ff0.js';
-			script.async = true;
 			document.head.appendChild(script);
 		}
 	});
