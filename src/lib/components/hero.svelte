@@ -4,8 +4,8 @@
 </script>
 
 <section class="border-border border-b">
-	<div class="mx-auto max-w-section px-8 pt-20 pb-12 md:pt-28">
-		<div class="mx-auto max-w-2xl text-center">
+	<div class="mx-auto max-w-section px-8 pt-20 pb-20 md:pt-20">
+		<div class="mx-auto max-w-2xl pb-4 text-center">
 			<p data-fade-up="pending" use:fadeUp={{ delay: 0 }} class="text-primary mb-5 font-mono text-xs uppercase tracking-widest">
 				Semantic data catalog · Early access
 			</p>
