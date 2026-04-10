@@ -1,10 +1,9 @@
 <script lang="ts">
 	import Hero from '$lib/components/hero.svelte';
-	import IntegrationDiagram from '$lib/components/integration-diagram.svelte';
+	import SlidingColumns from '$lib/components/sliding-columns.svelte';
 	import PublicNav from '$lib/components/public-nav.svelte';
 	import PublicFooter from '$lib/components/public-footer.svelte';
 	import HowItWorksTimeline from '$lib/components/how-it-works-timeline.svelte';
-	import ComingSoonBadge from '$lib/components/coming-soon-badge.svelte';
 	import { fadeUp } from '$lib/actions/fade-up';
 
 	const howItWorksSteps = [
@@ -20,46 +19,22 @@
 
 	<Hero />
 
-	<!-- Features grid -->
-	<section class="border-border border-b">
-		<div class="mx-auto max-w-section">
-			<div class="grid grid-cols-1 divide-y md:grid-cols-3 md:divide-x md:divide-y-0">
-				{#each [
-					{ num: '01', label: 'Semantic catalog', desc: 'Every source, table and column enriched with inferred business meanings, entities, glossary terms, and domain relationships.' },
-					{ num: '02', label: 'MCP integration',  desc: 'Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.' },
-					{ num: '03', label: 'BI platform',      desc: 'Explore and visualise your data with a built-in analytics layer powered by your semantic model.', comingSoon: true },
-				] as f, i}
-					<div data-fade-up="pending" use:fadeUp={{ delay: i * 100 }} class="border-border relative px-8 py-10">
-						<p class="text-muted-foreground mb-3 font-mono text-xs">{f.num}</p>
-						<div class="mb-2 flex items-center gap-2.5">
-							<p class="text-foreground text-sm font-semibold">{f.label}</p>
-							{#if f.comingSoon}
-								<ComingSoonBadge />
-							{/if}
-						</div>
-						<p class="text-muted-foreground text-xs leading-relaxed">{f.desc}</p>
-					</div>
-				{/each}
-			</div>
-		</div>
-	</section>
-
-	<section class="border-border border-b">
-		<div data-fade-up="pending" use:fadeUp class="mx-auto max-w-3xl px-8 py-12">
-			<IntegrationDiagram />
-		</div>
-	</section>
+	<SlidingColumns />
 
 	<!-- How it works -->
 	<section id="how-it-works" class="border-border border-b">
-		<div class="mx-auto max-w-section px-8 py-10">
-			<h2 data-fade-up="pending" use:fadeUp class="text-foreground text-lg font-semibold tracking-tight">How it works</h2>
-			<p data-fade-up="pending" use:fadeUp={{ delay: 80 }} class="text-muted-foreground mt-2 max-w-lg text-sm leading-relaxed">
-				Connect a source and Nomox does the rest. Nomox infers business meaning from your schemas,
-				so your team shares a common vocabulary, your AI tools get accurate context, and new
-				engineers onboard in hours instead of weeks.
-			</p>
-			<div class="mt-10">
+		<div class="mx-auto max-w-section px-8 py-20">
+			<div class="max-w-xl">
+				<p data-fade-up="pending" use:fadeUp class="text-primary mb-4 font-mono text-xs uppercase tracking-widest">How it works</p>
+				<h2 data-fade-up="pending" use:fadeUp={{ delay: 60 }} class="text-foreground text-3xl  tracking-tight leading-snug">
+					Connect once.<br />Understand everything.
+				</h2>
+				<p data-fade-up="pending" use:fadeUp={{ delay: 120 }} class="text-muted-foreground mt-4 text-sm leading-relaxed">
+					Nomox infers business meaning from your schemas so your team shares a common vocabulary,
+					your AI tools get accurate context, and new engineers onboard in hours — not weeks.
+				</p>
+			</div>
+			<div class="mt-14">
 				<HowItWorksTimeline steps={howItWorksSteps} />
 			</div>
 		</div>

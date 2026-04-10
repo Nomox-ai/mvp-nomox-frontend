@@ -9,10 +9,10 @@
 			<p data-fade-up="pending" use:fadeUp={{ delay: 0 }} class="text-primary mb-5 font-mono text-xs uppercase tracking-widest">
 				Semantic data catalog · Early access
 			</p>
-			<h1 data-fade-up="pending" use:fadeUp={{ delay: 80 }} class="text-foreground text-5xl font-semibold leading-[1.1] tracking-tight md:text-6xl">
+			<h1 data-fade-up="pending" use:fadeUp={{ delay: 80 }} class="text-foreground text-5xl leading-[1.1] tracking-tight md:text-6xl">
 				Understand your data.<br />Automatically.
 			</h1>
-			<p data-fade-up="pending" use:fadeUp={{ delay: 160 }} class="text-muted-foreground mt-6 text-sm leading-relaxed">
+			<p data-fade-up="pending" use:fadeUp={{ delay: 160 }} class="text-foreground mt-6 text-sm leading-relaxed">
 				Nomox indexes your data sources, infers business semantics with AI, and exposes a
 				structured catalog to your team and AI tools.
 			</p>
@@ -35,7 +35,7 @@
 		<div
 			data-fade-up="pending"
 			use:fadeUp={{ delay: 320 }}
-			class="border-border mt-12 overflow-hidden rounded-xl border shadow-2xl shadow-black/10"
+			class="border-border mt-12 overflow-hidden rounded-xl border shadow-black/10"
 		>
 			<img
 				src={screenshot}
