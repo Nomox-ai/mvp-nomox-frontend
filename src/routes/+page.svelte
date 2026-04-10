@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Hero from '$lib/components/hero.svelte';
 	import SlidingColumns from '$lib/components/sliding-columns.svelte';
+	import ValuePersonas from '$lib/components/value-personas.svelte';
 	import PublicNav from '$lib/components/public-nav.svelte';
 	import PublicFooter from '$lib/components/public-footer.svelte';
 	import HowItWorksTimeline from '$lib/components/how-it-works-timeline.svelte';
@@ -20,6 +21,8 @@
 	<Hero />
 
 	<SlidingColumns />
+
+	<ValuePersonas />
 
 	<!-- How it works -->
 	<section id="how-it-works" class="border-border border-b">
