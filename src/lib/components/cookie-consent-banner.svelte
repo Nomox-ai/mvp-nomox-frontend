@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { Card } from '$lib/components/ui/card/index.js';
 	import { getConsentState, setConsentCookie, loadHotjar } from '$lib/cookie-consent.svelte.js';
 
 	let visible = $state(false);
@@ -23,18 +22,26 @@
 </script>
 
 {#if visible}
-	<div class="fixed inset-x-0 bottom-0 z-50 p-4">
-		<Card class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 p-4">
-			<p class="text-muted-foreground text-sm">
-				This website uses cookies for analytics purposes. Learn more in our
-				<a href="/privacy" class="underline underline-offset-4 hover:text-foreground">
-					privacy policy</a
-				>.
-			</p>
-			<div class="flex gap-2">
-				<Button class="cursor-pointer" variant="outline" size="sm" onclick={decline}>Decline</Button>
-				<Button class="cursor-pointer" size="sm" onclick={accept}>Accept</Button>
+	<div class="fixed inset-x-0 bottom-0 z-50 px-4 pb-4">
+		<div class="bg-background border-border mx-auto flex max-w-md flex-col gap-2.5 rounded-lg border px-4 py-3.5 shadow-md">
+			<div class="flex items-center justify-between">
+				<span class="text-sm font-medium">Cookies</span>
+				<button
+					onclick={() => (visible = false)}
+					class="text-muted-foreground hover:text-foreground cursor-pointer rounded p-0.5 transition-colors"
+					aria-label="Dismiss"
+				>
+					&times;
+				</button>
 			</div>
-		</Card>
+			<p class="text-muted-foreground text-xs">
+				This website uses cookies for analytics purposes. Learn more in our
+				<a href="/privacy" class="underline underline-offset-2 hover:text-foreground">privacy policy</a>.
+			</p>
+			<div class="flex justify-end gap-1.5">
+				<Button class="cursor-pointer h-7 px-2.5 text-xs" variant="outline" size="sm" onclick={decline}>Decline</Button>
+				<Button class="cursor-pointer h-7 px-2.5 text-xs" size="sm" onclick={accept}>Accept</Button>
+			</div>
+		</div>
 	</div>
 {/if}
