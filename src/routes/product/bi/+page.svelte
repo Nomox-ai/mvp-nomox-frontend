@@ -2,7 +2,7 @@
 	import PublicNav from "$lib/components/public-nav.svelte";
 	import PublicFooter from "$lib/components/public-footer.svelte";
 	import ProductCta from "$lib/components/product-cta.svelte";
-	import ComingSoonBadge from "$lib/components/coming-soon-badge.svelte";
+	import ProductHero from "$lib/components/products/product-hero.svelte";
 	import { fadeUp } from "$lib/actions/fade-up";
 
 	const capabilities = [
@@ -37,36 +37,12 @@
 <div class="bg-background text-foreground flex min-h-screen flex-col">
 	<PublicNav />
 
-	<!-- Hero -->
-	<section class="border-border border-b">
-		<div class="mx-auto max-w-section px-8 py-20 md:py-24">
-			<div data-fade-up="pending" use:fadeUp class="mb-5 flex items-center gap-3">
-				<p class="text-primary font-mono text-xs uppercase tracking-widest">
-					Products · BI Platform
-				</p>
-				<ComingSoonBadge />
-			</div>
-			<h1
-				data-fade-up="pending"
-				use:fadeUp={{ delay: 60 }}
-				class="text-foreground max-w-2xl text-5xl font-semibold leading-[1.1] tracking-tight"
-			>
-				Any question. Any time. Across all your data.
-			</h1>
-			<p
-				data-fade-up="pending"
-				use:fadeUp={{ delay: 140 }}
-				class="text-muted-foreground mt-6 max-w-lg text-sm leading-relaxed"
-			>
-				Built on top of the Semantic Catalog, the BI Platform lets non-technical users ask
-				questions about company data in plain English and get immediate, traceable answers-or
-				build persistent dashboards that draw from all connected sources at once.
-			</p>
-			<p class="text-muted-foreground mt-5 font-mono text-xs uppercase tracking-widest">
-				For managers &amp; operations teams
-			</p>
-		</div>
-	</section>
+	<ProductHero
+		eyebrow="Products · BI Platform"
+		title="Any question. Any time. Across all your data."
+		subtitle="Built on top of the Semantic Catalog, the BI Platform lets non-technical users ask questions about company data in plain English and get immediate, traceable answers-or build persistent dashboards that draw from all connected sources at once."
+		forLine="For managers & operations teams"
+	/>
 
 	<!-- Description -->
 	<section class="border-border border-b">
