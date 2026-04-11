@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fadeUp } from '$lib/actions/fade-up';
 	import HeroScreenshot from './hero-screenshot.svelte';
+	import VideoDemo from './video-demo.svelte';
 </script>
 
 <section class="border-border border-b bg-[#fcfcfc]">
@@ -32,7 +33,10 @@
 			</div>
 		</div>
 
-		<HeroScreenshot />
+		<!-- <HeroScreenshot /> -->
+		<div class="mt-14 overflow-hidden rounded-2xl ring-1 ring-black/8">
+			<VideoDemo />
+		</div>
 
 	</div>
 </section>
