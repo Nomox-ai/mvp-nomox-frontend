@@ -1,6 +1,18 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
 	import { fadeUp } from '$lib/actions/fade-up';
+	import WandIcon from '@lucide/svelte/icons/wand-sparkles';
+	import BookOpenIcon from '@lucide/svelte/icons/book-open';
+	import BotIcon from '@lucide/svelte/icons/bot';
+	import NetworkIcon from '@lucide/svelte/icons/network';
+	import SearchIcon from '@lucide/svelte/icons/search';
+	import TrendingUpIcon from '@lucide/svelte/icons/trending-up';
+	import LayoutListIcon from '@lucide/svelte/icons/layout-list';
+	import ShieldCheckIcon from '@lucide/svelte/icons/shield-check';
+	import ZapIcon from '@lucide/svelte/icons/zap';
+	import UsersIcon from '@lucide/svelte/icons/users';
+	import RefreshCwIcon from '@lucide/svelte/icons/refresh-cw';
+	import TargetIcon from '@lucide/svelte/icons/target';
 
 	const personas = [
 		{
@@ -8,10 +20,10 @@
 			label: 'data wizards',
 			href: '/solutions/data-teams',
 			values: [
-				{ title: 'Zero manual tagging',               desc: 'Nomox infers business meaning automatically from your schemas and samples — no YAML, no spreadsheets, no tribal knowledge required.' },
-				{ title: 'Shared vocabulary',                  desc: 'Every analyst works from the same enriched definitions. No more debating what "active user" means in your weekly standup.' },
-				{ title: 'AI tools that actually know your data', desc: 'Feed your catalog to Claude, Cursor or any MCP-compatible tool. AI gets the right context — not hallucinated column names.' },
-				{ title: 'Domain relationships, mapped',       desc: 'Entities, lineage and domain boundaries emerge from your schemas — not from a governance project that never ships.' },
+				{ icon: WandIcon,      title: 'Zero manual tagging',                desc: 'Nomox infers business meaning automatically from your schemas and samples — no YAML, no spreadsheets, no tribal knowledge required.' },
+				{ icon: BookOpenIcon,  title: 'Shared vocabulary',                  desc: 'Every analyst works from the same enriched definitions. No more debating what "active user" means in your weekly standup.' },
+				{ icon: BotIcon,       title: 'AI tools that actually know your data', desc: 'Feed your catalog to Claude, Cursor or any MCP-compatible tool. AI gets the right context — not hallucinated column names.' },
+				{ icon: NetworkIcon,   title: 'Domain relationships, mapped',       desc: 'Entities, lineage and domain boundaries emerge from your schemas — not from a governance project that never ships.' },
 			],
 		},
 		{
@@ -19,10 +31,10 @@
 			label: 'managers',
 			href: '/solutions/decision-makers',
 			values: [
-				{ title: 'No SQL required',          desc: 'Understand your full data landscape through a browsable, searchable catalog with plain-English labels on every table and column.' },
-				{ title: 'Business-first metrics',   desc: 'Revenue, churn, conversion — your KPIs are labelled and explained in business terms, not raw database identifiers.' },
-				{ title: 'Instant data inventory',   desc: 'Know exactly what data you have, where it lives, and who owns it. No more back-and-forth with the data team to answer basic questions.' },
-				{ title: 'Trustworthy AI answers',   desc: 'When you ask an AI assistant a question about your data, it draws from a catalog you own — not a black box.' },
+				{ icon: SearchIcon,      title: 'No SQL required',          desc: 'Understand your full data landscape through a browsable, searchable catalog with plain-English labels on every table and column.' },
+				{ icon: TrendingUpIcon,  title: 'Business-first metrics',   desc: 'Revenue, churn, conversion — your KPIs are labelled and explained in business terms, not raw database identifiers.' },
+				{ icon: LayoutListIcon,  title: 'Instant data inventory',   desc: 'Know exactly what data you have, where it lives, and who owns it. No more back-and-forth with the data team to answer basic questions.' },
+				{ icon: ShieldCheckIcon, title: 'Trustworthy AI answers',   desc: 'When you ask an AI assistant a question about your data, it draws from a catalog you own — not a black box.' },
 			],
 		},
 		{
@@ -30,15 +42,15 @@
 			label: 'people',
 			href: '/solutions/onboarding',
 			values: [
-				{ title: 'Onboard in hours, not weeks', desc: 'New engineers get a searchable, navigable map of your entire data stack from day one. No more asking what `rev_arr_ltm_adj` means.' },
-				{ title: 'Self-serve understanding',    desc: 'Anyone on the team can look up what a table contains, what a column means, and how it relates to other data — without pinging a DBA.' },
-				{ title: 'Always up to date',           desc: 'The catalog re-indexes automatically when schemas change, so documentation never goes stale or contradicts reality.' },
-				{ title: 'One source of truth',         desc: 'Engineering, analytics, and product all read from the same definitions. Fewer misunderstandings, fewer broken dashboards.' },
+				{ icon: ZapIcon,        title: 'Onboard in hours, not weeks', desc: 'New engineers get a searchable, navigable map of your entire data stack from day one. No more asking what `rev_arr_ltm_adj` means.' },
+				{ icon: UsersIcon,      title: 'Self-serve understanding',    desc: 'Anyone on the team can look up what a table contains, what a column means, and how it relates to other data — without pinging a DBA.' },
+				{ icon: RefreshCwIcon,  title: 'Always up to date',           desc: 'The catalog re-indexes automatically when schemas change, so documentation never goes stale or contradicts reality.' },
+				{ icon: TargetIcon,     title: 'One source of truth',         desc: 'Engineering, analytics, and product all read from the same definitions. Fewer misunderstandings, fewer broken dashboards.' },
 			],
 		},
-	] as const;
+	];
 
-	type PersonaId = typeof personas[number]['id'];
+	type PersonaId = 'data-wizards' | 'managers' | 'people';
 
 	let active: PersonaId = 'data-wizards';
 	let animating = false;
@@ -138,6 +150,7 @@
 		<div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 transition-opacity duration-150 {animating ? 'opacity-0' : 'opacity-100'}">
 			{#each current.values as item}
 				<div class="rounded-xl border border-border bg-muted/20 px-6 py-5">
+					<svelte:component this={item.icon} class="text-primary mb-3 size-4" />
 					<p class="text-foreground text-sm font-semibold">{item.title}</p>
 					<p class="text-muted-foreground mt-1.5 text-sm leading-relaxed">{item.desc}</p>
 				</div>

@@ -168,6 +168,19 @@
 					</a>
 				{/each}
 
+				<p
+					class="text-muted-foreground mb-2 mt-5 text-[10px] font-semibold uppercase tracking-widest"
+				>
+					Company
+				</p>
+				<a
+					href="/pricing"
+					class="text-foreground hover:text-primary py-1.5 text-sm transition-colors"
+					on:click={() => (menuOpen = false)}
+				>
+					Pricing
+				</a>
+
 				<div
 					class="border-border mt-5 flex flex-col gap-3 border-t pt-5"
 				>

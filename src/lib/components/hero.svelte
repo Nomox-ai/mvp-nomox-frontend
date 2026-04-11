@@ -34,7 +34,7 @@
 		</div>
 
 		<!-- <HeroScreenshot /> -->
-		<div class="mt-14 overflow-hidden rounded-2xl ring-1 ring-black/8">
+		<div data-fade-up="pending" use:fadeUp={{ delay: 360, y: 40 }} class="mt-14 overflow-hidden rounded-2xl ring-1 ring-black/8">
 			<VideoDemo />
 		</div>
 
