@@ -1,6 +1,6 @@
 <script lang="ts">
-	import screenshot from '$lib/assets/screenshot_graphic.png';
 	import { fadeUp } from '$lib/actions/fade-up';
+	import HeroScreenshot from './hero-screenshot.svelte';
 </script>
 
 <section class="border-border border-b">
@@ -32,17 +32,8 @@
 			</div>
 		</div>
 
-		<div
-			data-fade-up="pending"
-			use:fadeUp={{ delay: 320 }}
-			class="border-border mt-12 overflow-hidden rounded-xl border shadow-black/10"
-		>
-			<img
-				src={screenshot}
-				alt="Nomox admin console"
-				class="block w-full"
-				draggable="false"
-			/>
-		</div>
+		<!--
+		<HeroScreenshot />
+		 -->
 	</div>
 </section>

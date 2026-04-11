@@ -2,6 +2,7 @@
 	import PublicNav from "$lib/components/public-nav.svelte";
 	import PublicFooter from "$lib/components/public-footer.svelte";
 	import ProductCta from "$lib/components/product-cta.svelte";
+	import ProductHero from "$lib/components/products/product-hero.svelte";
 	import { fadeUp } from "$lib/actions/fade-up";
 
 	const capabilities = [
@@ -36,37 +37,12 @@
 <div class="bg-background text-foreground flex min-h-screen flex-col">
 	<PublicNav />
 
-	<!-- Hero -->
-	<section class="border-border border-b">
-		<div class="mx-auto max-w-section px-8 py-20 md:py-24">
-			<p
-				data-fade-up="pending"
-				use:fadeUp
-				class="text-primary mb-5 font-mono text-xs uppercase tracking-widest"
-			>
-				Products · MCP Server
-			</p>
-			<h1
-				data-fade-up="pending"
-				use:fadeUp={{ delay: 60 }}
-				class="text-foreground max-w-2xl text-5xl font-semibold leading-[1.1] tracking-tight"
-			>
-				Your data, available wherever you work.
-			</h1>
-			<p
-				data-fade-up="pending"
-				use:fadeUp={{ delay: 140 }}
-				class="text-muted-foreground mt-6 max-w-lg text-sm leading-relaxed"
-			>
-				Nomox ships as a Model Context Protocol server, letting analysts plug the unified data
-				layer directly into AI tools-Claude, or any other LLM that supports MCP. It turns
-				Nomox from a product you visit into a layer that is available wherever you work.
-			</p>
-			<p class="text-muted-foreground mt-5 font-mono text-xs uppercase tracking-widest">
-				For analysts &amp; power users
-			</p>
-		</div>
-	</section>
+	<ProductHero
+		eyebrow="Products · MCP Server"
+		title="Your data, available wherever you work."
+		subtitle="Nomox ships as a Model Context Protocol server, letting analysts plug the unified data layer directly into AI tools-Claude, or any other LLM that supports MCP. It turns Nomox from a product you visit into a layer that is available wherever you work."
+		forLine="For analysts & power users"
+	/>
 
 	<!-- Description -->
 	<section class="border-border border-b">

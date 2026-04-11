@@ -2,6 +2,7 @@
 	import PublicNav from "$lib/components/public-nav.svelte";
 	import PublicFooter from "$lib/components/public-footer.svelte";
 	import ProductCta from "$lib/components/product-cta.svelte";
+	import ProductHero from "$lib/components/products/product-hero.svelte";
 	import { fadeUp } from "$lib/actions/fade-up";
 
 	const capabilities = [
@@ -36,36 +37,12 @@
 <div class="bg-background text-foreground flex min-h-screen flex-col">
 	<PublicNav />
 
-	<!-- Hero -->
-	<section class="border-border border-b">
-		<div class="mx-auto max-w-section px-8 py-20 md:py-24">
-			<p
-				data-fade-up="pending"
-				use:fadeUp
-				class="text-primary mb-5 font-mono text-xs uppercase tracking-widest"
-			>
-				Products · Semantic Catalog
-			</p>
-			<h1
-				data-fade-up="pending"
-				use:fadeUp={{ delay: 60 }}
-				class="text-foreground max-w-2xl text-5xl font-semibold leading-[1.1] tracking-tight"
-			>
-				Your data, documented automatically.
-			</h1>
-			<p
-				data-fade-up="pending"
-				use:fadeUp={{ delay: 140 }}
-				class="text-muted-foreground mt-6 max-w-lg text-sm leading-relaxed"
-			>
-				Nomox reads every connected source, maps relationships across all of them, and enriches
-				each field with business-level meaning-without anyone writing documentation by hand.
-			</p>
-			<p class="text-muted-foreground mt-5 font-mono text-xs uppercase tracking-widest">
-				For data engineers &amp; analysts
-			</p>
-		</div>
-	</section>
+	<ProductHero
+		eyebrow="Products · Semantic Catalog"
+		title="Your data, documented automatically."
+		subtitle="Nomox reads every connected source, maps relationships across all of them, and enriches each field with business-level meaning-without anyone writing documentation by hand."
+		forLine="For data engineers & analysts"
+	/>
 
 	<!-- Description -->
 	<section class="border-border border-b">

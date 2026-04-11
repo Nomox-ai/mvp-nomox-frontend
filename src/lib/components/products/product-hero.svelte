@@ -4,6 +4,7 @@
 	export let eyebrow: string;
 	export let title: string;
 	export let subtitle: string;
+	export let forLine: string | undefined = undefined;
 </script>
 
 <section class="border-border border-b">
@@ -11,23 +12,28 @@
 		<p
 			data-fade-up="pending"
 			use:fadeUp
-			class="text-primary mb-5 font-mono text-xs tracking-widest uppercase"
+			class="text-primary mb-5 font-mono text-xs uppercase tracking-widest"
 		>
 			{eyebrow}
 		</p>
-		<h2
+		<h1
 			data-fade-up="pending"
 			use:fadeUp={{ delay: 60 }}
-			class="text-foreground text-5xl tracking-tight leading-[1.1] md:text-5xl"
+			class="text-foreground max-w-2xl text-5xl leading-[1.1] tracking-tight"
 		>
 			{title}
-		</h2>
+		</h1>
 		<p
 			data-fade-up="pending"
 			use:fadeUp={{ delay: 140 }}
-			class="text-muted-foreground max-w-lg mt-6 text-sm leading-relaxed"
+			class="text-muted-foreground mt-6 max-w-lg text-sm leading-relaxed"
 		>
 			{subtitle}
 		</p>
+		{#if forLine}
+			<p class="text-muted-foreground mt-5 font-mono text-xs uppercase tracking-widest">
+				{forLine}
+			</p>
+		{/if}
 	</div>
 </section>

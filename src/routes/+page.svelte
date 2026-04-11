@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Hero from '$lib/components/hero.svelte';
 	import SlidingColumns from '$lib/components/sliding-columns.svelte';
+	import HeroScreenshot from '$lib/components/hero-screenshot.svelte';
 	import ValuePersonas from '$lib/components/value-personas.svelte';
 	import PublicNav from '$lib/components/public-nav.svelte';
 	import PublicFooter from '$lib/components/public-footer.svelte';
@@ -19,6 +20,8 @@
 	<PublicNav />
 
 	<Hero />
+
+	<HeroScreenshot />
 
 	<SlidingColumns />
 
@@ -45,35 +48,45 @@
 
 	<!-- Waitlist CTA -->
 	<section class="border-border border-b">
-		<div class="mx-auto grid max-w-section grid-cols-1 divide-y md:grid-cols-2 md:divide-x md:divide-y-0">
-			<div data-fade-up="pending" use:fadeUp class="px-8 py-14">
-				<p class="text-muted-foreground mb-3 font-mono text-xs">Early access</p>
-				<h2 class="text-foreground text-2xl font-semibold tracking-tight">
-					Be the first to know.
-				</h2>
-				<p class="text-muted-foreground mt-3 max-w-xs text-sm leading-relaxed">
-					We're not onboarding yet - but we're looking for our first partners. Get in touch and we'll reach out when we launch.
-				</p>
+		<div class="mx-auto max-w-section px-8 py-24 text-center">
+			<p
+				data-fade-up="pending"
+				use:fadeUp
+				class="text-primary mb-6 font-mono text-xs uppercase tracking-widest"
+			>
+				Early access
+			</p>
+			<h2
+				data-fade-up="pending"
+				use:fadeUp={{ delay: 60 }}
+				class="text-foreground mx-auto max-w-2xl text-5xl leading-[1.1] tracking-tight"
+			>
+				It's time to understand your data.
+			</h2>
+			<p
+				data-fade-up="pending"
+				use:fadeUp={{ delay: 140 }}
+				class="text-muted-foreground mx-auto mt-6 max-w-md text-sm leading-relaxed"
+			>
+				We're looking for our first partners. Get in touch and we'll reach out when we launch.
+			</p>
+			<div
+				data-fade-up="pending"
+				use:fadeUp={{ delay: 200 }}
+				class="mt-10 flex flex-wrap items-center justify-center gap-4"
+			>
 				<a
 					href="/waitlist"
-					class="bg-foreground text-background hover:bg-foreground/85 mt-8 inline-block rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
+					class="bg-foreground text-background hover:bg-foreground/85 inline-block rounded-lg px-6 py-3 text-sm font-medium transition-colors"
 				>
-					Request Demo
+					Request demo
 				</a>
-			</div>
-			<div class="border-border flex flex-col justify-between px-8 py-14">
-				<div class="grid grid-cols-1 gap-6">
-					{#each [
-						{ label: 'Free during early access', desc: 'No credit card. No commitment.' },
-						{ label: 'Works with your stack',    desc: 'PostgreSQL, MongoDB, Trino and more.' },
-						{ label: 'AI-native from day one',   desc: 'MCP, Claude, Cursor - all supported.' },
-					] as item, i}
-						<div data-fade-up="pending" use:fadeUp={{ delay: i * 80 }}>
-							<p class="text-foreground text-sm font-medium">{item.label}</p>
-							<p class="text-muted-foreground mt-0.5 text-xs">{item.desc}</p>
-						</div>
-					{/each}
-				</div>
+				<a
+					href="/waitlist"
+					class="text-foreground hover:text-primary inline-block text-sm font-medium transition-colors"
+				>
+					Join the waitlist
+				</a>
 			</div>
 		</div>
 	</section>
