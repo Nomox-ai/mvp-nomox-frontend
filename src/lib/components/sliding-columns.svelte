@@ -17,7 +17,7 @@
 				use:fadeUp={{ delay: 0 }}
 				class="group flex flex-col px-8 pt-14 pb-0 overflow-hidden transition-colors hover:bg-muted/30"
 			>
-				<h2 class="text-foreground text-4xl tracking-tight flex items-baseline gap-3">
+				<h2 class="text-foreground text-3xl tracking-tight flex items-baseline gap-3">
 					Describe.<span class=" opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
 				</h2>
 				<p class="text-muted-foreground mt-4 text-sm leading-relaxed max-w-xs">
@@ -52,7 +52,7 @@
 				use:fadeUp={{ delay: 100 }}
 				class="group flex flex-col px-8 pt-14 pb-0 overflow-hidden transition-colors hover:bg-muted/30"
 			>
-				<h2 class="text-foreground text-4xl tracking-tight flex items-baseline gap-3">
+				<h2 class="text-foreground text-3xl tracking-tight flex items-baseline gap-3">
 					Integrate.<span class="opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
 				</h2>
 				<p class="text-muted-foreground mt-4 text-sm leading-relaxed max-w-xs">
@@ -104,7 +104,7 @@
 				use:fadeUp={{ delay: 200 }}
 				class="group flex flex-col px-8 pt-14 pb-0 overflow-hidden transition-colors hover:bg-muted/30"
 			>
-				<h2 class="text-foreground text-4xl tracking-tight flex items-baseline gap-3">
+				<h2 class="text-foreground text-3xl tracking-tight flex items-baseline gap-3">
 					Explore.<span class=" opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
 				</h2>
 				<p class="text-muted-foreground mt-4 text-sm leading-relaxed max-w-xs">

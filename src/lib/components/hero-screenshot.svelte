@@ -3,9 +3,8 @@
 	import { fadeUp } from '$lib/actions/fade-up';
 </script>
 
-<section class="border-border border-b overflow-hidden">
 	<!-- Dark gradient stage -->
-	<div class="relative bg-[#fcfcfc] py-20 px-8">
+	<div class="relative bg-[#fcfcfc] pt-12">
 
 		<!-- Subtle radial glow behind the screenshot -->
 		<div
@@ -15,22 +14,13 @@
 			<div class="h-[480px] w-[860px] rounded-full bg-[#fcfcfc] opacity-[0.07] blur-[120px]"></div>
 		</div>
 
-		<!-- Browser chrome + screenshot -->
-		<div
+		<!-- Screenshot -->
+		<img
 			data-fade-up="pending"
 			use:fadeUp
-			class="relative mx-auto max-w-5xl"
-		>
-
-			<!-- Screenshot -->
-			<div class="overflow-hidden rounded-xl border border-black/8">
-				<img
-					src={screenshot}
-					alt="Nomox admin console"
-					class="block w-full"
-					draggable="false"
-				/>
-			</div>
-		</div>
+			src={screenshot}
+			alt="Nomox admin console"
+			class="relative block w-full overflow-hidden rounded-xl border border-black/8"
+			draggable="false"
+		/>
 	</div>
-</section>

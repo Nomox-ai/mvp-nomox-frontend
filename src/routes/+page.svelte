@@ -21,8 +21,6 @@
 
 	<Hero />
 
-	<HeroScreenshot />
-
 	<SlidingColumns />
 
 	<ValuePersonas />
