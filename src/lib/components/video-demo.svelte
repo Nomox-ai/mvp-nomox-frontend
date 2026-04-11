@@ -392,7 +392,7 @@
     width: 20px;
     height: 20px;
     pointer-events: none;
-    z-index: 30;
+    z-index: 3;
     transition:
       left 0.85s cubic-bezier(0.5, 0, 0.2, 1),
       top 0.85s cubic-bezier(0.5, 0, 0.2, 1),
@@ -431,7 +431,7 @@
       transform 0.5s cubic-bezier(0.2, 0.8, 0.3, 1);
     border: 1px solid rgba(0, 0, 0, 0.08);
     white-space: nowrap;
-    z-index: 40;
+    z-index: 4;
     max-width: 90%;
     pointer-events: none;
   }
@@ -449,7 +449,7 @@
     width: 0%;
     transition: width 0.15s linear;
     box-shadow: none;
-    z-index: 50;
+    z-index: 5;
   }
 
   .replay-btn {
@@ -468,7 +468,7 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: all 0.2s;
-    z-index: 60;
+    z-index: 6;
   }
   .replay-btn:hover {
     background: rgba(20, 20, 30, 0.95);

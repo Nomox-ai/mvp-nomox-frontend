@@ -56,7 +56,7 @@
 	];
 </script>
 
-<header class="border-border bg-background/95 relative z-50 border-b backdrop-blur-sm md:sticky md:top-0">
+<header class="border-border bg-background/95 relative z-[100] border-b backdrop-blur-sm md:sticky md:top-0">
 	<!-- ── Main bar ──────────────────────────────────────────────────── -->
 	<div class="mx-auto flex max-w-section items-center px-8 py-3">
 		<!-- Logo -->
