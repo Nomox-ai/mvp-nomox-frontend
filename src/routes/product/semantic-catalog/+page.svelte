@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PublicNav from "$lib/components/public-nav.svelte";
 	import PublicFooter from "$lib/components/public-footer.svelte";
-	import ProductCta from "$lib/components/product-cta.svelte";
+	import LandingCta from "$lib/components/landing-cta.svelte";
 	import ProductHero from "$lib/components/products/product-hero.svelte";
 	import { fadeUp } from "$lib/actions/fade-up";
 
@@ -118,7 +118,7 @@
 		</div>
 	</section>
 
-	<ProductCta />
+	<LandingCta />
 
 	<PublicFooter />
 </div>

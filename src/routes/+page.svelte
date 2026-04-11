@@ -7,6 +7,7 @@
 	import PublicFooter from '$lib/components/public-footer.svelte';
 	import HowItWorksTimeline from '$lib/components/how-it-works-timeline.svelte';
 	import { fadeUp } from '$lib/actions/fade-up';
+	import LandingCta from '$lib/components/landing-cta.svelte';
 
 	const howItWorksSteps = [
 		{ label: 'Connect a source',    desc: 'Point Nomox at your database, data warehouse or schema registry. We handle discovery automatically.' },
@@ -26,7 +27,7 @@
 	<ValuePersonas />
 
 	<!-- How it works -->
-	<section id="how-it-works" class="border-border border-b">
+	<section id="how-it-works" class="border-border">
 		<div class="mx-auto max-w-section px-8 py-20">
 			<div class="max-w-xl">
 				<p data-fade-up="pending" use:fadeUp class="text-primary mb-4 font-mono text-xs uppercase tracking-widest">How it works</p>
@@ -44,50 +45,7 @@
 		</div>
 	</section>
 
-	<!-- Waitlist CTA -->
-	<section class="border-border border-b">
-		<div class="mx-auto max-w-section px-8 py-24 text-center">
-			<p
-				data-fade-up="pending"
-				use:fadeUp
-				class="text-primary mb-6 font-mono text-xs uppercase tracking-widest"
-			>
-				Early access
-			</p>
-			<h2
-				data-fade-up="pending"
-				use:fadeUp={{ delay: 60 }}
-				class="text-foreground mx-auto max-w-2xl text-5xl leading-[1.1] tracking-tight"
-			>
-				It's time to understand your data.
-			</h2>
-			<p
-				data-fade-up="pending"
-				use:fadeUp={{ delay: 140 }}
-				class="text-muted-foreground mx-auto mt-6 max-w-md text-sm leading-relaxed"
-			>
-				We're looking for our first partners. Get in touch and we'll reach out when we launch.
-			</p>
-			<div
-				data-fade-up="pending"
-				use:fadeUp={{ delay: 200 }}
-				class="mt-10 flex flex-wrap items-center justify-center gap-4"
-			>
-				<a
-					href="/waitlist"
-					class="bg-foreground text-background hover:bg-foreground/85 inline-block rounded-lg px-6 py-3 text-sm font-medium transition-colors"
-				>
-					Request demo
-				</a>
-				<a
-					href="/waitlist"
-					class="text-foreground hover:text-primary inline-block text-sm font-medium transition-colors"
-				>
-					Join the waitlist
-				</a>
-			</div>
-		</div>
-	</section>
+	<LandingCta />
 
 	<PublicFooter />
 
