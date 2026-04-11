@@ -49,7 +49,7 @@
 			<h2
 				data-fade-up="pending"
 				use:fadeUp={{ delay: 80 }}
-				class="text-foreground text-2xl font-semibold tracking-tight"
+				class="text-foreground text-2xl tracking-tight"
 			>
 				{solutionTitle}
 			</h2>
