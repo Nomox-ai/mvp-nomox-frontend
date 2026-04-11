@@ -11,17 +11,17 @@
 		{
 			Icon: ScanIcon,
 			title: 'Schema-only by default',
-			desc: 'Nomox reads table and column structure — not your row data. We never touch customer records, PII, or business values unless you explicitly opt in.',
+			desc: 'Nomox reads table and column structure - not your row data. We never touch customer records, PII, or business values unless you explicitly opt in.',
 		},
 		{
 			Icon: ShieldIcon,
 			title: 'Profiling on your terms',
-			desc: 'For non-sensitive sources you can enable lightweight profiling — null rates, cardinality, sample values — to improve semantic inference. Always opt-in, never automatic.',
+			desc: 'For non-sensitive sources you can enable lightweight profiling - null rates, cardinality, sample values - to improve semantic inference. Always opt-in, never automatic.',
 		},
 		{
 			Icon: ServerIcon,
 			title: 'Your infrastructure, your data',
-			desc: 'Nomox connects directly to your sources from your own environment. Metadata stays in your stack — nothing is sent to external systems.',
+			desc: 'Nomox connects directly to your sources from your own environment. Metadata stays in your stack - nothing is sent to external systems.',
 		},
 		{
 			Icon: LockIcon,
@@ -36,7 +36,7 @@
 		{
 			Icon: ScrollTextIcon,
 			title: 'Audit log',
-			desc: 'Every catalog access, query, and configuration change is logged. Know who looked at what, and when — for compliance and internal review.',
+			desc: 'Every catalog access, query, and configuration change is logged. Know who looked at what, and when - for compliance and internal review.',
 		},
 	];
 </script>

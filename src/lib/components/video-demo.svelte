@@ -76,7 +76,7 @@
     await wait(140);
   }
 
-  // Cancellable wait — bails early if a new play() starts
+  // Cancellable wait - bails early if a new play() starts
   async function w(ms, token) {
     await wait(ms);
     if (token !== cancelToken) throw new Error('cancelled');
@@ -272,7 +272,7 @@
 
       if (loop) play();
     } catch (e) {
-      // cancelled — silent
+      // cancelled - silent
     }
   }
 

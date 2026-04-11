@@ -21,7 +21,7 @@
 					Describe.<span class=" opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
 				</h2>
 				<p class="text-muted-foreground mt-4 text-sm leading-relaxed max-w-xs">
-					Nomox reads your schemas and infers business meaning for every column, table and source — automatically.
+					Nomox reads your schemas and infers business meaning for every column, table and source - automatically.
 				</p>
 
 				<!-- Visual: schema rows with inferred labels -->

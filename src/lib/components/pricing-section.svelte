@@ -30,7 +30,7 @@
 					use:fadeUp={{ delay: 60 }}
 					class="text-foreground text-3xl leading-snug tracking-tight"
 				>
-					Priced by the value it delivers — not by seat count.
+					Priced by the value it delivers - not by seat count.
 				</h2>
 				<p
 					data-fade-up="pending"
@@ -38,7 +38,7 @@
 					class="text-muted-foreground mt-5 text-sm leading-relaxed"
 				>
 					We're working with early partners to understand where Nomox creates the most impact.
-					Pricing is set in conversation — based on your data footprint and the outcomes that matter
+					Pricing is set in conversation - based on your data footprint and the outcomes that matter
 					to your team.
 				</p>
 				<p
@@ -46,7 +46,7 @@
 					use:fadeUp={{ delay: 180 }}
 					class="text-muted-foreground mt-3 text-sm leading-relaxed"
 				>
-					Early partners get preferred rates that carry forward — before we move to public pricing.
+					Early partners get preferred rates that carry forward - before we move to public pricing.
 				</p>
 			</div>
 
@@ -79,7 +79,7 @@
 						Talk to us about pricing
 					</a>
 					<p class="text-muted-foreground mt-3 text-center text-xs">
-						No commitment — just a conversation.
+						No commitment - just a conversation.
 					</p>
 				</div>
 			</div>

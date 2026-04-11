@@ -42,7 +42,7 @@
 					class="text-muted-foreground mx-auto mt-6 max-w-lg text-sm leading-relaxed"
 				>
 					We don't charge by seat count. Pricing is based on your data footprint and the
-					outcomes that matter to your team — set in conversation, not on a pricing page.
+					outcomes that matter to your team - set in conversation, not on a pricing page.
 				</p>
 			</div>
 		</div>
@@ -63,7 +63,7 @@
 						Why no public price list?
 					</h2>
 					<p class="text-muted-foreground mt-5 text-sm leading-relaxed">
-						Value-based pricing means the right number depends on your situation — how many sources
+						Value-based pricing means the right number depends on your situation - how many sources
 						you connect, how many people benefit from the catalog, and what replacing your current
 						approach actually costs you.
 					</p>
@@ -72,7 +72,7 @@
 						Nomox creates the most impact. A short conversation is worth more than a tier table.
 					</p>
 					<p class="text-muted-foreground mt-3 text-sm leading-relaxed">
-						Early partners get preferred rates that carry forward — before we move to public pricing.
+						Early partners get preferred rates that carry forward - before we move to public pricing.
 					</p>
 				</div>
 
@@ -105,7 +105,7 @@
 							Talk to us about pricing
 						</a>
 						<p class="text-muted-foreground mt-3 text-center text-xs">
-							No commitment — just a conversation.
+							No commitment - just a conversation.
 						</p>
 					</div>
 				</div>

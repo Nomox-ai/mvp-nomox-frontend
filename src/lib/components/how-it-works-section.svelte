@@ -18,7 +18,7 @@
 			</h2>
 			<p data-fade-up="pending" use:fadeUp={{ delay: 120 }} class="text-muted-foreground mt-4 text-sm leading-relaxed">
 				Nomox infers business meaning from your schemas so your team shares a common vocabulary,
-				your AI tools get accurate context, and new engineers onboard in hours — not weeks.
+				your AI tools get accurate context, and new engineers onboard in hours - not weeks.
 			</p>
 		</div>
 		<div class="mt-14">

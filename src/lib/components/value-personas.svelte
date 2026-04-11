@@ -20,10 +20,10 @@
 			label: 'data wizards',
 			href: '/solutions/data-teams',
 			values: [
-				{ icon: WandIcon,      title: 'Zero manual tagging',                desc: 'Nomox infers business meaning automatically from your schemas and samples — no YAML, no spreadsheets, no tribal knowledge required.' },
+				{ icon: WandIcon,      title: 'Zero manual tagging',                desc: 'Nomox infers business meaning automatically from your schemas and samples - no YAML, no spreadsheets, no tribal knowledge required.' },
 				{ icon: BookOpenIcon,  title: 'Shared vocabulary',                  desc: 'Every analyst works from the same enriched definitions. No more debating what "active user" means in your weekly standup.' },
-				{ icon: BotIcon,       title: 'AI tools that actually know your data', desc: 'Feed your catalog to Claude, Cursor or any MCP-compatible tool. AI gets the right context — not hallucinated column names.' },
-				{ icon: NetworkIcon,   title: 'Domain relationships, mapped',       desc: 'Entities, lineage and domain boundaries emerge from your schemas — not from a governance project that never ships.' },
+				{ icon: BotIcon,       title: 'AI tools that actually know your data', desc: 'Feed your catalog to Claude, Cursor or any MCP-compatible tool. AI gets the right context - not hallucinated column names.' },
+				{ icon: NetworkIcon,   title: 'Domain relationships, mapped',       desc: 'Entities, lineage and domain boundaries emerge from your schemas - not from a governance project that never ships.' },
 			],
 		},
 		{
@@ -32,9 +32,9 @@
 			href: '/solutions/decision-makers',
 			values: [
 				{ icon: SearchIcon,      title: 'No SQL required',          desc: 'Understand your full data landscape through a browsable, searchable catalog with plain-English labels on every table and column.' },
-				{ icon: TrendingUpIcon,  title: 'Business-first metrics',   desc: 'Revenue, churn, conversion — your KPIs are labelled and explained in business terms, not raw database identifiers.' },
+				{ icon: TrendingUpIcon,  title: 'Business-first metrics',   desc: 'Revenue, churn, conversion - your KPIs are labelled and explained in business terms, not raw database identifiers.' },
 				{ icon: LayoutListIcon,  title: 'Instant data inventory',   desc: 'Know exactly what data you have, where it lives, and who owns it. No more back-and-forth with the data team to answer basic questions.' },
-				{ icon: ShieldCheckIcon, title: 'Trustworthy AI answers',   desc: 'When you ask an AI assistant a question about your data, it draws from a catalog you own — not a black box.' },
+				{ icon: ShieldCheckIcon, title: 'Trustworthy AI answers',   desc: 'When you ask an AI assistant a question about your data, it draws from a catalog you own - not a black box.' },
 			],
 		},
 		{
@@ -43,7 +43,7 @@
 			href: '/solutions/onboarding',
 			values: [
 				{ icon: ZapIcon,        title: 'Onboard in hours, not weeks', desc: 'New engineers get a searchable, navigable map of your entire data stack from day one. No more asking what `rev_arr_ltm_adj` means.' },
-				{ icon: UsersIcon,      title: 'Self-serve understanding',    desc: 'Anyone on the team can look up what a table contains, what a column means, and how it relates to other data — without pinging a DBA.' },
+				{ icon: UsersIcon,      title: 'Self-serve understanding',    desc: 'Anyone on the team can look up what a table contains, what a column means, and how it relates to other data - without pinging a DBA.' },
 				{ icon: RefreshCwIcon,  title: 'Always up to date',           desc: 'The catalog re-indexes automatically when schemas change, so documentation never goes stale or contradicts reality.' },
 				{ icon: TargetIcon,     title: 'One source of truth',         desc: 'Engineering, analytics, and product all read from the same definitions. Fewer misunderstandings, fewer broken dashboards.' },
 			],
