@@ -14,7 +14,7 @@
 		return $page.url.pathname === url;
 	}
 
-	// One open flag per section — auto-opens on navigation but never auto-closes.
+	// One open flag per section-auto-opens on navigation but never auto-closes.
 	let sectionOpen = $state(
 		Object.fromEntries(items.map((i) => [i.title, sectionIsActive(i.url)]))
 	);

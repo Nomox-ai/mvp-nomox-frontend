@@ -29,7 +29,7 @@ export interface McpActivityEntry {
 }
 
 export interface McpToken {
-  /** Always masked — never returns the raw secret */
+  /** Always masked-never returns the raw secret */
   masked: string
   created_at: string | null
 }
@@ -44,7 +44,7 @@ interface McpConfigResponse {
 
 export interface McpConfig {
   server_url: string
-  /** Raw token — use only for config snippets, never display in full */
+  /** Raw token-use only for config snippets, never display in full */
   token: string
   masked_token: string
   status: McpStatus
@@ -55,13 +55,11 @@ export interface McpConfig {
 const TOOL_PARAMS: Record<string, McpTool["params"]> = {
   get_semantic: [],
   get_samples: [
-    { name: "connector_id", type: "string",  required: true,  description: "Trino catalog / connector name (e.g. postgresql_prod)" },
-    { name: "table",        type: "string",  required: true,  description: "Fully qualified table name in schema.table format" },
-    { name: "limit",        type: "integer", required: false, description: "Number of rows to return (1–100, default 10)" },
+    { name: "connector_id", type: "string", required: true, description: "Trino catalog / connector name (e.g. postgresql_prod)" },
+    { name: "table", type: "string", required: true, description: "Fully qualified table name in schema.table format" },
+    { name: "limit", type: "integer", required: false, description: "Number of rows to return (1–100, default 10)" },
   ],
-  run_query: [
-    { name: "query", type: "string", required: true, description: "SQL query string" },
-  ],
+  run_query: [{ name: "query", type: "string", required: true, description: "SQL query string" }],
 }
 
 function maskToken(token: string): string {
@@ -131,7 +129,7 @@ export async function getMcpToken(): Promise<McpToken> {
 
 /**
  * Rotates the MCP API token and returns the new value unmasked (once).
- * TODO: POST /admin/config/mcp/token/rotate — not yet implemented in backend
+ * TODO: POST /admin/config/mcp/token/rotate-not yet implemented in backend
  */
 export async function rotateMcpToken(): Promise<{ token: string }> {
   const fake = "nmx_" + Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)
@@ -153,7 +151,7 @@ export async function getMcpTools(): Promise<McpTool[]> {
 
 /**
  * Returns recent MCP tool-call activity.
- * TODO: GET /admin/mcp/activity?limit=N — not yet implemented in backend
+ * TODO: GET /admin/mcp/activity?limit=N-not yet implemented in backend
  */
 export async function getMcpActivity(limit = 20): Promise<McpActivityEntry[]> {
   const tools = ["get_semantic", "get_samples", "run_query"]

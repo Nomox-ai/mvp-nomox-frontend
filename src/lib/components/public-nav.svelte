@@ -56,13 +56,13 @@
 	];
 </script>
 
-<header class="border-border bg-background relative z-10 border-b">
+<header class="border-border bg-background/95 relative z-[100] border-b backdrop-blur-sm md:sticky md:top-0">
 	<!-- ── Main bar ──────────────────────────────────────────────────── -->
-	<div class="mx-auto flex max-w-5xl items-center px-8 py-3">
+	<div class="mx-auto flex max-w-section items-center px-8 py-3">
 		<!-- Logo -->
 		<a href="/" class="mr-2 flex items-center gap-2">
 			<img src={logo} alt="nomox" class="size-5" />
-			<span class="text-sm font-semibold tracking-tight">nomox</span>
+			<span class="text-base font-medium tracking-tight" style="font-family: 'DM Mono', monospace;">nomox</span>
 		</a>
 
 		<!-- Desktop navigation menu -->
@@ -137,7 +137,7 @@
 			transition:slide={{ duration: 220 }}
 			class="border-border bg-background absolute inset-x-0 top-full border-t shadow-lg md:hidden"
 		>
-			<div class="mx-auto max-w-5xl px-8 py-5 flex flex-col gap-1">
+			<div class="mx-auto max-w-section px-8 py-5 flex flex-col gap-1">
 				<p
 					class="text-muted-foreground mb-2 text-[10px] font-semibold uppercase tracking-widest"
 				>
@@ -167,6 +167,19 @@
 						{item.title}
 					</a>
 				{/each}
+
+				<p
+					class="text-muted-foreground mb-2 mt-5 text-[10px] font-semibold uppercase tracking-widest"
+				>
+					Company
+				</p>
+				<a
+					href="/pricing"
+					class="text-foreground hover:text-primary py-1.5 text-sm transition-colors"
+					on:click={() => (menuOpen = false)}
+				>
+					Pricing
+				</a>
 
 				<div
 					class="border-border mt-5 flex flex-col gap-3 border-t pt-5"

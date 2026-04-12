@@ -94,7 +94,7 @@
 		return `M ${x1} ${y1} Q ${mx + (-dy / len) * bow} ${my + (dx / len) * bow} ${ex} ${ey}`;
 	}
 
-	// Horizontal cubic bezier — asymmetric control points per line
+	// Horizontal cubic bezier-asymmetric control points per line
 	function curveH(
 		x1: number, y1: number, x2: number, y2: number,
 		cx1f: number, cy1: number, cx2f: number, cy2: number
@@ -160,7 +160,7 @@
 
 	{#if mobile}
 
-		<!-- ══ Mobile layout — compact icon cards scattered around hub ══ -->
+		<!-- ══ Mobile layout-compact icon cards scattered around hub ══ -->
 		<div class="relative h-[300px] w-full">
 
 			<!-- Source icon cards (left side, scattered vertically) -->

@@ -1,4 +1,4 @@
-// Server-side only — API key is never sent to the browser.
+// Server-side only-API key is never sent to the browser.
 // $env/static/private is a SvelteKit virtual module; do not convert to import.meta.env.
 import { WAITLIST_API_KEY } from "$env/static/private"
 import { json } from "@sveltejs/kit"
@@ -12,12 +12,12 @@ export const POST: RequestHandler = async ({ request }) => {
   }
 
   const customerName = is_company && company_name ? String(company_name).trim() : ""
-  const message = is_company && customerName ? `Waitlist signup — company: ${customerName}` : "Waitlist signup — individual"
+  const message = is_company && customerName ? `Waitlist signup-company: ${customerName}` : "Waitlist signup-individual"
 
   const payload = {
     api_key: WAITLIST_API_KEY,
     message,
-    email_subject: "Nomox Waitlist — New Signup",
+    email_subject: "Nomox Waitlist-New Signup",
     customer_email: email.trim(),
     customer_phone: "",
     customer_name: customerName,

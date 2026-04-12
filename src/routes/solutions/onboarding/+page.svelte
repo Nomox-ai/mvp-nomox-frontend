@@ -28,7 +28,7 @@
 	const tiles = [
 		{
 			label: "Full data landscape",
-			desc: "Every source, table, column, and relationship mapped and described — explorable from day one.",
+			desc: "Every source, table, column, and relationship mapped and described-explorable from day one.",
 			href: "/product/semantic-catalog",
 			productName: "Catalog",
 		},
@@ -59,7 +59,7 @@
 	<SolutionHero
 		eyebrow="Solutions · Engineering onboarding"
 		title="Ramp up quickly. "
-		subtitle="Nomox gives new engineers a complete, searchable map of your data stack from day one — so they ship confidently instead of spending months sifting through the documentation."
+		subtitle="Nomox gives new engineers a complete, searchable map of your data stack from day one-so they ship confidently instead of spending months sifting through the documentation."
 	/>
 
 	<SolutionProblems

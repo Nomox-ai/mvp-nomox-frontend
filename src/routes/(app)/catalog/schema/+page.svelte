@@ -12,7 +12,7 @@
 		TableType,
 	} from "$lib/types/semantic.js";
 
-	// Icons — structural
+	// Icons-structural
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
 	import PanelLeftIcon from "@lucide/svelte/icons/panel-left";
 	import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
@@ -25,7 +25,7 @@
 	import InfoIcon from "@lucide/svelte/icons/info";
 	import AlertCircleIcon from "@lucide/svelte/icons/alert-circle";
 
-	// Icons — column semantics
+	// Icons-column semantics
 	import HashIcon from "@lucide/svelte/icons/hash";
 	import ClockIcon from "@lucide/svelte/icons/clock";
 	import DollarSignIcon from "@lucide/svelte/icons/dollar-sign";
@@ -38,7 +38,7 @@
 	import BracesIcon from "@lucide/svelte/icons/braces";
 	import HelpCircleIcon from "@lucide/svelte/icons/help-circle";
 
-	// Icons — column flags
+	// Icons-column flags
 	import LockIcon from "@lucide/svelte/icons/lock";
 	import LinkIcon from "@lucide/svelte/icons/link";
 	import KeyRoundIcon from "@lucide/svelte/icons/key-round";
@@ -501,7 +501,7 @@
 				{@const role = roleMeta[selectedTable.semantic_role]}
 				{@const typeLabel = tableTypeMeta[selectedTable.table_type]}
 
-				<div class="mx-auto max-w-5xl px-8 py-8">
+				<div class="mx-auto max-w-section px-8 py-8">
 
 					<!-- Breadcrumb -->
 					<nav class="text-muted-foreground mb-5 flex items-center gap-1.5 text-xs">
@@ -877,7 +877,7 @@
 				{@const entry = selectedEntry}
 
 				{#if entry.loading}
-					<div class="mx-auto max-w-5xl px-8 py-8">
+					<div class="mx-auto max-w-section px-8 py-8">
 						<div class="mb-6 flex items-center gap-3">
 							<Skeleton class="size-9 rounded-lg" />
 							<div class="space-y-2">
@@ -898,7 +898,7 @@
 					{@const src = entry.view.source}
 					{@const sourceType = sourceTypeMeta[src.source_type]}
 
-					<div class="mx-auto max-w-5xl px-8 py-8">
+					<div class="mx-auto max-w-section px-8 py-8">
 						<!-- Source header -->
 						<div class="mb-8">
 							<div class="flex items-start gap-3">

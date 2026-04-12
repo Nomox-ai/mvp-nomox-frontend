@@ -59,7 +59,7 @@
 	<SolutionHero
 		eyebrow="Solutions · Decision makers"
 		title="Data you can act on."
-		subtitle="Nomox gives decision makers access to a clear, trusted view of what is going on — without needing to know SQL or ask an engineer every time."
+		subtitle="Nomox gives decision makers access to a clear, trusted view of what is going on-without needing to know SQL or ask an engineer every time."
 	/>
 
 	<SolutionProblems

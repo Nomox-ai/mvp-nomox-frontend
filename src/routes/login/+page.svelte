@@ -25,7 +25,7 @@
 <div class="bg-background text-foreground flex min-h-screen flex-col">
 
 	<header class="border-border border-b px-8 py-4">
-		<div class="mx-auto max-w-5xl">
+		<div class="mx-auto max-w-section">
 			<a href="/" class="flex items-center gap-2">
 				<img src={logo} alt="nomox" class="size-5" />
 				<span class="text-sm font-semibold tracking-tight">nomox</span>
@@ -46,7 +46,7 @@
 
 		<!-- Form cell -->
 		<div class="w-120 px-12 py-14">
-			<p class="text-muted-foreground mb-4 font-mono text-xs">Admin access</p>
+			<p class="text-muted-foreground mb-4 font-mono text-xs">Limited access</p>
 			<h1 class="text-foreground mb-8 text-2xl font-semibold tracking-tight leading-tight">
 				Sign in.
 			</h1>
@@ -59,7 +59,7 @@
 					autocomplete="username"
 					bind:value={username}
 					required
-					class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-1"
+					class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-1"
 				/>
 				<input
 					id="password"
@@ -68,7 +68,7 @@
 					autocomplete="current-password"
 					bind:value={password}
 					required
-					class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-1"
+					class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-1"
 				/>
 
 				{#if error}
@@ -84,7 +84,7 @@
 				</button>
 			</form>
 
-			<p class="text-muted-foreground mt-6 text-xs">admin-only access</p>
+			
 		</div>
 
 		<div class="border-border border-l"></div>
@@ -98,7 +98,7 @@
 
 	<!-- Footer -->
 	<footer class="border-border border-t px-8 py-5">
-		<div class="mx-auto flex max-w-5xl items-center justify-between">
+		<div class="mx-auto flex max-w-section items-center justify-between">
 			<div class="flex items-center gap-2">
 				<img src={logo} alt="nomox" class="size-4 opacity-40" />
 				<span class="text-muted-foreground text-xs">nomox</span>
