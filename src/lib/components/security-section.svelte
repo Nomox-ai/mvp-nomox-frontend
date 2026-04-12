@@ -41,8 +41,8 @@
 	];
 </script>
 
-<section class="border-border border-b">
-	<div class="mx-auto max-w-section px-8 py-20">
+<section class="border-borde">
+	<div class="mx-auto max-w-section px-8 pt-20 pb-12">
 
 		<div class="mb-14 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 			<div>

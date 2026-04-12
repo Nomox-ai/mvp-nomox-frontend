@@ -9,7 +9,7 @@
 	];
 </script>
 
-<section id="how-it-works" class="border-border border-b">
+<section id="how-it-works" class="border-border">
 	<div class="mx-auto max-w-section px-8 py-20">
 		<div class="max-w-xl">
 			<p data-fade-up="pending" use:fadeUp class="text-primary mb-4 font-mono text-xs uppercase tracking-widest">How it works</p>

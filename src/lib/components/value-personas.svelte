@@ -90,7 +90,7 @@
 		cycleTimer = setInterval(() => {
 			const idx = personas.findIndex(p => p.id === active);
 			const next = personas[(idx + 1) % personas.length].id;
-			selectPersona(next, true);
+			selectPersona((next) as PersonaId, true);
 		}, CYCLE_MS);
 	}
 
@@ -113,7 +113,7 @@
 	$: current = personas.find(p => p.id === active)!;
 </script>
 
-<section class="border-border border-b">
+<section class="border-border">
 	<div class="mx-auto max-w-section px-8 py-20">
 
 		<!-- Headline with swappable sliding pill -->
@@ -135,7 +135,7 @@
 				{#each personas as p, i}
 					<button
 						bind:this={btnEls[i]}
-						on:click={() => selectPersona(p.id)}
+						on:click={() => selectPersona((p.id) as PersonaId)}
 						class="relative z-10 rounded-full px-3 py-1.5 text-sm font-medium cursor-pointer transition-colors duration-150 {p.id === active ? 'text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}"
 					>
 						{p.label}
