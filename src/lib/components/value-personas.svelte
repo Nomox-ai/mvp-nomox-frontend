@@ -182,7 +182,7 @@
 			<!-- Pill selector with sliding indicator -->
 			<span
 				bind:this={pillContainerEl}
-				class="relative inline-flex items-center rounded-full border border-border bg-muted/50 p-1 gap-1"
+				class="relative inline-flex items-center rounded-full border border-foreground bg-background p-1 gap-1"
 			>
 				<!-- Sliding blue background -->
 				<span
@@ -200,7 +200,7 @@
 						class="relative z-10 rounded-full px-3 py-1.5 text-sm font-medium cursor-pointer transition-colors duration-150 {p.id ===
 						active
 							? 'text-primary-foreground'
-							: 'text-muted-foreground hover:text-foreground'}"
+							: 'text-foreground hover:bg-muted/60'}"
 					>
 						{p.label}
 					</button>
