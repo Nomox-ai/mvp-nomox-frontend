@@ -19,7 +19,7 @@
 				use:fadeUp={{ delay: 80 }}
 				class="text-foreground text-5xl leading-[1.1] tracking-tight md:text-6xl"
 			>
-				Understand your data.<br />Automatically.
+				Navigate your data.<br />Automatically.
 			</h1>
 			<p
 				data-fade-up="pending"
