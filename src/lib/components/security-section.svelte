@@ -58,7 +58,7 @@
 					use:fadeUp={{ delay: 60 }}
 					class="text-foreground max-w-sm text-3xl leading-snug tracking-tight"
 				>
-					Built for teams that take data access seriously.
+					Security is not an afterthought.
 				</h2>
 			</div>
 			<p
