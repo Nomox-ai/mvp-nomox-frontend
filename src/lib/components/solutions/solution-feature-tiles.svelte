@@ -20,7 +20,7 @@
 <section class="border-border border-b">
 	<div class="mx-auto max-w-section px-8 py-14">
 		<p
-			class="text-muted-foreground mb-8 font-mono text-xs uppercase tracking-widest"
+			class="text-primary mb-8 font-mono text-xs uppercase tracking-widest"
 		>
 			{eyebrow}
 		</p>

@@ -24,7 +24,7 @@
 
 		<!-- Left: problem list -->
 		<div class="px-8 py-14">
-			<p class="text-muted-foreground mb-6 font-mono text-xs uppercase tracking-widest">
+			<p class="text-primary mb-6 font-mono text-xs uppercase tracking-widest">
 				Current challenges
 			</p>
 			<div class="grid grid-cols-1 gap-6">
@@ -42,7 +42,7 @@
 			<p
 				data-fade-up="pending"
 				use:fadeUp
-				class="text-muted-foreground mb-3 font-mono text-xs uppercase tracking-widest"
+					class="text-primary mb-3 font-mono text-xs uppercase tracking-widest"
 			>
 				{solutionEyebrow}
 			</p>
