@@ -17,9 +17,9 @@
 
 	<Hero />
 
-	<SlidingColumns />
-
 	<ValuePersonas />
+
+	<SlidingColumns />
 
 	<HowItWorksSection />
 

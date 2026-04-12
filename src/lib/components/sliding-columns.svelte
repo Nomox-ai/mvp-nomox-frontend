@@ -6,7 +6,7 @@
 	import McpIcon from '$lib/assets/icons/mcp.svelte';
 </script>
 
-<section class="border-border border-b">
+<section class="border-border border-b border-t">
 	<div class="mx-auto max-w-section">
 		<div class="grid grid-cols-1 divide-y border-border md:grid-cols-3 md:divide-x md:divide-y-0 md:min-h-[520px]">
 
