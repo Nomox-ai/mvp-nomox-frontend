@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import { page } from "$app/stores";
 	import AppSidebar from "$lib/components/app-sidebar.svelte";
 	import ChatBubble from "$lib/components/chat-bubble.svelte";
@@ -6,8 +7,13 @@
 	import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
 	import { Separator } from "$lib/components/ui/separator/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+	import { user } from "$lib/stores/user.svelte.js";
 
 	let { children } = $props();
+
+	onMount(() => {
+		if (!user.isLoggedIn) user.load();
+	});
 
 	// Build breadcrumb segments from the current pathname
 	// e.g. /sources/playground → ["Sources", "Playground"]

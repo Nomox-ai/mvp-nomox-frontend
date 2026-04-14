@@ -18,6 +18,7 @@
 	import { listConnectorIds, getConnector, createConnector } from "$lib/api/connectors.js";
 	import { getSourceView } from "$lib/api/semantic.js";
 	import { cn } from "$lib/utils.js";
+	import { user } from "$lib/stores/user.svelte.js";
 
 	// ─── Row type ─────────────────────────────────────────────────────────────
 
@@ -199,9 +200,9 @@
 			>
 				<RefreshCwIcon class={cn("size-4", refreshing && "animate-spin")} />
 			</Button>
-			<Button size="sm" onclick={() => (dialogOpen = true)} data-guide="add-source">
-				<PlusIcon />
-				Add source
+			<Button size="sm" onclick={() => (dialogOpen = true)} data-guide="add-source" disabled={user.isHost}>
+			<PlusIcon />
+			Add source
 			</Button>
 		</div>
 	</header>
@@ -230,10 +231,12 @@
 				<p class="text-sm font-medium">No data sources yet</p>
 				<p class="text-muted-foreground mt-1 text-sm">Add a source to start connecting your data.</p>
 			</div>
+			{#if !user.isHost}
 			<Button variant="outline" size="sm" onclick={() => (dialogOpen = true)}>
 				<PlusIcon />
 				Add your first source
 			</Button>
+			{/if}
 		</div>
 	{:else}
 		<div class="flex-1 overflow-auto">
