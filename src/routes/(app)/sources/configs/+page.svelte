@@ -62,6 +62,7 @@
 			availability: null,
 			loading: true,
 		}));
+		loading = false;
 
 		// One call per source — connector endpoint now includes status fields
 		const results = await Promise.all(
@@ -123,9 +124,8 @@
 		];
 	}
 
-	onMount(async () => {
-		await loadSources();
-		loading = false;
+	onMount(() => {
+		loadSources();
 	});
 
 	// ─── Helpers ──────────────────────────────────────────────────────────────
