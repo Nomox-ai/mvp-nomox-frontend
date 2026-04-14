@@ -4,7 +4,7 @@ import type { AnyConnectorModel, ConnectorConfigModel, ListConnectorConfigsRespo
 // ─── List ─────────────────────────────────────────────────────────────────────
 
 export async function listConnectorIds(): Promise<string[]> {
-  const res = await http.get<ListConnectorConfigsResponse>("/admin/config/list_connectors");
+  const res = await http.get<ListConnectorConfigsResponse>("/admin/config/connectors");
   return res.connector_ids;
 }
 

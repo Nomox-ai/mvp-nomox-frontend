@@ -7,18 +7,19 @@
 	import LogOutIcon from "@lucide/svelte/icons/log-out";
 	import { goto } from "$app/navigation";
 
-	let { user }: { user: { name: string; email: string; avatar: string } } = $props();
+	let { user }: { user: { email: string; avatar: string } } = $props();
 	const sidebar = useSidebar();
 
-	// Derive initials from name
-	const initials = $derived(
-		user.name
-			.split(" ")
-			.map((w) => w[0])
-			.join("")
-			.slice(0, 2)
-			.toUpperCase()
-	);
+	// Name = local part of email, up to (but not including) the last dot.
+	// e.g. "john.doe@example.com" → "john"
+	// e.g. "alice@example.com"    → "alice"
+	const displayName = $derived.by(() => {
+		const local = user.email.split("@")[0] ?? "";
+		const dotIdx = local.lastIndexOf(".");
+		return dotIdx > 0 ? local.slice(0, dotIdx) : local;
+	});
+
+	const initials = $derived(displayName.slice(0, 2).toUpperCase());
 </script>
 
 <Sidebar.Menu>
@@ -32,14 +33,14 @@
 						{...props}
 					>
 						<Avatar.Root class="size-8 rounded-lg">
-							<Avatar.Image src={user.avatar} alt={user.name} />
+							<Avatar.Image src={user.avatar} alt={displayName} />
 							<Avatar.Fallback class="rounded-lg text-xs">{initials}</Avatar.Fallback>
-						</Avatar.Root>
-						<div class="grid flex-1 text-start text-sm leading-tight">
-							<span class="truncate font-medium">{user.name}</span>
+							</Avatar.Root>
+							<div class="grid flex-1 text-start text-sm leading-tight">
+							<span class="truncate font-medium">{displayName}</span>
 							<span class="truncate text-xs opacity-60">{user.email}</span>
-						</div>
-						<ChevronsUpDownIcon class="ms-auto size-4" />
+							</div>
+							<ChevronsUpDownIcon class="ms-auto size-4" />
 					</Sidebar.MenuButton>
 				{/snippet}
 			</DropdownMenu.Trigger>
@@ -53,13 +54,13 @@
 				<DropdownMenu.Label class="p-0 font-normal">
 					<div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
 						<Avatar.Root class="size-8 rounded-lg">
-							<Avatar.Image src={user.avatar} alt={user.name} />
+							<Avatar.Image src={user.avatar} alt={displayName} />
 							<Avatar.Fallback class="rounded-lg text-xs">{initials}</Avatar.Fallback>
-						</Avatar.Root>
-						<div class="grid flex-1 text-start text-sm leading-tight">
-							<span class="truncate font-medium">{user.name}</span>
+							</Avatar.Root>
+							<div class="grid flex-1 text-start text-sm leading-tight">
+							<span class="truncate font-medium">{displayName}</span>
 							<span class="truncate text-xs opacity-60">{user.email}</span>
-						</div>
+							</div>
 					</div>
 				</DropdownMenu.Label>
 				<DropdownMenu.Separator />

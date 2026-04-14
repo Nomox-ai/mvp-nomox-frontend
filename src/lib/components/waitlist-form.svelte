@@ -15,16 +15,15 @@
 		loading = true;
 
 		try {
-			const res = await fetch('/api/waitlist', {
+			const BASE_URL = import.meta.env.VITE_API_URL ?? 'https://api.get-nomox.com';
+			const res = await fetch(`${BASE_URL}/waitlist`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ email, is_company: isCompany, company_name: companyName })
 			});
 
-			const data = await res.json();
-
-			if (!res.ok || !data.success) {
-				toast.error(data.error ?? 'Something went wrong. Please try again.');
+			if (!res.ok) {
+				toast.error('Something went wrong. Please try again.');
 			} else {
 				toast.success("You're on the list! We'll be in touch soon.");
 				email = '';

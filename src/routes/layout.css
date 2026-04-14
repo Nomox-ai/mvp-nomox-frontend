@@ -148,6 +148,12 @@
     font-family: var(--font-sans);
   }
 
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [data-slot="button"]:not(:disabled):not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
   /* Override browser autofill background */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,

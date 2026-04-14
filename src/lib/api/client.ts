@@ -1,6 +1,6 @@
 // ─── Base HTTP client ─────────────────────────────────────────────────────────
 
-const BASE_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? "http://localhost:8000";
+const BASE_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? "https://api.get-nomox.com";
 
 const TOKEN_KEY = "nomox_token";
 

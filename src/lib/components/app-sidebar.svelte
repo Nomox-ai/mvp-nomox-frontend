@@ -18,6 +18,7 @@
 	import logo from "$lib/assets/logo.svg";
 	import { listConnectorIds } from "$lib/api/connectors.js";
 	import { getSourceView } from "$lib/api/semantic.js";
+	import { user as userStore } from "$lib/stores/user.svelte.js";
 
 	const LOW_CONF_THRESHOLD = 0.75;
 
@@ -81,11 +82,10 @@
 		},
 	]);
 
-	export const adminUser = {
-		name: "Admin",
-		email: "admin@nomox.ai",
+	const currentUser = $derived({
+		email: userStore.email ?? "",
 		avatar: "",
-	};
+	});
 
 	let {
 		ref = $bindable(null),
@@ -118,7 +118,7 @@
 	</Sidebar.Content>
 
 	<Sidebar.Footer>
-		<NavUser user={adminUser} />
+		<NavUser user={currentUser} />
 	</Sidebar.Footer>
 
 	<Sidebar.Rail />

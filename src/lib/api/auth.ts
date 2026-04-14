@@ -6,12 +6,31 @@ interface LoginResponse {
   token_type: string;
 }
 
+export interface MeResponse {
+  email: string;
+  role: "admin" | "host";
+}
+
 const REFRESH_KEY = "nomox_refresh_token";
 
 export async function login(username: string, password: string): Promise<void> {
-  const res = await http.post<LoginResponse>("/auth/login", { username, password });
+  const res = await http.post<LoginResponse>("/login/password", { username, password });
   setToken(res.access_token);
   localStorage.setItem(REFRESH_KEY, res.refresh_token);
+}
+
+export async function requestOtp(email: string): Promise<void> {
+  await http.post<void>("/login/otp/request", { email });
+}
+
+export async function verifyOtp(email: string, otp: string): Promise<void> {
+  const res = await http.post<LoginResponse>("/login/otp/verify", { email, otp });
+  setToken(res.access_token);
+  localStorage.setItem(REFRESH_KEY, res.refresh_token);
+}
+
+export async function getMe(): Promise<MeResponse> {
+  return http.get<MeResponse>("/auth/me");
 }
 
 export async function refresh(): Promise<boolean> {

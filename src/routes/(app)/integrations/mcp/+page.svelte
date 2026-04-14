@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { cn } from "$lib/utils.js";
-	import { getMcpConfig, rotateMcpToken } from "$lib/api/mcp.js";
-	import type { McpConfig, McpTool } from "$lib/api/mcp.js";
+	import { getIntegrations, rotateToken } from "$lib/api/mcp.js";
+	import type { IntegrationsData } from "$lib/api/mcp.js";
 	import Skeleton from "$lib/components/ui/skeleton/skeleton.svelte";
 
 	import CheckCircle2Icon from "@lucide/svelte/icons/check-circle-2";
@@ -14,27 +14,37 @@
 
 	// ─── State ────────────────────────────────────────────────────────────────
 
-	let config = $state<McpConfig | null>(null);
+	let data = $state<IntegrationsData | null>(null);
 	let loading = $state(true);
-	let online = $state(true);
+	let loadError = $state(false);
 
 	let expandedTool = $state<string | null>(null);
 	let copiedKey = $state<string | null>(null);
 	let rotatingToken = $state(false);
-	let newToken = $state<string | null>(null);
+	let rotateError = $state<string | null>(null);
+
+	// Stored after rotation — shown in the warning banner once, then the
+	// page data is reloaded so configs reflect the new token automatically.
+	let newRawToken = $state<string | null>(null);
+
+	const online = $derived(!loadError && data !== null);
 
 	// ─── Data loading ─────────────────────────────────────────────────────────
 
-	onMount(async () => {
+	async function loadData() {
+		loadError = false;
 		try {
-			config = await getMcpConfig();
+			data = await getIntegrations();
 		} catch {
-			online = false;
+			loadError = true;
+		} finally {
+			loading = false;
 		}
-		loading = false;
-	});
+	}
 
-	// ─── Helpers ──────────────────────────────────────────────────────────────
+	onMount(loadData);
+
+	// ─── Actions ──────────────────────────────────────────────────────────────
 
 	async function copy(text: string, key: string) {
 		await navigator.clipboard.writeText(text);
@@ -42,78 +52,37 @@
 		setTimeout(() => (copiedKey = null), 1500);
 	}
 
-	async function rotateToken() {
+	async function handleRotate() {
 		rotatingToken = true;
-		newToken = null;
+		rotateError = null;
 		try {
-			const result = await rotateMcpToken();
-			newToken = result.token;
+			const result = await rotateToken();
+			newRawToken = result.token;
+			// Reload everything from the API — masked token, client configs, server URL all refresh
+			await loadData();
+		} catch {
+			rotateError = "Failed to rotate token. Please try again.";
 		} finally {
 			rotatingToken = false;
 		}
 	}
-
-	// ─── Config snippets ──────────────────────────────────────────────────────
-
-	const activeToken = $derived(newToken ?? config?.token ?? "");
-
-	const claudeConfig = $derived(
-		config
-			? JSON.stringify(
-					{
-						mcpServers: {
-							nomox: {
-								command: "C:\\Windows\\System32\\cmd.exe",
-								args: [
-									"/c",
-									"npx",
-									"mcp-remote",
-									config.server_url + "/sse",
-									"--header",
-									`X-API-Token: ${activeToken}`,
-								],
-							},
-						},
-					},
-					null,
-					2
-				)
-			: ""
-	);
-
-	const cursorConfig = $derived(
-		config
-			? JSON.stringify(
-					{
-						mcpServers: {
-							nomox: {
-								url: config.server_url + "/sse",
-								headers: { "X-API-Token": activeToken },
-							},
-						},
-					},
-					null,
-					2
-				)
-			: ""
-	);
 </script>
 
-<div class="flex h-full flex-col">
+<div class="flex h-full min-w-0 flex-col overflow-x-hidden">
 	<!-- Header -->
-	<header class="border-border flex h-14 shrink-0 items-center border-b px-6">
-		<h1 class="text-base font-semibold">MCP</h1>
-		<p class="text-muted-foreground ml-3 text-sm">Model Context Protocol server configuration</p>
+	<header class="border-border flex h-14 shrink-0 items-center gap-2 overflow-hidden border-b px-6">
+		<h1 class="shrink-0 text-base font-semibold">MCP</h1>
+		<p class="text-muted-foreground hidden truncate text-sm sm:block">Model Context Protocol server configuration</p>
 		{#if !loading}
 			<span
 				class={cn(
 					"ml-3 inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium",
-					online && config
+					online
 						? "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400"
 						: "bg-red-100 text-red-700 dark:bg-red-950/40 dark:text-red-400"
 				)}
 			>
-				{#if online && config}
+				{#if online}
 					<CheckCircle2Icon class="size-3" />
 					Online
 				{:else}
@@ -127,21 +96,31 @@
 	<div class="flex-1 overflow-y-auto">
 		{#if loading}
 			<div class="mx-auto max-w-section space-y-4 p-6">
-				<div class="grid grid-cols-2 gap-4">
+				<div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
 					<Skeleton class="h-36 rounded-xl" />
 					<Skeleton class="h-36 rounded-xl" />
 				</div>
-				<div class="grid grid-cols-2 gap-4">
+				<div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
 					<Skeleton class="h-40 rounded-xl" />
 					<Skeleton class="h-40 rounded-xl" />
 				</div>
 				<Skeleton class="h-48 rounded-xl" />
 			</div>
+
+		{:else if loadError || !data}
+			<div class="flex flex-1 flex-col items-center justify-center gap-3 p-12 text-center">
+				<AlertCircleIcon class="text-muted-foreground size-8" />
+				<p class="text-sm font-medium">Failed to load integration data</p>
+				<p class="text-muted-foreground max-w-xs text-xs">
+					Could not reach the backend. Check that the server is running and your token is valid.
+				</p>
+			</div>
+
 		{:else}
 			<div class="mx-auto max-w-section space-y-4 p-6">
 
 				<!-- ── Row 1: Server + Token ───────────────────────────────────── -->
-				<div class="grid grid-cols-2 gap-4">
+				<div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
 
 					<!-- Server -->
 					<section class="border-border rounded-xl border">
@@ -152,28 +131,28 @@
 							<div class="flex items-center gap-3 py-2.5">
 								<span class="text-muted-foreground w-24 shrink-0 text-xs">URL</span>
 								<code class="bg-muted min-w-0 flex-1 truncate rounded px-2 py-1 font-mono text-xs">
-									{config?.server_url}/sse
+									{data.server_url}
 								</code>
 								<button
 									type="button"
 									class="text-muted-foreground hover:text-foreground shrink-0 transition-colors"
 									title="Copy URL"
-									onclick={() => copy((config?.server_url ?? "") + "/sse", "url")}
+									onclick={() => copy(data!.server_url, "url")}
 								>
 									<CopyIcon class={cn("size-3.5", copiedKey === "url" && "text-emerald-500")} />
 								</button>
 							</div>
 							<div class="flex items-center gap-3 py-2.5">
 								<span class="text-muted-foreground w-24 shrink-0 text-xs">Transport</span>
-								<span class="font-mono text-xs uppercase">SSE</span>
+								<span class="font-mono text-xs uppercase">{data.transport}</span>
 							</div>
 							<div class="flex items-center gap-3 py-2.5">
 								<span class="text-muted-foreground w-24 shrink-0 text-xs">Auth header</span>
-								<code class="font-mono text-xs">X-API-Token</code>
+								<code class="font-mono text-xs">{data.auth_header}</code>
 							</div>
 							<div class="flex items-center gap-3 py-2.5">
 								<span class="text-muted-foreground w-24 shrink-0 text-xs">Tools</span>
-								<span class="text-xs">{config?.tools.length ?? 0} exposed</span>
+								<span class="text-xs">{data.tools.length} exposed</span>
 							</div>
 						</div>
 					</section>
@@ -186,31 +165,41 @@
 						<div class="space-y-3 p-4">
 							<div class="flex items-center gap-2">
 								<code class="bg-muted min-w-0 flex-1 truncate rounded px-3 py-2 font-mono text-xs">
-									{newToken ?? config?.masked_token}
+									{data.masked_token}
 								</code>
-								<button
-									type="button"
-									class="text-muted-foreground hover:text-foreground shrink-0 transition-colors"
-									title="Copy token"
-									onclick={() => copy(activeToken, "token")}
-								>
-									<CopyIcon class={cn("size-3.5", copiedKey === "token" && "text-emerald-500")} />
-								</button>
 							</div>
-							{#if newToken}
-								<p class="text-xs text-amber-600 dark:text-amber-400">
-									Copy this token now-it will not be shown again.
-								</p>
+
+							{#if newRawToken}
+								<div class="bg-amber-50 border border-amber-200 dark:bg-amber-950/30 dark:border-amber-800 rounded-lg px-3 py-2 flex items-start gap-2">
+									<AlertCircleIcon class="size-3.5 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+									<div class="min-w-0 flex-1 space-y-1">
+										<p class="text-xs font-medium text-amber-700 dark:text-amber-300">Copy this token now — it will not be shown again</p>
+										<code class="block min-w-0 break-all font-mono text-xs text-amber-800 dark:text-amber-200">{newRawToken}</code>
+									</div>
+									<button
+										type="button"
+										class="text-amber-600 hover:text-amber-800 dark:text-amber-400 ml-auto shrink-0 transition-colors"
+										title="Copy token"
+										onclick={() => copy(newRawToken!, "token-banner")}
+									>
+										<CopyIcon class={cn("size-3.5", copiedKey === "token-banner" && "text-emerald-500")} />
+									</button>
+								</div>
 							{:else}
 								<p class="text-muted-foreground/60 text-xs">
-									Sent as <code class="font-mono">X-API-Token</code> in every MCP request. Set via <code class="font-mono">MCP_API_TOKEN</code> env var.
+									Sent as <code class="font-mono">{data.auth_header}</code> in every MCP request.
 								</p>
 							{/if}
+
+							{#if rotateError}
+								<p class="text-destructive text-xs">{rotateError}</p>
+							{/if}
+
 							<button
 								type="button"
 								class="border-border hover:bg-accent inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors disabled:opacity-50"
 								disabled={rotatingToken}
-								onclick={rotateToken}
+								onclick={handleRotate}
 							>
 								<RefreshCwIcon class={cn("size-3", rotatingToken && "animate-spin")} />
 								{rotatingToken ? "Rotating…" : "Rotate token"}
@@ -219,52 +208,37 @@
 					</section>
 				</div>
 
-				<!-- ── Row 2: Config snippets ──────────────────────────────────── -->
-				<div class="grid grid-cols-2 gap-4">
-
-					<!-- Claude Desktop -->
-					<section class="border-border rounded-xl border">
-						<div class="border-border flex items-center gap-2 border-b px-4 py-3">
-							<h2 class="text-sm font-semibold">Claude Desktop</h2>
-							<span class="text-muted-foreground ml-auto text-xs">claude_desktop_config.json · mcp-remote</span>
-							<button
-								type="button"
-								class="text-muted-foreground hover:text-foreground transition-colors"
-								title="Copy config"
-								onclick={() => copy(claudeConfig, "claude")}
-							>
-								<CopyIcon class={cn("size-3.5", copiedKey === "claude" && "text-emerald-500")} />
-							</button>
-						</div>
-						<pre class="text-muted-foreground overflow-x-auto px-4 py-3 font-mono text-xs leading-relaxed">{claudeConfig}</pre>
-					</section>
-
-					<!-- Cursor -->
-					<section class="border-border rounded-xl border">
-						<div class="border-border flex items-center gap-2 border-b px-4 py-3">
-							<h2 class="text-sm font-semibold">Cursor</h2>
-							<span class="text-muted-foreground ml-auto text-xs">.cursor/mcp.json</span>
-							<button
-								type="button"
-								class="text-muted-foreground hover:text-foreground transition-colors"
-								title="Copy config"
-								onclick={() => copy(cursorConfig, "cursor")}
-							>
-								<CopyIcon class={cn("size-3.5", copiedKey === "cursor" && "text-emerald-500")} />
-							</button>
-						</div>
-						<pre class="text-muted-foreground overflow-x-auto px-4 py-3 font-mono text-xs leading-relaxed">{cursorConfig}</pre>
-					</section>
+				<!-- ── Row 2: Client config snippets ──────────────────────────── -->
+				<div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+					{#each data.client_configs as cfg (cfg.label)}
+						<section class="border-border min-w-0 rounded-xl border">
+							<div class="border-border flex items-center gap-2 border-b px-4 py-3">
+								<h2 class="text-sm font-semibold">{cfg.label}</h2>
+								<span class="text-muted-foreground ml-auto truncate text-xs">
+									{cfg.filename}{cfg.hint ? ` · ${cfg.hint}` : ""}
+								</span>
+								<button
+									type="button"
+									class="text-muted-foreground hover:text-foreground ml-2 shrink-0 transition-colors"
+									title="Copy config"
+									onclick={() => copy(cfg.config_json, `cfg-${cfg.label}`)}
+								>
+									<CopyIcon class={cn("size-3.5", copiedKey === `cfg-${cfg.label}` && "text-emerald-500")} />
+								</button>
+							</div>
+							<pre class="text-muted-foreground min-w-0 overflow-hidden whitespace-pre-wrap px-4 py-3 font-mono text-xs leading-relaxed" style="overflow-wrap: anywhere;">{cfg.config_json}</pre>
+						</section>
+					{/each}
 				</div>
 
-				<!-- ── Row 3: Tools (full width) ───────────────────────────────── -->
+				<!-- ── Row 3: Tools ────────────────────────────────────────────── -->
 				<section class="border-border rounded-xl border">
 					<div class="border-border flex items-center gap-2 border-b px-4 py-3">
 						<h2 class="text-sm font-semibold">Exposed tools</h2>
-						<span class="text-muted-foreground ml-auto text-xs">{config?.tools.length ?? 0} tools</span>
+						<span class="text-muted-foreground ml-auto text-xs">{data.tools.length} tools</span>
 					</div>
 					<div class="divide-border divide-y">
-						{#each (config?.tools ?? []) as tool (tool.name)}
+						{#each data.tools as tool (tool.name)}
 							<div>
 								<button
 									type="button"
