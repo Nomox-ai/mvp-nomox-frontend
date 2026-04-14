@@ -25,7 +25,7 @@ export async function getSourceView(connectorId: string): Promise<SourceView | n
  */
 export async function getSemanticModel(): Promise<SemanticModel | null> {
   try {
-    return await http.get<SemanticModel>(`/semantic/${TYPE}/model`)
+    return await http.get<SemanticModel>(`/semantic/${TYPE}/model/`)
   } catch {
     return null
   }

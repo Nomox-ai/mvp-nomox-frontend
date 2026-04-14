@@ -49,6 +49,27 @@
 	let pgUsername = $state("");
 	let pgPassword = $state("");
 
+	// ─── Dirty tracking ──────────────────────────────────────────────────────
+
+	let originalValues = $state("");
+
+	function snapshotValues() {
+		originalValues = JSON.stringify(
+			connectorType === ConnectorType.MONGODB
+				? { description, mongoConnectionUrl, mongoDatabase, mongoSchemaCollection, mongoCaseInsensitive }
+				: { description, pgHost, pgPort, pgDatabase, pgUsername, pgPassword }
+		);
+	}
+
+	const isDirty = $derived(
+		originalValues !== "" &&
+		originalValues !== JSON.stringify(
+			connectorType === ConnectorType.MONGODB
+				? { description, mongoConnectionUrl, mongoDatabase, mongoSchemaCollection, mongoCaseInsensitive }
+				: { description, pgHost, pgPort, pgDatabase, pgUsername, pgPassword }
+		)
+	);
+
 	// ─── Load config when drawer opens ────────────────────────────────────────
 
 	$effect(() => {
@@ -81,6 +102,9 @@
 			saveError = "Failed to load connector config.";
 		} finally {
 			fetching = false;
+			// Defer snapshot until after Svelte has flushed the state assignments
+			await Promise.resolve();
+			snapshotValues();
 		}
 	}
 
@@ -196,7 +220,7 @@
 							id="sheet-desc"
 							bind:value={description}
 							placeholder="What does this source contain? Who uses it?"
-							rows="3"
+							rows="6"
 							readonly={user.isHost}
 							class="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border px-3 py-2 text-sm outline-none focus-visible:ring-2 resize-none {user.isHost ? 'opacity-60 cursor-default' : ''}"
 						></textarea>
@@ -285,38 +309,44 @@
 			<!-- Footer -->
 			<Drawer.Footer class="border-t border-border px-6 py-4 shrink-0">
 				{#if confirmDelete}
-				<div class="flex items-center justify-between">
-				<p class="text-sm text-destructive font-medium">Delete this source permanently?</p>
-				<div class="flex items-center gap-2">
-				<Button variant="ghost" size="sm" onclick={() => (confirmDelete = false)}>Cancel</Button>
-				<Button variant="destructive" size="sm" onclick={handleDelete} disabled={deleting}>
-				{deleting ? "Deleting…" : "Confirm delete"}
-				</Button>
-				</div>
-				</div>
+					<div class="flex items-center justify-between">
+						<p class="text-sm text-destructive font-medium">Delete this source permanently?</p>
+						<div class="flex items-center gap-2">
+							<Button variant="ghost" size="sm" onclick={() => (confirmDelete = false)}>Cancel</Button>
+							<Button variant="destructive" size="sm" onclick={handleDelete} disabled={deleting}>
+								{deleting ? "Deleting…" : "Confirm delete"}
+							</Button>
+						</div>
+					</div>
 				{:else if user.isHost}
-				<div class="flex items-center justify-end">
-				<p class="text-muted-foreground text-xs">Read-only &mdash; contact your admin to make changes.</p>
-				</div>
+					<div class="flex items-center justify-end">
+						<p class="text-muted-foreground text-xs">Read-only &mdash; contact your admin to make changes.</p>
+					</div>
 				{:else}
-				<div class="flex items-center justify-end gap-2">
-				{#if saveError}
-				<p class="text-destructive text-xs mr-1">{saveError}</p>
+					<div class="flex flex-col gap-3">
+						<div class="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 dark:border-red-800/50 dark:bg-red-950/30">
+							<span class="text-red-600 dark:text-red-400 shrink-0 text-xs leading-4">⚠</span>
+							<p class="text-red-800 dark:text-red-300 text-xs">Saving will trigger reindexing for this source. Due to known pipeline instability, please allocate at least one hour to monitor the process.</p>
+						</div>
+						<div class="flex items-center justify-end gap-2">
+							{#if saveError}
+								<p class="text-destructive text-xs mr-1">{saveError}</p>
+							{/if}
+							<Button
+								variant="ghost"
+								size="sm"
+								class="text-destructive/70 hover:text-destructive hover:bg-destructive/5"
+								onclick={() => (confirmDelete = true)}
+								disabled={fetching}
+							>
+								Delete source
+							</Button>
+							<Button size="sm" onclick={handleSave} disabled={fetching || saving}>
+								{saving ? "Saving…" : "Save changes"}
+							</Button>
+						</div>
+					</div>
 				{/if}
-				<Button
-				variant="ghost"
-				 size="sm"
-				class="text-destructive/70 hover:text-destructive hover:bg-destructive/5"
-				 onclick={() => (confirmDelete = true)}
-				 disabled={fetching}
-				>
-				 Delete source
-				 </Button>
-				  <Button size="sm" onclick={handleSave} disabled={fetching || saving}>
-						{saving ? "Saving…" : "Save changes"}
-					</Button>
-				</div>
-			{/if}
 			</Drawer.Footer>
 		</Drawer.Content>
 	</Drawer.Portal>

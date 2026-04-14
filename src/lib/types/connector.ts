@@ -79,9 +79,21 @@ export interface CheckSchedule {
   unit?: CheckIntervalUnit
 }
 
+export enum IndexingState {
+  NOT_INDEXED = "not_indexed",
+  INDEXING = "indexing",
+  INDEXED = "indexed",
+  FULLY_INDEXED = "fully_indexed",
+  ERROR = "error",
+}
+
 export interface ConnectorConfigModel {
   connector: AnyConnectorModel
   check_schedule?: CheckSchedule
+  owner?: string
+  indexing_state?: IndexingState
+  last_indexed?: string | null
+  availability?: boolean
 }
 
 export interface ListConnectorConfigsResponse {

@@ -43,7 +43,7 @@
 		}
 	});
 
-	const navItems: NavSection[] = $derived([
+	const navItems = $derived.by((): NavSection[] => [
 		{
 			title: "Sources",
 			url: "/sources",
@@ -51,6 +51,7 @@
 			items: [
 				{ title: "Configs", url: "/sources/configs" },
 				{ title: "Query", url: "/sources/query" },
+				...(userStore.isAdmin ? [{ title: "Indexing", url: "/sources/indexing" }] : []),
 			],
 		},
 		{

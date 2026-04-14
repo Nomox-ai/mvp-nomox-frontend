@@ -9,14 +9,11 @@
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import DatabaseIcon from "@lucide/svelte/icons/database";
 	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
-	import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
 	import MoreHorizontalIcon from "@lucide/svelte/icons/more-horizontal";
 	import SourceSettingsSheet from "$lib/components/source-settings-sheet.svelte";
-	import { ConnectorType } from "$lib/types/connector.js";
+	import { ConnectorType, IndexingState } from "$lib/types/connector.js";
 	import type { AnyConnectorModel } from "$lib/types/connector.js";
-	import { SourceState } from "$lib/types/semantic.js";
 	import { listConnectorIds, getConnector, createConnector } from "$lib/api/connectors.js";
-	import { getSourceView } from "$lib/api/semantic.js";
 	import { cn } from "$lib/utils.js";
 	import { user } from "$lib/stores/user.svelte.js";
 
@@ -25,11 +22,11 @@
 	interface SourceRow {
 		connector_id: string;
 		connector_type: ConnectorType;
-		sourceState: SourceState | null;
+		indexingState: IndexingState | null;
 		lastIndexedAt: string | null;
-		ownerContact: string | null;
-		ownerTeam: string | null;
-		semanticLoading: boolean;
+		owner: string | null;
+		availability: boolean | null;
+		loading: boolean;
 	}
 
 	// ─── State ────────────────────────────────────────────────────────────────
@@ -55,51 +52,33 @@
 			return;
 		}
 
-		// Immediately show skeleton rows so the table appears while semantics load
+		// Show skeleton rows immediately while individual configs load
 		rows = ids.map((id) => ({
 			connector_id: id,
 			connector_type: ConnectorType.MONGODB,
-			sourceState: null,
+			indexingState: null,
 			lastIndexedAt: null,
-			ownerContact: null,
-			ownerTeam: null,
-			semanticLoading: true,
+			owner: null,
+			availability: null,
+			loading: true,
 		}));
 
-		// Fetch connector config + semantic state in parallel per source
-		await Promise.all(
-			ids.map(async (id, i) => {
-				const [config, view] = await Promise.allSettled([
-					getConnector(id),
-					getSourceView(id),
-				]);
-
-				rows[i] = {
-					connector_id: id,
-					connector_type:
-						config.status === "fulfilled"
-							? config.value.connector.connector_type
-							: ConnectorType.MONGODB,
-					sourceState:
-						view.status === "fulfilled" && view.value
-							? view.value.source.status.state
-							: null,
-					lastIndexedAt:
-						view.status === "fulfilled" && view.value
-							? view.value.source.status.last_indexed_at
-							: null,
-					ownerContact:
-						view.status === "fulfilled" && view.value
-							? view.value.source.owner_contact || null
-							: null,
-					ownerTeam:
-						view.status === "fulfilled" && view.value
-							? view.value.source.owner_team || null
-							: null,
-					semanticLoading: false,
-				};
-			})
+		// One call per source — connector endpoint now includes status fields
+		const results = await Promise.all(
+			ids.map((id) => getConnector(id).catch(() => null))
 		);
+		rows = ids.map((id, i) => {
+			const result = results[i];
+			return {
+				connector_id: id,
+				connector_type: result?.connector.connector_type ?? ConnectorType.MONGODB,
+				indexingState: result?.indexing_state ?? null,
+				lastIndexedAt: result?.last_indexed ?? null,
+				owner: result?.owner || null,
+				availability: result?.availability ?? null,
+				loading: false,
+			};
+		});
 	}
 
 	async function handleRefresh() {
@@ -135,11 +114,11 @@
 			{
 				connector_id: model.connector_id,
 				connector_type: model.connector_type,
-				sourceState: null,
+				indexingState: null,
 				lastIndexedAt: null,
-				ownerContact: null,
-				ownerTeam: null,
-				semanticLoading: false,
+				owner: null,
+				availability: null,
+				loading: false,
 			},
 		];
 	}
@@ -153,10 +132,10 @@
 
 	type Availability = "online" | "offline" | "indexing" | "unknown";
 
-	function availability(state: SourceState | null): Availability {
-		if (state === SourceState.CONFIRMED) return "online";
-		if (state === SourceState.ERROR) return "offline";
-		if (state === SourceState.INDEXING) return "indexing";
+	function availability(avail: boolean | null, state: IndexingState | null): Availability {
+		if (state === IndexingState.INDEXING) return "indexing";
+		if (avail === true) return "online";
+		if (avail === false) return "offline";
 		return "unknown";
 	}
 
@@ -173,13 +152,12 @@
 		return days < 30 ? `${days}d ago` : d.toLocaleDateString();
 	}
 
-	const stateConfig: Record<SourceState, { label: string; class: string }> = {
-		[SourceState.DISCOVERED]: { label: "Discovered", class: "bg-muted text-muted-foreground" },
-		[SourceState.INDEXING]:   { label: "Indexing",   class: "bg-blue-100 text-blue-700 dark:bg-blue-950/50 dark:text-blue-400" },
-		[SourceState.STAGING]:    { label: "Staging",    class: "bg-amber-100 text-amber-700 dark:bg-amber-950/50 dark:text-amber-400" },
-		[SourceState.CONFIRMED]:  { label: "Confirmed",  class: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400" },
-		[SourceState.DEPRECATED]: { label: "Deprecated", class: "bg-muted text-muted-foreground" },
-		[SourceState.ERROR]:      { label: "Error",      class: "bg-red-100 text-red-700 dark:bg-red-950/50 dark:text-red-400" },
+	const stateConfig: Record<IndexingState, { label: string; class: string }> = {
+		[IndexingState.NOT_INDEXED]:   { label: "Not indexed",   class: "bg-muted text-muted-foreground" },
+		[IndexingState.INDEXING]:      { label: "Indexing",      class: "bg-blue-100 text-blue-700 dark:bg-blue-950/50 dark:text-blue-400" },
+		[IndexingState.INDEXED]:       { label: "Indexed",       class: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400" },
+		[IndexingState.FULLY_INDEXED]: { label: "Fully indexed", class: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400" },
+		[IndexingState.ERROR]:         { label: "Error",         class: "bg-red-100 text-red-700 dark:bg-red-950/50 dark:text-red-400" },
 	};
 </script>
 
@@ -255,118 +233,108 @@
 				</Table.TableHeader>
 				<Table.TableBody>
 					{#each rows as row (row.connector_id)}
-						{@const avail = availability(row.sourceState)}
-						<Table.TableRow>
+					{@const avail = availability(row.availability, row.indexingState)}
+					<Table.TableRow>
 
-							<!-- DB icon -->
-							<Table.TableCell class="pl-6 pr-2">
-								<div class="flex size-7 items-center justify-center rounded-md bg-muted">
-									{#if row.connector_type === ConnectorType.MONGODB}
-										<MongodbIcon class="size-4" />
-									{:else}
-										<PostgresqlIcon class="size-4" />
-									{/if}
-								</div>
-							</Table.TableCell>
+					<!-- DB icon -->
+					<Table.TableCell class="pl-6 pr-2">
+					<div class="flex size-7 items-center justify-center rounded-md bg-muted">
+					{#if row.connector_type === ConnectorType.MONGODB}
+					<MongodbIcon class="size-4" />
+					{:else}
+					<PostgresqlIcon class="size-4" />
+					{/if}
+					</div>
+					</Table.TableCell>
 
-							<!-- Source name -->
-							<Table.TableCell>
-								<span class="font-mono text-sm font-medium">{row.connector_id}</span>
-							</Table.TableCell>
+					<!-- Source name -->
+					<Table.TableCell>
+					<span class="font-mono text-sm font-medium">{row.connector_id}</span>
+					</Table.TableCell>
 
-							<!-- Type label -->
-							<Table.TableCell>
-								<span class="text-muted-foreground text-xs">
-									{row.connector_type === ConnectorType.MONGODB ? "MongoDB" : "PostgreSQL"}
-								</span>
-							</Table.TableCell>
+					<!-- Type label -->
+					<Table.TableCell>
+					<span class="text-muted-foreground text-xs">
+					{row.connector_type === ConnectorType.MONGODB ? "MongoDB" : "PostgreSQL"}
+					</span>
+					</Table.TableCell>
 
-							<!-- Availability dot -->
-							<Table.TableCell>
-								{#if row.semanticLoading}
-									<Skeleton class="size-2.5 rounded-full" />
-								{:else}
-									<span class="flex items-center gap-2">
-										<span class="relative flex size-2.5 shrink-0">
-											{#if avail === "online"}
-												<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
-												<span class="relative inline-flex size-2.5 rounded-full bg-emerald-500"></span>
-											{:else if avail === "offline"}
-												<span class="relative inline-flex size-2.5 rounded-full bg-red-500"></span>
-											{:else if avail === "indexing"}
-												<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-60"></span>
-												<span class="relative inline-flex size-2.5 rounded-full bg-amber-500"></span>
-											{:else}
-												<span class="relative inline-flex size-2.5 rounded-full bg-muted-foreground/25"></span>
-											{/if}
-										</span>
-										<span class="text-muted-foreground text-xs capitalize">{avail}</span>
-									</span>
-								{/if}
-							</Table.TableCell>
+					<!-- Availability dot -->
+					<Table.TableCell>
+					{#if row.loading}
+					<Skeleton class="size-2.5 rounded-full" />
+					{:else}
+					<span class="flex items-center gap-2">
+					<span class="relative flex size-2.5 shrink-0">
+					{#if avail === "online"}
+					<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
+					<span class="relative inline-flex size-2.5 rounded-full bg-emerald-500"></span>
+					{:else if avail === "offline"}
+					<span class="relative inline-flex size-2.5 rounded-full bg-red-500"></span>
+					{:else if avail === "indexing"}
+					<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-60"></span>
+					<span class="relative inline-flex size-2.5 rounded-full bg-amber-500"></span>
+					{:else}
+					<span class="relative inline-flex size-2.5 rounded-full bg-muted-foreground/25"></span>
+					{/if}
+					</span>
+					<span class="text-muted-foreground text-xs capitalize">{avail}</span>
+					</span>
+					{/if}
+					</Table.TableCell>
 
-							<!-- Indexing state badge -->
-							<Table.TableCell>
-								{#if row.semanticLoading}
-									<Skeleton class="h-5 w-20 rounded-full" />
-								{:else if row.sourceState}
-									{@const cfg = stateConfig[row.sourceState]}
-									<span
-										class={cn(
-											"inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium",
-											cfg.class
-										)}
-									>
-										{cfg.label}
-									</span>
-								{:else}
-									<span class="text-muted-foreground text-xs">Not indexed</span>
-								{/if}
-							</Table.TableCell>
+					<!-- Indexing state badge -->
+					<Table.TableCell>
+					{#if row.loading}
+					<Skeleton class="h-5 w-20 rounded-full" />
+					{:else if row.indexingState}
+					{@const cfg = stateConfig[row.indexingState]}
+					<span
+					class={cn(
+					"inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium",
+					cfg.class
+					)}
+					>
+					{cfg.label}
+					</span>
+					{:else}
+					<span class="text-muted-foreground text-xs">Not indexed</span>
+					{/if}
+					</Table.TableCell>
 
-							<!-- Freshness -->
-							<Table.TableCell>
-								{#if row.semanticLoading}
-									<Skeleton class="h-4 w-14" />
-								{:else}
-									<span class="text-muted-foreground text-xs">{formatDate(row.lastIndexedAt)}</span>
-								{/if}
-							</Table.TableCell>
+					<!-- Freshness -->
+					<Table.TableCell>
+					{#if row.loading}
+					<Skeleton class="h-4 w-14" />
+					{:else}
+					<span class="text-muted-foreground text-xs">{formatDate(row.lastIndexedAt)}</span>
+					{/if}
+					</Table.TableCell>
 
-							<!-- Owner -->
-							<Table.TableCell class="pr-6">
-								{#if row.semanticLoading}
-									<Skeleton class="h-4 w-24" />
-								{:else if row.ownerContact}
-									<a
-										href={row.ownerContact.includes("@")
-											? `mailto:${row.ownerContact}`
-											: row.ownerContact}
-										class="text-primary inline-flex items-center gap-1 text-xs hover:underline"
-									>
-										{row.ownerTeam ?? row.ownerContact}
-										<ExternalLinkIcon class="size-3" />
-									</a>
-								{:else if row.ownerTeam}
-									<span class="text-muted-foreground text-xs">{row.ownerTeam}</span>
-								{:else}
-									<span class="text-muted-foreground/50 text-xs">—</span>
-								{/if}
-							</Table.TableCell>
+					<!-- Owner -->
+					<Table.TableCell class="pr-6">
+					{#if row.loading}
+					<Skeleton class="h-4 w-24" />
+					{:else if row.owner}
+					<span class="text-muted-foreground text-xs">{row.owner}</span>
+					{:else}
+					<span class="text-muted-foreground/50 text-xs">—</span>
+					{/if}
+					</Table.TableCell>
 
-							<!-- Settings button -->
-							<Table.TableCell class="pr-4">
-								<button
-									type="button"
-									onclick={() => openSettings(row)}
-									class="text-muted-foreground hover:text-foreground hover:bg-accent flex size-7 items-center justify-center rounded-md transition-colors"
-									title="Source settings"
-								>
-									<MoreHorizontalIcon class="size-4" />
-								</button>
-							</Table.TableCell>
+					<!-- Settings button -->
+					<Table.TableCell class="pr-4">
+					 <button
+								type="button"
+					  onclick={() => openSettings(row)}
+					  class="text-muted-foreground hover:text-foreground hover:bg-accent flex size-7 items-center justify-center rounded-md transition-colors"
+					 title="Source settings"
+					>
+					<MoreHorizontalIcon class="size-4" />
+					</button>
+					</Table.TableCell>
 
-						</Table.TableRow>
+					</Table.TableRow>
 					{/each}
 				</Table.TableBody>
 			</Table.Table>
