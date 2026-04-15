@@ -35,10 +35,10 @@
 				class="mt-10 flex items-center justify-center gap-4"
 			>
 				<a
-					href="/waitlist"
+					href="/try-it"
 					class="waitlist-btn bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
 				>
-					Request Demo
+					Get started
 				</a>
 				<a
 					href="#how-it-works"
