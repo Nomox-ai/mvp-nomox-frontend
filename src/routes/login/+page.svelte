@@ -3,6 +3,7 @@
 	import { requestOtp, verifyOtp, getMe } from "$lib/api/auth.js";
 	import { user } from "$lib/stores/user.svelte.js";
 	import { goto } from "$app/navigation";
+	import DesktopOnly from "$lib/components/desktop-only.svelte";
 
 	type Step = "email" | "otp" | "sent";
 
@@ -43,9 +44,10 @@
 	}
 </script>
 
+<DesktopOnly>
 <div class="bg-background text-foreground flex min-h-screen flex-col">
 
-	<header class="border-border border-b px-8 py-4">
+	<header class="border-border border-b px-4 py-4 sm:px-8">
 		<div class="mx-auto max-w-section">
 			<a href="/" class="flex items-center gap-2">
 				<img src={logo} alt="nomox" class="size-5" />
@@ -54,14 +56,14 @@
 		</div>
 	</header>
 
-	<main class="flex-1 grid grid-cols-[1fr_auto_1fr] grid-rows-[1fr_auto_1fr]">
-		<div class="border-border border-b border-r"></div>
-		<div class="border-border border-b"></div>
-		<div class="border-border border-b border-l"></div>
+	<main class="flex-1 flex items-center justify-center sm:grid sm:grid-cols-[1fr_auto_1fr] sm:grid-rows-[1fr_auto_1fr]">
+		<div class="border-border hidden sm:block border-b border-r"></div>
+		<div class="border-border hidden sm:block border-b"></div>
+		<div class="border-border hidden sm:block border-b border-l"></div>
 
-		<div class="border-border border-r"></div>
+		<div class="border-border hidden sm:block border-r"></div>
 
-		<div class="w-120 px-12 py-14">
+		<div class="w-full max-w-sm px-6 py-10 sm:w-120 sm:max-w-none sm:px-12 sm:py-14">
 			{#if step === "email"}
 				<p class="text-muted-foreground mb-4 font-mono text-xs">Get started</p>
 				<h1 class="text-foreground mb-8 text-2xl font-semibold tracking-tight leading-tight">
@@ -145,14 +147,14 @@
 			{/if}
 		</div>
 
-		<div class="border-border border-l"></div>
+		<div class="border-border hidden sm:block border-l"></div>
 
-		<div class="border-border border-t border-r"></div>
-		<div class="border-border border-t"></div>
-		<div class="border-border border-t border-l"></div>
+		<div class="border-border hidden sm:block border-t border-r"></div>
+		<div class="border-border hidden sm:block border-t"></div>
+		<div class="border-border hidden sm:block border-t border-l"></div>
 	</main>
 
-	<footer class="border-border border-t px-8 py-5">
+	<footer class="border-border border-t px-4 py-5 sm:px-8">
 		<div class="mx-auto flex max-w-section items-center justify-between">
 			<div class="flex items-center gap-2">
 				<img src={logo} alt="nomox" class="size-4 opacity-40" />
@@ -163,3 +165,4 @@
 	</footer>
 
 </div>
+</DesktopOnly>
