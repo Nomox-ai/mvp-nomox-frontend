@@ -3,6 +3,7 @@
 	import logo from "$lib/assets/logo.svg";
 	import { login, getMe } from "$lib/api/auth.js";
 	import { user } from "$lib/stores/user.svelte.js";
+	import DesktopOnly from "$lib/components/desktop-only.svelte";
 
 	let username = $state("");
 	let password = $state("");
@@ -25,6 +26,7 @@
 	}
 </script>
 
+<DesktopOnly>
 <div class="bg-background text-foreground flex min-h-screen flex-col">
 
 	<header class="border-border border-b px-4 py-4 sm:px-8">
@@ -107,3 +109,4 @@
 	</footer>
 
 </div>
+</DesktopOnly>

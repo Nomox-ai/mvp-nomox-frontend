@@ -3,6 +3,7 @@
 	import { requestOtp, verifyOtp, getMe } from "$lib/api/auth.js";
 	import { user } from "$lib/stores/user.svelte.js";
 	import { goto } from "$app/navigation";
+	import DesktopOnly from "$lib/components/desktop-only.svelte";
 
 	type Step = "email" | "otp" | "sent";
 
@@ -43,6 +44,7 @@
 	}
 </script>
 
+<DesktopOnly>
 <div class="bg-background text-foreground flex min-h-screen flex-col">
 
 	<header class="border-border border-b px-4 py-4 sm:px-8">
@@ -163,3 +165,4 @@
 	</footer>
 
 </div>
+</DesktopOnly>
