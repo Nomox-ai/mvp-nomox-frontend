@@ -110,10 +110,10 @@
 				Sign in
 			</a>
 			<a
-				href="/waitlist"
+				href="/try-it"
 				class="bg-foreground text-background hover:bg-foreground/85 rounded-md px-3.5 py-1.5 text-sm font-medium transition-colors"
 			>
-				Request Demo
+				Get started
 			</a>
 		</div>
 
@@ -192,11 +192,11 @@
 						Sign in
 					</a>
 					<a
-						href="/waitlist"
+						href="/try-it"
 						class="bg-foreground text-background hover:bg-foreground/85 rounded-md px-3.5 py-2 text-center text-sm font-medium transition-colors"
 						on:click={() => (menuOpen = false)}
 					>
-						Request Demo
+						Get started
 					</a>
 				</div>
 			</div>

@@ -99,7 +99,7 @@
 						</ul>
 
 						<a
-							href="/waitlist"
+							href="/try-it"
 							class="bg-foreground text-background hover:bg-foreground/85 block w-full rounded-lg px-5 py-2.5 text-center text-sm font-medium transition-colors"
 						>
 							Talk to us about pricing
