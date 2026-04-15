@@ -1,5 +1,5 @@
 /**
- * Indexer API — backed by POST /indexer/jobs/ and GET /indexer/jobs/
+ * Indexer API — backed by POST /indexer/jobs and GET /indexer/jobs
  */
 
 import { http } from "./client.js"
@@ -34,12 +34,12 @@ export interface JobListResponse {
 // ─── API calls ────────────────────────────────────────────────────────────────
 
 export async function listJobs(): Promise<Job[]> {
-  const res = await http.get<JobListResponse>("/indexer/jobs/")
+  const res = await http.get<JobListResponse>("/indexer/jobs")
   return res.jobs
 }
 
 export async function enqueueLevel1Job(connectorId: string): Promise<Job> {
-  return http.post<Job>("/indexer/jobs/", {
+  return http.post<Job>("/indexer/jobs", {
     job_type: "full",
     level: 1,
     connector_id: connectorId,
@@ -48,7 +48,7 @@ export async function enqueueLevel1Job(connectorId: string): Promise<Job> {
 }
 
 export async function enqueueLevel2Job(targetSourceIds: string[]): Promise<Job> {
-  return http.post<Job>("/indexer/jobs/", {
+  return http.post<Job>("/indexer/jobs", {
     job_type: "full",
     level: 2,
     target_source_ids: targetSourceIds,
