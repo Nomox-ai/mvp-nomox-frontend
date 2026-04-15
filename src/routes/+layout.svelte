@@ -3,6 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import { Toaster } from '$lib/components/ui/sonner/index.js';
 	import CookieConsentBanner from '$lib/components/cookie-consent-banner.svelte';
+	import GoogleAnalytics from '$lib/google-analytics.svelte';
 	import { getConsentState, loadHotjar } from '$lib/cookie-consent.svelte.js';
 	import { onMount } from 'svelte';
 	import posthog from 'posthog-js';
@@ -33,3 +34,4 @@
 {@render children()}
 <Toaster richColors position="bottom-right" />
 <CookieConsentBanner />
+<GoogleAnalytics />
