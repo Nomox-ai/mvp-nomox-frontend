@@ -37,6 +37,7 @@
 	},
 	"dependencies": {
 		"@xyflow/svelte": "^1.5.1",
-		"marked": "^17.0.4"
+		"marked": "^17.0.4",
+		"posthog-js": "^1.369.0"
 	}
 }
