@@ -45,11 +45,11 @@ class ChatState {
 			if (response.tool_calls.length > 0) {
 				this.executeToolCalls(response.tool_calls);
 			}
-		} catch (e) {
+		} catch (e: any) {
 			const errorMessage: ChatMessage = {
 				id: crypto.randomUUID(),
 				role: "assistant",
-				content: "Sorry, something went wrong. Please try again.",
+				content: `Sorry, something went wrong: ${e.message}. Please try again.`,
 				timestamp: Date.now(),
 			};
 			this.messages.push(errorMessage);
