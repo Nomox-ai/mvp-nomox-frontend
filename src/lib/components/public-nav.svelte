@@ -3,55 +3,53 @@
 	import * as NavigationMenu from "$lib/components/ui/navigation-menu/index.js";
 	import MenuIcon from "@lucide/svelte/icons/menu";
 	import XIcon from "@lucide/svelte/icons/x";
+	import LibraryIcon from "@lucide/svelte/icons/library-big";
+	import PlugIcon from "@lucide/svelte/icons/plug-2";
+	import BarChartIcon from "@lucide/svelte/icons/bar-chart-3";
+	import UsersIcon from "@lucide/svelte/icons/users";
+	import BriefcaseIcon from "@lucide/svelte/icons/briefcase";
+	import RocketIcon from "@lucide/svelte/icons/rocket";
+	import type { ComponentType } from "svelte";
 	import { slide } from "svelte/transition";
 
 	let isMobile = false;
 	let menuOpen = false;
 
-	const productItems: { title: string; href: string; description: string }[] =
-		[
-			{
-				title: "Semantic catalog",
-				href: "/product/semantic-catalog",
-				description:
-					"Every source, table and column enriched with inferred business meanings, entities, and domain relationships.",
-			},
-			{
-				title: "MCP integration",
-				href: "/product/mcp",
-				description:
-					"Expose your catalog to Claude, Cursor and any MCP-compatible AI client with one toggle.",
-			},
-			{
-				title: "BI platform",
-				href: "/product/bi",
-				description:
-					"Explore and visualise your data with a built-in analytics layer powered by your semantic model.",
-			},
-		];
+	type NavItem = { title: string; href: string; Icon: ComponentType; desc: string };
 
-	const solutionItems: {
-		title: string;
-		href: string;
-		description: string;
-	}[] = [
+	const productItems: NavItem[] = [
+		{
+			title: "Semantic catalog",
+			href: "/product/semantic-catalog",
+			Icon: LibraryIcon,
+			desc: "Every column, enriched with meaning",
+		},
+		{
+			title: "Agent integration",
+			href: "/product/mcp",
+			Icon: PlugIcon,
+			desc: "Expose your data to AI tools",
+		},
+	];
+
+	const solutionItems: NavItem[] = [
 		{
 			title: "Data teams",
 			href: "/solutions/data-teams",
-			description:
-				"Give analysts a shared vocabulary without manual tagging or lengthy governance projects.",
+			Icon: UsersIcon,
+			desc: "A shared vocabulary, automatically",
 		},
 		{
 			title: "Decision Makers",
 			href: "/solutions/decision-makers",
-			description:
-				"Let executives explore and understand their data landscape without needing to know SQL or the schema.",
+			Icon: BriefcaseIcon,
+			desc: "Understand data without SQL",
 		},
 		{
 			title: "Engineering onboarding",
 			href: "/solutions/onboarding",
-			description:
-				"Let new engineers understand your data stack in hours instead of weeks.",
+			Icon: RocketIcon,
+			desc: "Map your stack in hours",
 		},
 	];
 </script>
@@ -71,12 +69,17 @@
 				<NavigationMenu.Item class="hidden md:block">
 					<NavigationMenu.Trigger>Solution</NavigationMenu.Trigger>
 					<NavigationMenu.Content>
-						<ul class="grid w-[300px] gap-4 p-2">
+						<ul class="grid w-[340px] gap-0.5 p-2">
 							{#each solutionItems as item}
 								<li>
-									<NavigationMenu.Link href={item.href} class="cursor-pointer">
-										<div class="font-medium">{item.title}</div>
-										<div class="text-muted-foreground">{item.description}</div>
+									<NavigationMenu.Link href={item.href} class="cursor-pointer flex flex-row items-center gap-3 rounded-lg p-3 hover:bg-muted/60 transition-colors">
+										<span class="inline-flex size-10 items-center justify-center rounded-lg border border-border bg-background shrink-0">
+											<svelte:component this={item.Icon} class="text-foreground size-[18px]" />
+										</span>
+										<div class="flex-1 min-w-0">
+											<div class="text-sm font-semibold text-foreground">{item.title}</div>
+											<div class="text-xs text-muted-foreground mt-0.5">{item.desc}</div>
+										</div>
 									</NavigationMenu.Link>
 								</li>
 							{/each}
@@ -86,12 +89,17 @@
 				<NavigationMenu.Item class="hidden md:block">
 					<NavigationMenu.Trigger>Products</NavigationMenu.Trigger>
 					<NavigationMenu.Content>
-						<ul class="grid w-[300px] gap-4 p-2">
+						<ul class="grid w-[340px] gap-0.5 p-2">
 							{#each productItems as item}
 								<li>
-									<NavigationMenu.Link href={item.href} class="cursor-pointer">
-										<div class="font-medium">{item.title}</div>
-										<div class="text-muted-foreground">{item.description}</div>
+									<NavigationMenu.Link href={item.href} class="cursor-pointer flex flex-row items-center gap-3 rounded-lg p-3 hover:bg-muted/60 transition-colors">
+										<span class="inline-flex size-10 items-center justify-center rounded-lg border border-border bg-background shrink-0">
+											<svelte:component this={item.Icon} class="text-foreground size-[18px]" />
+										</span>
+										<div class="flex-1 min-w-0">
+											<div class="text-sm font-semibold text-foreground">{item.title}</div>
+											<div class="text-xs text-muted-foreground mt-0.5">{item.desc}</div>
+										</div>
 									</NavigationMenu.Link>
 								</li>
 							{/each}
@@ -146,9 +154,12 @@
 				{#each solutionItems as item}
 					<a
 						href={item.href}
-						class="text-foreground hover:text-primary py-1.5 text-sm transition-colors"
+						class="text-foreground hover:text-primary flex items-center gap-2.5 py-1.5 text-sm transition-colors"
 						on:click={() => (menuOpen = false)}
 					>
+						<span class="inline-flex size-6 items-center justify-center rounded-md border border-border bg-background">
+							<svelte:component this={item.Icon} class="text-primary size-3.5" />
+						</span>
 						{item.title}
 					</a>
 				{/each}
@@ -161,9 +172,12 @@
 				{#each productItems as item}
 					<a
 						href={item.href}
-						class="text-foreground hover:text-primary py-1.5 text-sm transition-colors"
+						class="text-foreground hover:text-primary flex items-center gap-2.5 py-1.5 text-sm transition-colors"
 						on:click={() => (menuOpen = false)}
 					>
+						<span class="inline-flex size-6 items-center justify-center rounded-md border border-border bg-background">
+							<svelte:component this={item.Icon} class="text-primary size-3.5" />
+						</span>
 						{item.title}
 					</a>
 				{/each}

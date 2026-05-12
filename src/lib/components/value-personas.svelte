@@ -19,6 +19,7 @@
 			id: "data-wizards",
 			label: "data wizards",
 			href: "/solutions/data-teams",
+			tagline: "For analytics engineers, DBAs and data folks.",
 			values: [
 				{
 					icon: WandIcon,
@@ -46,6 +47,7 @@
 			id: "managers",
 			label: "managers",
 			href: "/solutions/decision-makers",
+			tagline: "For PMs, executives and decision makers.",
 			values: [
 				{
 					icon: SearchIcon,
@@ -73,6 +75,7 @@
 			id: "people",
 			label: "people",
 			href: "/solutions/onboarding",
+			tagline: "For engineers, designers and the rest of the team.",
 			values: [
 				{
 					icon: ZapIcon,
@@ -104,7 +107,6 @@
 	let animating = false;
 	let mounted = false;
 
-	// Sliding indicator state
 	let pillContainerEl: HTMLElement;
 	let btnEls: (HTMLElement | null)[] = [null, null, null];
 	let ind = { left: 0, top: 0, width: 0, height: 0 };
@@ -169,22 +171,20 @@
 	$: current = personas.find((p) => p.id === active)!;
 </script>
 
-<section class="border-border">
-	<div class="mx-auto max-w-section px-8 py-20">
-		<!-- Headline with swappable sliding pill -->
+<section class="border-b border-border">
+	<div class="mx-auto max-w-section px-8 py-24">
+		<!-- Headline with sliding pill -->
 		<div
 			data-fade-up="pending"
 			use:fadeUp
 			class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2"
 		>
-			<span class="text-foreground text-3xl tracking-tight">Why</span>
+			<span class="text-foreground text-3xl tracking-tight md:text-4xl">Why</span>
 
-			<!-- Pill selector with sliding indicator -->
 			<span
 				bind:this={pillContainerEl}
 				class="relative inline-flex items-center rounded-full border border-foreground bg-background p-1 gap-1"
 			>
-				<!-- Sliding blue background -->
 				<span
 					class="absolute rounded-full bg-primary {mounted
 						? 'transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]'
@@ -207,45 +207,68 @@
 				{/each}
 			</span>
 
-			<span class="text-foreground text-3xl tracking-tight"
-				>love Nomox.</span
-			>
+			<span class="text-foreground text-3xl tracking-tight md:text-4xl">love Nomox.</span>
 		</div>
 
-		<!-- Per-persona value grid -->
+		<!-- Tagline subhead -->
 		<div
-			class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 transition-opacity duration-150 {animating
-				? 'opacity-0'
-				: 'opacity-100'}"
+			class="mt-3 flex justify-center transition-opacity duration-150 {animating ? 'opacity-0' : 'opacity-100'}"
 		>
-			{#each current.values as item}
-				<div
-					class="rounded-xl border border-border bg-muted/20 px-6 py-5"
-				>
-					<svelte:component
-						this={item.icon}
-						class="text-primary mb-3 size-4"
-					/>
-					<p class="text-foreground text-sm font-semibold">
+			<p class="text-muted-foreground text-sm">{current.tagline}</p>
+		</div>
+
+		<!-- Editorial 2-col grid with display-size numbers -->
+		<ol
+			class="mt-16 grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2 md:gap-x-16 md:gap-y-14 transition-opacity duration-150 {animating ? 'opacity-0' : 'opacity-100'}"
+		>
+			{#each current.values as item, i}
+				<li class="value-row group relative">
+					<!-- Big display number -->
+					<div class="flex items-baseline gap-3 mb-4">
+						<span class="font-mono text-4xl md:text-5xl font-medium text-foreground/15 tabular-nums leading-none">
+							0{i + 1}
+						</span>
+						<span class="value-rule" aria-hidden="true"></span>
+						<div class="size-7 inline-flex items-center justify-center rounded-md border border-border bg-background shrink-0 transition-colors group-hover:border-primary/40 group-hover:bg-primary/5">
+							<svelte:component this={item.icon} class="text-primary size-3.5" />
+						</div>
+					</div>
+
+					<p class="text-foreground text-lg md:text-xl font-semibold tracking-tight">
 						{item.title}
 					</p>
-					<p
-						class="text-muted-foreground mt-1.5 text-sm leading-relaxed"
-					>
+					<p class="text-muted-foreground mt-2 text-sm leading-relaxed max-w-md">
 						{item.desc}
 					</p>
-				</div>
+				</li>
 			{/each}
-		</div>
+		</ol>
 
 		<!-- Link to full solutions page -->
-		<div class="mt-8 flex justify-center">
+		<div
+			class="mt-12 flex justify-center transition-opacity duration-150 {animating ? 'opacity-0' : 'opacity-100'}"
+		>
 			<a
 				href={current.href}
-				class="text-muted-foreground hover:text-foreground text-sm transition-colors"
+				class="group inline-flex items-center gap-1.5 text-muted-foreground hover:text-primary text-sm transition-colors"
 			>
-				Learn more about Nomox for {current.label} →
+				Learn more about Nomox for {current.label}
+				<span class="transition-transform group-hover:translate-x-0.5">→</span>
 			</a>
 		</div>
 	</div>
 </section>
+
+<style>
+	.value-rule {
+		flex: 1;
+		height: 1px;
+		background: var(--border);
+		align-self: center;
+		transition: background-color 200ms ease, opacity 200ms ease;
+	}
+	.value-row:hover .value-rule {
+		background: #2d2df6;
+		opacity: 0.4;
+	}
+</style>
