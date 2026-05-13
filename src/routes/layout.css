@@ -84,7 +84,7 @@
 
 @theme inline {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --max-width-section: 80rem; /* max-w-7xl */
+  --max-width-section: 72rem; /* narrower than max-w-7xl for a tighter editorial feel */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
